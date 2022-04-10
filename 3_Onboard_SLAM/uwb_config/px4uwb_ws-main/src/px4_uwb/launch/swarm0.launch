@@ -1,0 +1,28 @@
+<launch>
+
+<group ns="uav0">
+
+	<include file="$(find mavros)/launch/node.launch">
+		<arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
+		<arg name="config_yaml" value="$(find mavros)/launch/px4_config.yaml" />
+		<arg name="fcu_url" value="/dev/ttyTHS2:921600" />
+		<arg name="gcs_url" value="" />
+		<arg name="tgt_system" value="1" />
+		<arg name="tgt_component" value="1" />
+		<arg name="log_output" value="screen" />
+		<arg name="fcu_protocol" value="v2.0" />
+		<arg name="respawn_mavros" default="false" />
+	</include>
+
+
+	<node pkg="nlink_parser" type="linktrack" name="linktrack0" output="screen">
+		<param name="port_name" value="/dev/ttyUSB0" />
+		<param name="baud_rate" value="921600" />
+	</node>
+
+	<node pkg="px4_uwb" type="uwb_node" name="uwb_node" output="screen">
+	</node>
+
+</group>
+
+</launch>
