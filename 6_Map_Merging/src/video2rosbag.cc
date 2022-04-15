@@ -1,6 +1,6 @@
 //
 // Created by hazyparker on 2022/4/15.
-// https://blog.csdn.net/weixin_40830684/article/details/88650163
+// reference: https://blog.csdn.net/weixin_40830684/article/details/88650163
 //
 
 #include <iostream>
@@ -18,16 +18,16 @@ int main(int argc, char **argv){
     // create ros handle
     ros::NodeHandle nh;
 
-    // define and open a ros bag
+    // define ros bag, set mode as write
     rosbag::Bag bag;
-    bag.open("file.bag", rosbag::bagmode::Write);  // set mode as write
+    bag.open("/home/hazyparker/dataset/rosbag/sony_clip1.bag", rosbag::bagmode::Write);
 
     // provide input video
-    cv::VideoCapture cap("path/file.mp4");
+    cv::VideoCapture cap("/home/hazyparker/dataset/sony_clip1/C0002.MP4");
 
     // get frame of the video
     long totalFrameNum = cap.get(CAP_PROP_FRAME_COUNT);
-    cout << "total frame:" << totalFrameNum << endl;
+    cout << "total frame number:" << totalFrameNum << endl;
 
     long FrameCount = 0;
     while (ros::ok()) {
@@ -35,14 +35,21 @@ int main(int argc, char **argv){
         cv::Mat frame;
         cap >> frame;
 
+        // if last frame
+        if (FrameCount == totalFrameNum){
+            cout << "last frame, video end!" << endl;
+            break;
+        }
+
         // if any frame is empty
         if (frame.empty()) {
-            std::cout << "error, no image" << std::endl;
+            // FIXME: always will be true
+            cout << "error! no image" << endl;
             return -1;
         }
 
         // set wait key
-        cv::imshow("image", frame);
+        cv::imshow("video:", frame);
         cv::waitKey(25);  // 此处的waitKey很重要，影响了录制长度
 
         std_msgs::Header header;
