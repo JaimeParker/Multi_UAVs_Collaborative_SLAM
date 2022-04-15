@@ -14,3 +14,20 @@
 
 ### 1.1 制作`rosbag`
 
+用rosbag的方法；[代码地址](src/video2rosbag.cc)；
+
+另一种rosbag的方法暂时不考虑；
+
+要注意rosbag之后的视频空间会急剧增加；
+
+### 1.2 ROS
+
+* 在程序中设置好话题名；
+* 设置好`sh`启动脚本
+* 打开ORB进程，`rosbag play bag_name.bag`；
+
+## 2. 单设备单目SLAM
+
+暂时是初始化失败：
+
+![mono1](image/mono1.png)
