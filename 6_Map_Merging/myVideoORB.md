@@ -103,3 +103,12 @@ $$
 * https://www.researchgate.net/publication/329189950_Application_of_UAV_Photogrammetric_System_for_Monitoring_Ancient_Tree_Communities_in_Beijing/figures
 * reference
 
+更正后的标定：
+
+![matlab](image/matlab.png)
+
+得到的参数：
+
+![camera3](image/camera3.png)
+
+![camera2](image/camera2.png)
