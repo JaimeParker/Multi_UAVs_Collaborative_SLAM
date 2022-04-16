@@ -20,10 +20,10 @@ int main(int argc, char **argv){
 
     // define ros bag, set mode as write
     rosbag::Bag bag;
-    bag.open("/home/hazyparker/dataset/rosbag/sony_clip1.bag", rosbag::bagmode::Write);
+    bag.open("/home/hazyparker/dataset/rosbag/sony_clip2.bag", rosbag::bagmode::Write);
 
     // provide input video
-    cv::VideoCapture cap("/home/hazyparker/dataset/sony_clip1/C0002.MP4");
+    cv::VideoCapture cap("/home/hazyparker/dataset/sony_clip1/C0003.MP4");
 
     // get frame of the video
     long totalFrameNum = cap.get(CAP_PROP_FRAME_COUNT);
