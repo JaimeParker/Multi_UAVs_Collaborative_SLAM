@@ -16,6 +16,7 @@ include_directories(${catkin_INCLUDE_DIRS})
 
 # main
 add_executable(6_Map_Merging main.cpp)
+target_link_libraries(6_Map_Merging ${OpenCV_LIBS} ${catkin_LIBRARIES})
 
 # generate ros-bag
 add_executable(gen_rosbag src/video2rosbag.cc)
