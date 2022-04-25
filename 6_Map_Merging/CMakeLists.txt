@@ -21,3 +21,7 @@ target_link_libraries(6_Map_Merging ${OpenCV_LIBS} ${catkin_LIBRARIES})
 # generate ros-bag
 add_executable(gen_rosbag src/video2rosbag.cc)
 target_link_libraries(gen_rosbag ${OpenCV_LIBS} ${catkin_LIBRARIES})
+
+# SIFT
+add_executable(SIFT_extract src/SIFT_extract.cpp)
+target_link_libraries(SIFT_extract ${OpenCV_LIBS})
