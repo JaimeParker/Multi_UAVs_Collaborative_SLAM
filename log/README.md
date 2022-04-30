@@ -9,5 +9,12 @@
 #### 至4.30
 
 * 中期报告修改（提交）
-* ORB-SLAM2代码学习；[导图法](https://www.mindmeister.com/map/2257958379)；[类导图法](https://www.mindmeister.com/map/2257266424)；[知乎：函数功能主导](https://zhuanlan.zhihu.com/p/84905697)；[MapPoint](MapPoint.md)；[Frame](Frame.md)
+* ORB-SLAM2代码学习；[导图法](https://www.mindmeister.com/map/2257958379)；[类导图法](https://www.mindmeister.com/map/2257266424)；[知乎：函数功能主导](https://zhuanlan.zhihu.com/p/84905697)；[MapPoint](MapPoint.md)；[Frame](Frame.md)；（结束）
 * [Collaborative Monocular SLAM with Multiple Micro Aerial Vehicles](../6_Map_Merging/README.md)
+
+下周：
+
+* 不考虑实时性（mutex），只实现PR+MM
+* 弄清上文方法
+* 解决PX4多机时bug， joystick
+* CCM数据流分析+论文中的Map Matcher+Map Merging方法分析（不含源码）
