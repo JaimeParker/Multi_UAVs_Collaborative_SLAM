@@ -29,6 +29,9 @@ int main(int argc, char **argv){
     long totalFrameNum = cap.get(CAP_PROP_FRAME_COUNT);
     cout << "total frame number:" << totalFrameNum << endl;
 
+    // set fps
+    int fps = 30;
+
     long FrameCount = 0;
     while (ros::ok()) {
         // send each frame msg to frame(Mat)
@@ -48,9 +51,9 @@ int main(int argc, char **argv){
             return -1;
         }
 
-        // set wait key
+        // set wait key = 1000/fps
         cv::imshow("video:", frame);
-        cv::waitKey(25);  // 此处的waitKey很重要，影响了录制长度
+        cv::waitKey(int(1000/fps));
 
         std_msgs::Header header;
         header.frame_id = "image_frame";
@@ -72,6 +75,7 @@ int main(int argc, char **argv){
     // close ros bag
     bag.close();
     cap.release();
+    cout << "ros-bag finished" << endl;
 
     return 0;
 }
