@@ -115,3 +115,99 @@ int main(int argc, char **argv) {
 
 ### Client Handler
 
+在上面的代码`ClientSystem`中，对`ClientHandler`做了两件事：
+
+* 对`mpAgent`对象创建了新的`ClientHandler`
+* 对`mpAgent`对象进行了`ClientHandler`中的线程初始化
+
+```cpp
+ClientHandler::ClientHandler(ros::NodeHandle Nh, ros::NodeHandle NhPrivate, vocptr pVoc, dbptr pDB, mapptr pMap, size_t ClientId, uidptr pUID, eSystemState SysState, const string &strCamFile, viewptr pViewer, bool bLoadMap)
+    : mpVoc(pVoc),mpKFDB(pDB),mpMap(pMap),
+      mNh(Nh),mNhPrivate(NhPrivate),
+      mClientId(ClientId), mpUID(pUID), mSysState(SysState),
+      mstrCamFile(strCamFile),
+      mpViewer(pViewer),mbReset(false),
+      mbLoadedMap(bLoadMap)
+{
+    // in case of nullptr
+    if(mpVoc == nullptr || mpKFDB == nullptr || mpMap == nullptr || (mpUID == nullptr && mSysState == eSystemState::SERVER))
+    {
+        cout << ("In \" ClientHandler::ClientHandler(...)\": nullptr exception") << endl;
+        throw estd::infrastructure_ex();
+    }
+
+    // in Map.h, set of Clients
+    // list of ID
+    mpMap->msuAssClients.insert(mClientId);
+
+    // 3rd Party, g2o
+    mg2oS_wcurmap_wclientmap = g2o::Sim3(); //identity transformation
+
+    // load camera topic name to ROS parameter server
+    // system state should be Client
+    if(mSysState == eSystemState::CLIENT)
+    {
+        std::string TopicNameCamSub;
+        // get camera topic name, link up with node name
+        // load it in ROS parameter server
+        mNhPrivate.param("TopicNameCamSub",TopicNameCamSub,string("nospec"));
+        mSubCam = mNh.subscribe<sensor_msgs::Image>(TopicNameCamSub,10,boost::bind(&ClientHandler::CamImgCb,this,_1));
+        // show camera topic, for debug if necessary
+        cout << "Camera Input topic: " << TopicNameCamSub << endl;
+    }
+}
+```
+
+其主要内容是将图像的话题名加载到ROS的参数服务器上，以及一些基础的参数配置；
+
+之后是初始化函数`InitializeThreads`
+
+### Initialize Threads
+
+其函数定义开始时，有一个宏定义判断
+
+```cpp
+#ifdef LOGGING
+void ClientHandler::InitializeThreads(boost::shared_ptr<estd::mylog> pLogger)
+#else
+void ClientHandler::InitializeThreads()
+#endif
+```
+
+如果LOGGING defined则直接用智能指针的plogger；
+
+进入函数内，首先又是一个宏判断：
+
+```cpp
+    #ifdef LOGGING
+    this->InitializeCC(pLogger);
+    #else
+    this->InitializeCC();
+    #endif
+```
+
+指向了`InitializeCC`函数；
+
+之后根据类型判断具体的初始化函数：
+
+```cpp
+    // choose Initializer: client or server
+    if(mSysState == eSystemState::CLIENT)
+    {
+        this->InitializeClient();
+    }
+    else if(mSysState == eSystemState::SERVER)
+    {
+        this->InitializeServer(mbLoadedMap);
+    }
+    else
+    {
+        cout << "\033[1;31m!!!!! ERROR !!!!!\033[0m ClientHandler::InitializeThreads(): invalid systems state: " << mpCC->mSysState << endl;
+        throw infrastructure_ex();
+    }
+```
+
+下面对`InitializeCC`，`InitializeClient`，`InitializeServer`三个函数进行分析；
+
+### Initialize CC
+
