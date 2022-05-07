@@ -211,3 +211,117 @@ void ClientHandler::InitializeThreads()
 
 ### Initialize CC
 
+CC指的是另一个CentralControl文件；
+
+开头也有一个宏定义：
+
+```cpp
+#ifdef LOGGING
+void ClientHandler::InitializeCC(boost::shared_ptr<mylog> pLogger)
+#else
+void ClientHandler::InitializeCC()
+#endif
+```
+
+之后首先调用了`CentralControl`：
+
+```cpp
+    // create new CentralControl
+    mpCC.reset(new CentralControl(mNh,mNhPrivate,mClientId,mSysState,shared_from_this(),mpUID));
+```
+
+然后将`FrameID`话题名及其对应的对象加载到ROS参数服务器：
+
+```cpp
+    // load topic name "FrameID" or "FrameID"+ClientID to ROS parameter server
+    if(mSysState == eSystemState::CLIENT)
+    {
+        ss = new stringstream;  // <https://www.geeksforgeeks.org/stringstream-c-applications/>
+        *ss << "FrameId";  // operator <<- Add a string to the string-stream object
+        mNhPrivate.param(ss->str(),mpCC->mNativeOdomFrame,std::string("nospec"));
+    }
+    else if(mSysState == eSystemState::SERVER)
+    {
+        ss = new stringstream;
+        *ss << "FrameId" << mClientId;  // FrameID + ClientID
+        mNhPrivate.param(ss->str(),mpCC->mNativeOdomFrame,std::string("nospec"));
+    }
+```
+
+之后读取`YAML`文件中的相机参数（不是内参和畸变）：
+
+```cpp
+if(mSysState==CLIENT)
+        {
+            cv::FileStorage fSettings(mstrCamFile, cv::FileStorage::READ);
+
+            float c0t00 = fSettings["Cam0.T00"];
+            float c0t01 = fSettings["Cam0.T01"];
+            float c0t02 = fSettings["Cam0.T02"];
+            float c0t03 = fSettings["Cam0.T03"];
+            float c0t10 = fSettings["Cam0.T10"];
+            float c0t11 = fSettings["Cam0.T11"];
+            float c0t12 = fSettings["Cam0.T12"];
+            float c0t13 = fSettings["Cam0.T13"];
+            float c0t20 = fSettings["Cam0.T20"];
+            float c0t21 = fSettings["Cam0.T21"];
+            float c0t22 = fSettings["Cam0.T22"];
+            float c0t23 = fSettings["Cam0.T23"];
+            float c0t30 = fSettings["Cam0.T30"];
+            float c0t31 = fSettings["Cam0.T31"];
+            float c0t32 = fSettings["Cam0.T32"];
+            float c0t33 = fSettings["Cam0.T33"];
+            mpCC->mT_SC << c0t00,c0t01,c0t02,c0t03,c0t10,c0t11,c0t12,c0t13,c0t20,c0t21,c0t22,c0t23,c0t30,c0t31,c0t32,c0t33;
+        }
+```
+
+最后是关于里程计帧的处理：
+
+```cpp
+    // assign Native Odometry Frame to Odometry Frame in Map
+    mpMap->mOdomFrame = mpCC->mNativeOdomFrame;
+    mpMap->AddCCPtr(mpCC);  // add CentralControl ptr to Map class
+
+    #ifdef LOGGING
+    mpCC->mpLogger = pLogger;
+    #endif
+```
+
+### Initialize Client
+
+该函数的作用很简单，对各线程初始化；
+
+```cpp
+    //+++++ Create Drawers. These are used by the Viewer +++++
+    mpViewer.reset(new Viewer(mpMap,mpCC));
+    usleep(10000);
+    //+++++ Initialize the Local Mapping thread +++++
+    mpMapping.reset(new LocalMapping(mpCC,mpMap,mpKFDB,mpViewer));
+    usleep(10000);
+    //+++++ Initialize the communication thread +++++
+    mpComm.reset(new Communicator(mpCC,mpVoc,mpMap,mpKFDB));
+    mpComm->SetMapping(mpMapping);
+    usleep(10000);
+    mpMap->SetCommunicator(mpComm);
+    mpMapping->SetCommunicator(mpComm);
+    usleep(10000);
+    //+++++ Initialize the tracking thread +++++
+    //(it will live in the main thread of execution, the one that called this constructor)
+    mpTracking.reset(new Tracking(mpCC, mpVoc, mpViewer, mpMap, mpKFDB, mstrCamFile, mClientId));
+    usleep(10000);
+    mpTracking->SetCommunicator(mpComm);
+    mpTracking->SetLocalMapper(mpMapping);
+    mpViewer->SetTracker(mpTracking);
+    usleep(10000);
+    //Launch Threads
+    //Should no do that before, a fast system might already use a pointer before it was set -> segfault
+    mptMapping.reset(new thread(&LocalMapping::RunClient,mpMapping));
+    mptComm.reset(new thread(&Communicator::RunClient,mpComm));
+    mptViewer.reset(new thread(&Viewer::RunClient,mpViewer));
+    usleep(10000);
+```
+
+### Initialize Server
+
+### Central Control
+

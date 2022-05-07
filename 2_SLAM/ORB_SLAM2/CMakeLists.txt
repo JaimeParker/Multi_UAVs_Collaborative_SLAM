@@ -38,8 +38,18 @@ endif()
 
 find_package(Eigen3 3.1.0 REQUIRED NO_MODULE)
 find_package(Pangolin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+        cv_bridge
+        geometry_msgs
+        mavros_msgs
+        roscpp
+        rospy
+        sensor_msgs
+        std_msgs
+        tf)
 
 include_directories(
+${catkin_INCLUDE_DIRS}
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
@@ -68,15 +78,20 @@ src/KeyFrameDatabase.cc
 src/Sim3Solver.cc
 src/Initializer.cc
 src/Viewer.cc
-)
+        src/SingleDeviceNode.cc)
 
 target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
 ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
+${catkin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 )
+
+# add new node executable and target link
+add_executable(MultiDeviceSLAM src/SingleDeviceNode.cc)
+target_link_libraries(MultiDeviceSLAM ${catkin_LIBRARIES})
 
 # Build examples
 
