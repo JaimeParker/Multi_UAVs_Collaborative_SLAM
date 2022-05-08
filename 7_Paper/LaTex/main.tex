@@ -1,0 +1,87 @@
+% 西工大学士论文模板
+
+\documentclass{nwputhesis}
+
+% 作者、论文信息
+
+% 汉语作者
+\nwpuAuthor{刘昭宏}
+% 专业
+\nwpuMajor{飞行器控制与信息工程}
+% 指导教师姓名
+\nwpuSupervisorFirst{布树辉}
+% 毕业时间
+\nwpuGraduateTime{2022年6月}
+% 标题
+\nwpuTitleFirstLine{本科毕业设计题目}
+
+\pagestyle{plain}
+\allowdisplaybreaks[4]
+
+
+\begin{document}
+
+%定义所有的eps,png,jpg,pdf文件在 figures 子目录下
+\graphicspath{{figures/}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 封面、摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{0-cover}  %%封面页
+\pagenumbering{Roman}
+\include{0-abstract}  %%摘要页
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 目录
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\baselinestretch}{1.25}
+\fontsize{12pt}{12pt} \selectfont
+
+\tableofcontents
+\mainmatter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 正文部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\baselinestretch}{1.5}
+
+\pagenumbering{arabic}
+\setcounter{page}{4}
+
+\include{chapter-01}
+\include{chapter-02}
+
+\include{chapter-06}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 参考文献
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\baselinestretch}{1.0}
+\backmatter
+\bibliographystyle{nwputhesis}
+% \bibliographystyle{plain}  
+\bibliography{reference}
+
+% 添加目录到参考文献
+\addcontentsline{toc}{chapter}{参考文献}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 致谢和小结
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{1-acknowledgements}
+\include{1-design-conclusion}
+
+
+\end{document}
+

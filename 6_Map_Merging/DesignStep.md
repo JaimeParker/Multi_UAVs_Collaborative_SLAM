@@ -325,3 +325,12 @@ if(mSysState==CLIENT)
 
 ### Central Control
 
+### 方法总结
+
+1. 由于ORB不是标准的catkin编译，不能放在catkin workspace下直接`catkin_make`，其ROS板块使用的是`rosbuild`，因此可以在`Example/ROS/src`下建立类似CCM的client节点和系统管理程序，修改ROS下的`CmakeList`；
+2. 如果在ORB的src下，类似CCM的方法直接加入新的Client节点和Server节点，编译时需要把整个ORB都`target_link_libraries`上，且在ROS调用时有困难；
+3. 最后一个方法，新建一个ROS功能包，类似CCM一样把ORB用到的源码都加进来，保证一个完整的`catkin`结构，这样做可能有点像复现CCM（或抄）；
+
+下面是方法一的实现：
+
+![2orb](image/2orb.png)

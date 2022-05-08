@@ -1,0 +1,24 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[于琰平(2010)]{yuyanping2010}
+于琰平.
+\newblock {基于 FlightGear
+  的四旋翼无人机三维可视仿真系统研究}[J].
+\newblock 天津大学, 2010.
+
+\bibitem[刘鹏(2011)]{liupeng2011}
+刘鹏.
+\newblock {基于 FlightGear 的无人直升机飞行仿真技术研究}[J].
+\newblock 南京航空航天大学, 2011.
+
+\bibitem[李海泉(2011)]{lihaiquan2011}
+李海泉.
+\newblock {小型无人机飞行力学建模及虚拟训练平台的建立}[J].
+\newblock 南京航空航天大学, 2011.
+
+\end{thebibliography}

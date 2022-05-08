@@ -1,0 +1,90 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: GBT7714-2005NLang-UTF8.bst
+A level-1 auxiliary file: 0-cover.aux
+A level-1 auxiliary file: 0-abstract.aux
+A level-1 auxiliary file: chapter-01.aux
+A level-1 auxiliary file: chapter-02.aux
+A level-1 auxiliary file: chapter-06.aux
+Illegal, another \bibstyle command---line 27 of file main.aux
+ : \bibstyle
+ :          {nwputhesis}
+I'm skipping whatever remains of this command
+A level-1 auxiliary file: 1-acknowledgements.aux
+A level-1 auxiliary file: 1-design-conclusion.aux
+new.block is an unknown function---line 73 of file GBT7714-2005NLang-UTF8.bst
+remove.dots is an unknown function---line 461 of file GBT7714-2005NLang-UTF8.bst
+remove.dots is an unknown function---line 514 of file GBT7714-2005NLang-UTF8.bst
+remove.dots is an unknown function---line 571 of file GBT7714-2005NLang-UTF8.bst
+remove.dots is an unknown function---line 616 of file GBT7714-2005NLang-UTF8.bst
+format.pages is an unknown function---line 1163 of file GBT7714-2005NLang-UTF8.bst
+format.pages is an unknown function---line 1194 of file GBT7714-2005NLang-UTF8.bst
+format.pages is an unknown function---line 1203 of file GBT7714-2005NLang-UTF8.bst
+format.pages is an unknown function---line 1233 of file GBT7714-2005NLang-UTF8.bst
+format.pages is an unknown function---line 1242 of file GBT7714-2005NLang-UTF8.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+*publisher is an unknown function---line 1929 of file GBT7714-2005NLang-UTF8.bst
+*　* is an unknown function---line 1938 of file GBT7714-2005NLang-UTF8.bst
+ouput is an unknown function---line 2064 of file GBT7714-2005NLang-UTF8.bst
+ouput is an unknown function---line 2068 of file GBT7714-2005NLang-UTF8.bst
+ouput is an unknown function---line 2102 of file GBT7714-2005NLang-UTF8.bst
+ouput is an unknown function---line 2105 of file GBT7714-2005NLang-UTF8.bst
+format.conference.title is an unknown function---line 2622 of file GBT7714-2005NLang-UTF8.bst
+format.cconference.title is an unknown function---line 2657 of file GBT7714-2005NLang-UTF8.bst
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Database file #1: reference.bib
+You can't pop an empty literal stack for entry yuyanping2010
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry yuyanping2010
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry liupeng2011
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry liupeng2011
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry lihaiquan2011
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry lihaiquan2011
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You've used 3 entries,
+            6753 wiz_defined-function locations,
+            1211 strings with 8727 characters,
+and the built_in function-call counts, 772 in all, are:
+= -- 66
+> -- 12
+< -- 3
++ -- 9
+- -- 3
+* -- 35
+:= -- 125
+add.period$ -- 9
+call.type$ -- 3
+change.case$ -- 6
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 45
+empty$ -- 100
+format.name$ -- 6
+if$ -- 178
+int.to.chr$ -- 1
+int.to.str$ -- 4
+missing$ -- 3
+newline$ -- 23
+num.names$ -- 6
+pop$ -- 15
+preamble$ -- 1
+purify$ -- 3
+quote$ -- 0
+skip$ -- 37
+stack$ -- 0
+substring$ -- 6
+swap$ -- 3
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 12
+warning$ -- 0
+while$ -- 3
+width$ -- 0
+write$ -- 49
+(There were 25 error messages)

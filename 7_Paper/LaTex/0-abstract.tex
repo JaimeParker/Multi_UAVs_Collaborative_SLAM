@@ -1,0 +1,48 @@
+﻿
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 中文摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\baselinestretch}{1.5}
+\fontsize{12pt}{13pt} \selectfont
+
+\chapter*{摘~~~~要}
+
+\vspace{1em}
+
+无人机因其续航能力强，成本低廉，无人员伤亡等载人飞行器不可比拟的优势，已成为目前的研究热点。本文通过FlightGear搭建飞行仿真平台，研究四旋翼无人机的飞行控制系统，从而提高飞行控制系统的鲁棒性。
+
+首先，本文进行四旋翼无人机六自由度非线性飞行动力学建模。在建模过程中，本文分别从运动学角度与力学角度两方面进行考虑。在运动学方程推导过程中，基于坐标系变换的理论基础，采用四元数法对旋转矩阵进行转换，从而建立运动学方程。在力学方程推导过程中，基于四旋翼的力学特性，不考虑四旋翼的空气动力学特性，建立六自由度非线性方程组。在模型求解的过程中，基于小扰动假设，对非线性方程进行线性化，从而求解模型。
+
+然后，本文进行仿真平台的搭建，基于FlightGear建立三维视景仿真系统，进行半物理仿真。本文利用C++编程实现飞行摇杆Joystick数据读取，将读取数据通过UDP编程实现对FlightGear通信，从而进行飞行姿态的控制。在仿真平台搭建中，三维可视化的研究是非常重要的环节，可以对无人机的运动状态及总体结构进行直观显示，从而实现实时显示无人机的飞行位置及姿态变化的效果，增加飞行仿真的真实性。飞行仿真实验平台对飞行器测试研究工作有重要的作用，不仅可以总结飞机的飞行规律，而且能够对飞机的性能进行评估，从而降低试飞的风险和成本，提高飞行的安全性。
+
+最后，本文在搭建的仿真平台上，进行飞行仿真效果的模拟。在模拟过程中，需要对FlightGear软件进行配置。要对飞行器模型及飞行环境等进行部署，完成飞行器模型部署后，便可以驱动模型进行模拟飞行。同时，本文还对四旋翼飞行控制模型进行改善，提出采取基于视觉的飞行控制思想的可行性，从而减弱人在整个控制系统中的角色，减弱人的干预，实现自主飞行。
+
+\vspace{0.1in}
+\noindent {\CJKfamily{zhhei} 关键词：} 六自由度飞控模型，四元数法，三维视景仿真系统，半物理仿真
+
+
+﻿﻿
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 英文摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter*{ABSTRACT}
+\noindent 
+\vspace{1em}
+
+
+Due to endurance UAV capability, low cost, no casualties incomparable advantages of manned spacecraft
+Potential, it has become a hot topic. By building FlightGear flight simulation platform to study four spin wing UAV flight control system, thereby improving the robustness of the flight control system.
+
+First, this paper four-rotor UAV six degrees of freedom nonlinear flight dynamics modeling. In this paper are considered from the perspective of the kinematics and mechanical point of two ways. In the kinematic equations derivation, based on the theoretical basis of coordinate transformation, using quaternion rotation matrix conversion, in order to establish Kinematic equations. In mechanics equation derivation, based on the mechanical properties of four rotors, irrespective of four rotors Aerodynamic characteristics, the establishment of six degrees of freedom nonlinear equations. In the process of solving the model, based on the small disturbance Move assumptions, the nonlinear equation linearization, thereby solving the model.
+
+Then, this paper build simulation platform, the establishment of three-dimensional visual simulation system based on FlightGear,Semi-physical simulation. In this paper, the use of C ++ programming Joystick Joystick data read. According to FlightGear programming through UDP communications, thereby performing flight attitude control. In the simulation platform To build the three-dimensional visualization of research is a very important part, you can exercise status and overall UAV Structure for visual display, enabling real-time display of UAV flight position and attitude change effects, increasing .Plus flight simulation authenticity. Flight simulation platform for vehicle test research has an important role,Not only the law can be summarized fly the aircraft, but also be able to assess the performance of the aircraft, reducing flight Risks and costs, improve flight safety.
+
+Finally, on building simulation platform, simulated flight simulation effects. During the simulation,FlightGear software needs to be configured. Meanwhile, the paper also four-rotor flight. Improved control model is proposed to take feasibility flight control based on visual thinking, thus weakening people.The role of the entire control system, reduced human intervention to achieve autonomous flight.
+
+
+
+\vspace{0.1in}
+\noindent \textbf{Key Words:} Flight control model, Quaternion, Three-dimensional visual simulation system, Loop simulation
