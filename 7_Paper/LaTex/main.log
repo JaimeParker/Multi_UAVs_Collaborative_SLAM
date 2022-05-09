@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  8 MAY 2022 19:59
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  9 MAY 2022 22:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2013,8 +2013,8 @@ Package: xeCJK-listings 2018/02/27 v3.6.1 xeCJK patch file for listings
 \l__xeCJK_listings_flag_int=\count348
 )
 (./main.aux (./0-cover.aux) (./0-abstract.aux) (./chapter-01.aux)
-(./chapter-02.aux) (./chapter-03.aux) (./chapter-06.aux)
-(./1-acknowledgements.aux) (./1-design-conclusion.aux))
+(./chapter-02.aux) (./chapter-03.aux) (./chapter-04.aux) (./chapter-05.aux)
+(./chapter-06.aux) (./1-acknowledgements.aux) (./1-design-conclusion.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
@@ -2313,13 +2313,32 @@ Overfull \hbox (41.25003pt too wide) detected at line 4
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 12
+Overfull \hbox (41.25003pt too wide) detected at line 14
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 三 章  
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 13
+Overfull \hbox (41.25003pt too wide) detected at line 28
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 四 章  
+ []
+
+
+Overfull \hbox (41.25003pt too wide) detected at line 36
+\TU/FandolSong-Regular(0)/bx/n/12.5 第 五 章  
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4
+
+
+]
+Overfull \hbox (41.25003pt too wide) detected at line 37
+\TU/FandolSong-Regular(0)/bx/n/12.5 第 六 章  
  []
 
 )
@@ -2333,10 +2352,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4
-
-
-]
+[5]
 \openout2 = `chapter-01.aux'.
 
  (./chapter-01.tex
@@ -2365,6 +2381,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
  (./chapter-02.tex
 第二章
+
+LaTeX Warning: Reference `2.1.3' on page 6 undefined on input line 14.
+
 File: figures/f2.jpg Graphic file (type bmp)
 <figures/f2.jpg>
 
@@ -2485,10 +2504,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-\openout2 = `chapter-06.aux'.
+\openout2 = `chapter-04.aux'.
 
- (./chapter-06.tex
+ (./chapter-04.tex
 第四章
+)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2499,14 +2519,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-])
+]
+\openout2 = `chapter-05.aux'.
+
+ (./chapter-05.tex
+第五章
+)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12] (./main.bbl)
+[12
+
+
+
+]
+\openout2 = `chapter-06.aux'.
+
+ (./chapter-06.tex
+第六章
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2514,6 +2547,24 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [13
+
+
+
+])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14] (./main.bbl)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[15
 
 
 
@@ -2527,7 +2578,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14
+[16
 
 
 ]
@@ -2540,18 +2591,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15
+[17
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 71.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 71.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 73.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 73.
  (./main.aux (./0-cover.aux) (./0-abstract.aux) (./chapter-01.aux)
-(./chapter-02.aux) (./chapter-03.aux) (./chapter-06.aux)
-(./1-acknowledgements.aux) (./1-design-conclusion.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 71.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 71.
+(./chapter-02.aux) (./chapter-03.aux) (./chapter-04.aux) (./chapter-05.aux)
+(./chapter-06.aux) (./1-acknowledgements.aux) (./1-design-conclusion.aux))
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 73.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 73.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2560,15 +2611,15 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 71.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 73.
  ) 
 Here is how much of TeX's memory you used:
- 43583 strings out of 493007
- 853607 string characters out of 6136718
- 918373 words of memory out of 5000000
- 46863 multiletter control sequences out of 15000+600000
+ 43626 strings out of 493007
+ 854085 string characters out of 6136718
+ 920047 words of memory out of 5000000
+ 46892 multiletter control sequences out of 15000+600000
  546449 words of font info for 136 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1831s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (17 pages).
+Output written on main.pdf (20 pages).
