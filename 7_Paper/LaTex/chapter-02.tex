@@ -2,81 +2,71 @@
 \chapter{ROS与PX4介绍}\label{introduction}
 
 \section{ROS介绍}
-本文这一节主要介绍用于描述飞机姿态位置的坐标系与坐标系之间的转换，用来推导四旋翼飞控建模过程中需要用的旋转矩阵与转换方程。飞机的姿态描述需要利用各种坐标系表示的原因如下：
+本节主要对ROS平台进行介绍，包括ROS核心的消息机制和研究中要用到的gazebo仿真平台。
 
-\begin{enumerate}
-	\item 空气动力学的力和力矩是在机体坐标系下表示的。
-	\item 牛顿运动方程利用四元数法来表示，需要指明相关的坐标系。
-	\item 在机体坐标系下，飞机传感器读取飞机姿态参数信息，比如加速度；相反，飞机上GPS系统读取的飞机位置姿态参数需要在惯性坐标系下（即地面坐标系）。
-	\item 大多数情况下，需要在惯性坐标系下，对飞机的飞行轨迹进行描述。另外，地图所采用的位置坐标也是在惯性坐标系下表示的。
-\end{enumerate}
+21世纪开始，随着人工智能研究的发展，催生出了一批智能机器人的研究项目；ROS诞生于2007年斯坦福大学AI实验室Morgan Quigley的STAIR（Standford Artificial Intelligence Robot）项目，其期望构建一个基于移动机器人+机械臂的原型；该项目于2008年受到Willow Garage公司关注，其决定用商业化手段来推进机器人的发展，使机器人平台能够更快地走进人们的日常生活；Willow Garage接手该项目后两年，2010年第一代ROS即ROS1.0发布；2013年，OSRF（Open Source Robotics Foundation）接管了ROS的维护工作和版本的升级工作，随后至2018年间，ROS的Indigo、Kinetic和Melodic版本相继发布。
 
-要想完成一个坐标系到另一个坐标系之间的转换，需要完成两个步骤，一个是旋转，另一个是转换。在本章的\ref{2.1.1}节部分用来描述坐标旋转矩阵和旋转矩阵应用于坐标系变化；在本章的\ref{2.1.2}节部分用来介绍在四旋翼无人机系统下所采用的特定坐标系，推导四旋翼旋转矩阵表达式；在本章的\ref{2.1.3}节部分用来推导坐标系转换过程中转换关系，即Corlios方程。最终，推导完成坐标系转换过程的两个步骤：旋转和转换。
-
+ROS即Robotics Operating System，是一个针对机器人的开源、元级操作系统，在某些方面，ROS更像是一种机器人框架（robot framework）；它提供类似于操作系统的服务，包含底层的驱动程序管理、底层的硬件描述，随后上升到软件程序之间的消息传递、功能包的管理和发布、也提供用于获得、编译、编写和多设备跨计算机运行代码所需的库等。换言之，ROS是由一套通信机制，开发工具，一系列应用功能和一个庞大的生态系统组成的集合，其目标为提高机器人研发中的软件复用率，不断完善他人的工作，进行更好的开发。
 
 \subsection{ROS的消息机制} \label{2.1.1}
 
+% ROS松耦合分布式通信+引出节点
+ROS提供了一套松耦合分布式通信机制，这种分布式处理框架（又名Nodes），是以多个节点及节点之间的通信组成的。其中，节点（Node）和节点管理器（ROS Master）是ROS的核心概念，若干个节点在节点管理器下构建起来，共同实现特定的功能。
+
+% 介绍节点的作用
+每一个节点是一个独立的执行单元，由可执行文件构成，在程序中需要声明节点的名称；节点的名称必须唯一，否则ROS会舍弃掉时间节点靠前的节点；节点执行具体的任务进程，比如单目的ORB-SLAM2中，其节点为Mono，SLAM的任务仅靠一个节点完成。
+
+% 介绍节点管理器
+节点管理器是节点的控制中心，其作用是辅助节点的查找，帮助节点之间建立通信连接；还能提供节点的命名和注册等服务，以及提供了能够存储全局变量的配置的参数服务器。
+
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\textwidth]{f2.jpg}
-\caption{坐标系二维旋转} 
+\includegraphics[width=0.6\textwidth]{ros_node.png}
+\caption{ROS中的节点及通信} 
 \label{fig2}
 \end{figure}
 
-如图\ref{fig2}所示，向量{\bf{p}}即在坐标系$\mathop R\nolimits^0$下同时还在坐标系$\mathop R\nolimits^1$下，$\mathop R\nolimits^0$坐标系与$\mathop R\nolimits^1$坐标系的坐标原点相同，故向量{\bf{p}}从坐标系$\mathop R\nolimits^0$ 到坐标系$\mathop R\nolimits^1 $的旋转，属于二维空间的旋转。在坐标系$\mathop R\nolimits^0$下，单位向量用$\left( {{{\hat i}^0},{{\hat j}^0},{{\hat k}^0}} \right)$表示，在坐标系$\mathop R\nolimits^1 $下,单位向量用$\left( {{{\hat i}^1},{{\hat j}^1},{{\hat k}^1}} \right)$表示。在坐标系$\mathop R\nolimits^0$下，向量{\bf{p}}可以表示为：
-%
-\begin{equation}
-\mathbf{p} = p_{x}^{0} \hat{i}^0 + p_{y}^{0} \hat{j}^0 + p_{z}^{0} \hat{k}^0
-\end{equation}
+% 介绍节点的通信
+如图\ref{fig2}所示，节点在经过节点管理器注册后，可以建立节点之间的通信；常用的节点之间通信方式有两种，为话题（Topic）通信和服务（Service）通信：
+\begin{enumerate}
+	\item 话题通信是异步通信机制，数据为单向传输；数据的流向为发布者（Publisher）到订阅者（Subscriber）；完成话题通信需要定义一个话题（Topic）及其消息（Message）的内容，之后通过发布者（Publisher）发布该话题，并且订阅者（Subscriber）订阅该话题的操作，完成数据的传输，消息的数据结构由.msg文件定义；话题通信可以完成多对多的信息传递。
+	\item 
+	服务的通信机制则为同步，数据为双向传输；数据的流向为客户端（Client）与服务器（Server）之间的交互；完成服务的通信需要客户端向服务器发送请求，服务器完成任务处理后，向客户端返回应答数据，表示请求和应答的数据结构定义在.srv文件中；服务通信一般用于逻辑判断，比如询问一项任务是否执行完毕，是一对多的节点处理关系。
+\end{enumerate}
 
-同样，在坐标系系$\mathop R\nolimits^1 $下,向量{\bf{p}}可以表示为：
-%
-\begin{equation}
-\mathbf{p} = p_{x}^{1} \hat{i}^1 + p_{y}^{1} \hat{j}^1 + p_{z}^{1} \hat{k}^1
-\end{equation}
+% 介绍Topic的编程
+发布和订阅话题的方法，发布者和订阅者类似，以发布者为例：先实例化一个发布者对象，定义发布的话题名称、数据类型和队列长度，最后对消息进行定义并发送，简单的逻辑代码如下：
+\begin{lstlisting}[language={C++}]
+ros::NodeHandle n;  // define ros node handle
+// define a publisher
+ros::Publisher pub = n.advertise<'message type'>
+	("topic name", `queue length`);
+// publish message
+pub.publish(message);
+\end{lstlisting}
 
-联立上面两式，可以得到如下的关系：
-%
-\begin{equation}
-p_{x}^{1} \hat{i}^1 + p_{y}^{1} \hat{j}^1 + p_{z}^{1} \hat{k}^1 = p_{x}^{1} \hat{i}^1 + p_{y}^{1} \hat{j}^1 + p_{z}^{1} \hat{k}^1
-\end{equation}
+需要注意的是，订阅者则需要声明并定义一个回调函数，在实例化Subscriber的对象后，通过ROS的spin()函数，循环等待回调函数获得话题消息。
 
+% 介绍Service的编程
+客户端-服务器模型下的服务通信，则比话题的发布和订阅复杂；客户端的编程实现中，需要设置阻塞函数，其作用是直到发现对应的服务时才向下进行，否则程序被截止在该位置；如果对应的服务被发现，阻塞函数通过，之后创建客户端并且进行数据的设置，完成服务调用的请求，其代码实现如下：
+\begin{lstlisting}[language={C++}]
+// wait for right service
+ros::service::waitForService("service name");
+// create a client, connecting to service
+ros::ServiceClient client = n.serviceClient
+	<'data type'>("service name");
+// call service
+client.call(srv);
+\end{lstlisting}
+
+服务器的实现与订阅者类似，需要一个回调函数，如果收到了客户端发来的请求，则会触发回调函数，程序向下进行，否则将循环等待回调函数收到客户端发来的请求。
+
+% 介绍参数服务器
+除此之外，ROS中还有参数（Parameter）或参数服务器的概念，其作用类似全局共享字典，节点可以进行访问，适合存储一些和系统配置相关的静态非二进制的参数，以供节点读取。
 
 
 \subsection{gazebo仿真} \label{2.1.2}
-
-在四旋翼飞行控制时，需要实现不同坐标系之间的转换，下面介绍常用的坐标系。
-
-\subsubsection{惯性坐标系$\mathop R\nolimits^i $}
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.4\textwidth]{f5.jpg}
-\caption{惯性坐标系}
-\label{fig4}
-\end{figure}
-
-惯性坐标系是指坐标原点位于地心，如图\ref{fig4}所示，向量$\hat i$指向北，向量$\hat j$指向东，向量$\hat k$指向地心。
-
-\subsubsection{速度坐标系$\mathop R\nolimits^\nu$}
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.9\textwidth]{f6.jpg}
-\caption{速度坐标系}
-\label{fig5}
-\end{figure}
-
-
-
-在这一节，本文打算推导Coriolis数学关系式为后面飞控动力学关系作铺垫，Coriolis公式在坐标系变换过程中，起到非常重要的作用。假设，我们有两个坐标系，机体坐标系$\mathop R\nolimits^b $和惯性坐标系$\mathop R\nolimits^i $，如图\ref{cfig9} 所示，向量${\bf{p}}$相对坐标系$\mathop R\nolimits^i $的运动，可以分解为两个运动，即：有向量${\bf{p}}$ 随着机体坐标系$\mathop R\nolimits^b $的平动，和向量${\bf{p}}$相对$\mathop R\nolimits^i $ 坐标系转动。
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.6\textwidth]{f10.jpg}
-\caption{Coriolis公式推导图}
-\label{fig9}
-\end{figure}
+gazebo是ROS自带的仿真软件，
 
 
 
