@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  11 MAY 2022 22:57
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  13 MAY 2022 01:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2414,9 +2414,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
+[8]
+File: figures/gazebo.png Graphic file (type bmp)
+<figures/gazebo.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2483,6 +2484,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
  (./chapter-06.tex
 第六章
+)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2493,21 +2495,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-])
+] (./main.bbl)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15] (./main.bbl)
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[16
+[15
 
 
 
@@ -2521,7 +2516,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17
+[16
 
 
 ]
@@ -2534,7 +2529,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18
+[17
 
 
 
@@ -2554,12 +2549,12 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 91.
  ) 
 Here is how much of TeX's memory you used:
- 43611 strings out of 493007
- 853542 string characters out of 6136718
- 927483 words of memory out of 5000000
- 46886 multiletter control sequences out of 15000+600000
+ 43570 strings out of 493007
+ 853663 string characters out of 6136718
+ 926144 words of memory out of 5000000
+ 46846 multiletter control sequences out of 15000+600000
  543218 words of font info for 118 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,11n,76p,10411b,1147s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (20 pages).
+Output written on main.pdf (19 pages).

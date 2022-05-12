@@ -66,49 +66,57 @@ client.call(srv);
 
 
 \subsection{gazebo仿真} \label{2.1.2}
-gazebo是ROS自带的仿真软件，
+% 简单介绍gazebo及其功能
+gazebo是ROS自带的仿真软件，其功能有构建具有运动属性的机器人仿真模型，提供了一些针对CAD和soildworks等2D、3D设计软件的接口；gazebo还具有构建现实世界的各种场景的仿真模型的功能，能够在gazebo环境中建立一个与现实十分相似的场景用于算法验证；在传感器的仿真上，gazebo拥有一个强大的传感器模型库，比如单目相机、双目相机、深度相机等，还可以根据需求自行配置传感器的类型，实现多传感器融合；除此之外，gazebo还引入了现实世界的物理性质，如重力的影响，使仿真环境更加贴近现实。
 
+gazebo的仿真环境中，其文件大致可以分为三种类型：model，world，launch文件；同时，这三种文件也代表了不同的分级；
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{gazebo.png}
+	\caption{model，world，launch层级关系} 
+	\label{fig3}
+\end{figure}
+
+如图\ref{fig3}所示：
+\begin{enumerate}
+	\item model（模型）是gazebo环境中的元级元素，也就是最底层文件，比如环境中的树木、双目相机、无人机、墙壁、桌子等都是model级别的物体。model由sdf文件和config文件构成；sdf文件用HTML或XML标签语言描述了该模型的主要内容，包括模型的构建方法、模型中对其他模型的调用以及连接方式、模型的位姿等参数配置；而config文件中记录了模型的作者及联系方式、模型的版本、模型的命名和描述等信息。由于模型具有可拼接的属性，因此一个模型可以由若干个模型组成。
+	\item
+	world（世界）文件将模型集成起来，包含模型和物理性质的设置，是gazebo环境中的中层文件。该层与model层相同，都无法完成代码对模型的直接控制。
+	\item 
+	launch文件是集成了model，world以及其他launch文件的gazebo中最顶层的文件；launch文件不同于model和world文件，其可以通过代码完成对模型的直接控制；launch文件在ROS中拥有定义，其以XML标签语言书写，可以在launch文件中完成嵌套其他launch文件、命名重映射、设置参数、启动ROS节点等任务；在ROS中有与launch文件对应的指令roslaunch，用于启动该launch文件。
+\end{enumerate}
+
+% 是否还需要一些别的内容
 
 \section{PX4 AutoPilot}
-本文将飞行摇杆（Joystick）数据读取作为四旋翼飞控模型的输入，Joystick数据的数据主要是四旋翼的姿态角（滚转角，偏航角，俯仰角）和四旋翼的推力。因此，本文通过C++编程，实现飞行摇杆数据的输入。由如下代码所示：
+% 本部分介绍PX4
+PX4是一款专业级开源飞控，也可以称之为自动驾驶仪；因其应用的平台不局限于飞行器，在竞速和物流应用的地面车辆和潜水艇等载具上也可以用其进行控制。PX4由来自学术界和业界的顶级开发商开发，并且配套有活跃的全球论坛社区，其software的源码在github上保持着issue和pull request的更新，是应用十分广泛的一款飞控软件。需要注意，PX4 Software和Pixhawk4并不是同一概念，前者为飞控软件，而后者为飞控硬件。PX4软件的内部包含了针对不同机型（包括多旋翼、固定翼和VTOL垂直起降固定翼等）的控制律设计，还包含了强大的飞行模式设计和安全设计。PX4还可以作为核心应用在更广阔的平台，比如使用了QGroundControl地面站、Pixhawk硬件、基于计算机、相机等的使用MAVLink协议的MAVSDK融合等。
 
-\begin{lstlisting}[language={[ANSI]C++}]
-class HAL_JoyStick: public ZY::Thread {
-public:
-    HAL_JoyStick(){
-        m_devID = -1;
-    }
-    HAL_JoyStick(int dev) {
-        m_devID=dev;
-    }
-    virtual ~HAL_JoyStick() {}
-    int open(int devID);
-    void run();
-    int close(void);
-    int read(JS_Val *jsv)
-    {
-        data_mutex.lock();
-        *jsv= m_JSVal;
-        m_JSVal.dataUpdated = 0;
-        data_mutex.unlock();
-        return 0;
-    }
-public:
-    int         m_devType;
-    int         m_devID;
-    int         m_devFD;
-    char        number_of_axes;
-    char        number_of_btns;
-protected:
-    ZY::Mutex   data_mutex;
-    JS_Val      m_JSVal;
-}
-\end{lstlisting}
 
 \subsection{FailSafe机制} \label{2.2.1}
+% 简单介绍FailSafe
+FailSafe机制，即安全生效机制，其含义为：当错误发生时，对飞机进行保护或恢复到安全的状态，避免错误可能导致的不良后果。PX4的FailSafe系统是可编辑的，意味着开发者可以根据自身的需求设置对FailSafe的触发，以保证在安全的情况下实验或完成任务。FailSafe系统被触发后，一般有自动着陆、保持位置或返回特定的航路点几种反馈措施。
+
+安全生效机制监控的主要情况有：
+\begin{enumerate}
+	\item 低电量；该情况在仿真中影响较小，但在真机实验中，低电量可能意味着无法安全返航，因此必须由安全生效机制介入；
+	\item 远程控制信号丢失；
+\end{enumerate}
+
+
+
+
 \subsection{EKF与飞行模式} \label{2.2.2}
+
+
+
 \subsection{联合MAVROS的Offboard模式} \label{2.2.3}
+
+
+
+
+
 
 
 

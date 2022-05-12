@@ -5,7 +5,7 @@
 \contentsline {section}{\numberline {2.1}ROS介绍}{7}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}ROS的消息机制}{7}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}gazebo仿真}{9}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}PX4 AutoPilot}{9}{section.2.2}
+\contentsline {section}{\numberline {2.2}PX4 AutoPilot}{10}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}FailSafe机制}{10}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}EKF与飞行模式}{10}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}联合MAVROS的Offboard模式}{10}{subsection.2.2.3}
@@ -34,8 +34,8 @@
 \contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{13}{chapter.5}
 \contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{14}{chapter.6}
 \contentsline {section}{\numberline {6.1}全文总结}{14}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{15}{section.6.2}
-\contentsline {chapter}{参考文献}{16}{chapter*.6}
-\contentsline {chapter}{致谢}{17}{chapter*.7}
-\contentsline {chapter}{毕业设计小结}{18}{chapter*.8}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{14}{section.6.2}
+\contentsline {chapter}{参考文献}{15}{chapter*.7}
+\contentsline {chapter}{致谢}{16}{chapter*.8}
+\contentsline {chapter}{毕业设计小结}{17}{chapter*.9}
 \contentsfinish 
