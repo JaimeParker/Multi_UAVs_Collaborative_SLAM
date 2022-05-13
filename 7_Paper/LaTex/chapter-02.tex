@@ -148,6 +148,19 @@ PX4版本更新后，如果直接输入commander takeoff指令，可能会遇到
 \end{enumerate}
 
 \subsection{联合MAVROS的Offboard模式} \label{2.2.3}
+本小节主要介绍在Offboard模式下，使用ROS节点通过MAVROS向PX4发送信息，使无人机起飞降落、按航路点移动等。
+
+Offboard模式下的无人机正常起飞，需要首先解锁，然后切换飞行模式（默认手动模式）到Offboard模式，但是需要在切换模式前，以不低于2$Hz$的频率发布一些设定点（setpoints），具体实现起飞的步骤如下：
+
+\begin{enumerate}
+	\item 
+	连接fcu（MAVROS），判断的标准是MAVROS消息类中的state是否表示为连接；如果连接上则可以继续执行，未连接上则通过spin()函数循环等待。
+	\item 
+	设定setpoints的坐标值，并以不低于2$Hz$的频率发送一些点。
+	\item 
+	解锁，解锁成功后切换到Ofboard模式并起飞。
+\end{enumerate}
+
 
 
 
