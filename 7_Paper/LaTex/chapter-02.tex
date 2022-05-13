@@ -101,13 +101,22 @@ FailSafe机制，即安全生效机制，其含义为：当错误发生时，对
 安全生效机制监控的主要情况有：
 \begin{enumerate}
 	\item 低电量；该情况在仿真中影响较小，但在真机实验中，低电量可能意味着无法安全返航，因此必须由安全生效机制介入；
-	\item 远程控制信号丢失；
+	\item 远程控制信号丢失，如遥控器信号丢失；
+	\item 位置信息丢失，比如GPS信号弱，对位置的估计不够精确，可能会影响任务的完成情况，因此由安全生效机制介入；
+	\item 场外连接丢失；是指进入到Offboard模式后，丢失了与计算机之间的连接，导致计算机无法通过Offboard程序对无人机进行控制；
+	\item 数据链丢失；一般是指丢失了与GCS（Ground Control Station，地面站）之间的数传连接；
+	\item 超出地理围栏；Geofence即地理围栏，是执行任务前设置的无人机可活动区域，高度一般不设限；
+	\item 任务判断；防止在新的起飞位置上执行先前的任务；
 \end{enumerate}
 
-
-
+% bug实例
+PX4版本更新后，如果直接输入commander takeoff指令，可能会遇到无法起飞的情况；同时在PX4终端中，会提示FailSafe activated，即安全生效模式被激活；一般遇到这种情况，需要在PX4终端的字里行间和地面站QGC的信息提示中去分析问题原因。比如在仿真中遇到No RC的情况，RC即Remote Control，对于SITL（软件在环仿真）是没有遥控器的信号输入的，因此需要在QGC中打开virtual joystick （虚拟摇杆），否则FailSafe模式会由于没有RC保持给飞机上锁。
 
 \subsection{EKF与飞行模式} \label{2.2.2}
+
+% 什么是ECL EKF
+一般ECL与EKF会同时出现，ECL即Estimation and Control Library，状态估计和控制库；EKF即Extended Kalman Filter，扩展卡尔曼滤波，是一种优化算法。两者的结合是使用扩展卡尔曼滤波方法的状态估计与控制库，其作用是加工传感器的数据，并对IMU（观星测量单元）加工的速度和位置、四元数表示的旋转矩阵、风速和磁罗盘得到的方向等信息进行加工处理和估计。
+
 
 
 
