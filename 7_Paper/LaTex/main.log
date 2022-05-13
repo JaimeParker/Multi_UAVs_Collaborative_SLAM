@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  13 MAY 2022 11:52
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  13 MAY 2022 21:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2431,14 +2431,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10])
+[10]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11]
+[11])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12]
 \openout2 = `chapter-03.aux'.
 
  (./chapter-03.tex
@@ -2450,7 +2457,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12
+[13
 
 
 
@@ -2466,7 +2473,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13
+[14
 
 
 
@@ -2482,7 +2489,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14
+[15
 
 
 
@@ -2498,7 +2505,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15
+[16
 
 
 
@@ -2509,7 +2516,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16
+[17
 
 
 
@@ -2523,7 +2530,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17
+[18
 
 
 ]
@@ -2536,7 +2543,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18
+[19
 
 
 
@@ -2556,12 +2563,12 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 91.
  ) 
 Here is how much of TeX's memory you used:
- 43570 strings out of 493007
- 853663 string characters out of 6136718
+ 43583 strings out of 493007
+ 854644 string characters out of 6136718
  926145 words of memory out of 5000000
- 46846 multiletter control sequences out of 15000+600000
+ 46859 multiletter control sequences out of 15000+600000
  543218 words of font info for 118 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,11n,76p,10411b,1147s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (20 pages).
+Output written on main.pdf (21 pages).

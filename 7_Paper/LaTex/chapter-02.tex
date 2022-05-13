@@ -115,10 +115,37 @@ PX4版本更新后，如果直接输入commander takeoff指令，可能会遇到
 \subsection{EKF与飞行模式} \label{2.2.2}
 
 % 什么是ECL EKF
-一般ECL与EKF会同时出现，ECL即Estimation and Control Library，状态估计和控制库；EKF即Extended Kalman Filter，扩展卡尔曼滤波，是一种优化算法。两者的结合是使用扩展卡尔曼滤波方法的状态估计与控制库，其作用是加工传感器的数据，并对IMU（观星测量单元）加工的速度和位置、四元数表示的旋转矩阵、风速和磁罗盘得到的方向等信息进行加工处理和估计。
+一般ECL与EKF会同时出现，ECL即Estimation and Control Library，状态估计和控制库；EKF即Extended Kalman Filter，扩展卡尔曼滤波，是一种优化算法。两者的结合是使用扩展卡尔曼滤波方法的状态估计与控制库，其作用是加工传感器的数据，并对IMU（惯性测量单元）加工的速度和位置、四元数表示的旋转矩阵、风速和磁罗盘得到的方向等信息进行加工处理和估计。EKF使用IMU、磁力计、高度计、GPS、测速仪等传感器。
 
+为了将传统的气压计+GPS的高度与位置估计更改为使用视觉信息的高度与位置估计，需要修改EKF传感器的相关参数，这里指用于多旋翼和固定翼的基于扩展卡尔曼滤波的高度和位置估计。
 
+\begin{enumerate}
+	\item 
+	\textit{EKF2\_AID\_MASK} (Integer bitmask controlling data fusion and aiding methods），该参数决定了GPS数据的融合方法；默认设置的参数为0，其意为使用GPS数据作为定位；如果修改为视觉定位（vision position fusion），需要将该参数改为3。
+	\item 
+	\textit{EKF2\_HGT\_MODE} (Determines the primary source of height data used by the EKF），该参数决定了EKF首选的高度信息传感器；默认参数设置为0，使用气压器得到高度；如果修改为视觉定位，则需要将该参数改为3。
+\end{enumerate}
 
+在启动仿真之前，需要根据信息融合的类型更改以上两个参数，修改参数的方式有以下两种：
+\begin{enumerate}
+	\item 更改rcS文件中的参数配置；rcS文件属于脚本文件，用于配置系统，PX4需要修改的rcS文件位于\textit{ROMFS/px4fmu\_common/init.d-posix/rcS}中，rcS文件中的参数被修改后，需要删除ROS的eeprom中存储的参数文件（该文件用于快速预加载参数）；但该方法存在一些问题，需要在launch中特殊指明PX4使用的rcS文件地址，否则PX4会从默认的build文件夹中选择rcS文件进行参数配置。
+	\item 
+	更改地面站中的参数配置；使用QGC地面站，直接在参数设置中更改位置和高度估计的传感器，这种方式免去了每次更改参数后需要删除ROS参数缓存文件的麻烦。
+\end{enumerate}
+
+飞行模式决定了飞行器对RC远程控制输入的回应，以及在全自主的飞行过程中飞行器如何控制自身的运动；飞行模式为操作者主要提供了不同种类和程度的自动控制协助，飞行欧式的切换可以由遥控器和地面站完成。下面介绍几种主要的飞行模式（对于多旋翼无人机）：
+\begin{enumerate}
+	\item 
+	Manual/Stabilized Mode，手动/增稳飞行模式；是最常用的飞行模式，手动模式即操纵手通过手中的遥控器（RC）控制飞机的滚转、俯仰、油门和前后左右的移动；增稳模式也是由操纵手操纵，但引入了内部控制律，使得遥控器输入到飞机运动的表现更加平滑、易控，这是由其内部的控制律决定的；一般情况下为了防止飞机过于剧烈的运动，都采用增稳模式进行飞行。
+	\item 
+	Position Mode，定点模式；其主要特点是当操纵杆释放或回归中心时，飞机会保持在3D空间中的一个定点位置处，并且自动解算出相应的力去补偿风和其他的干扰力。该模式是对于新手最安全的模式。
+	\item
+	Altitude Mode，定高模式；其主要特点是当操纵杆释放或回归中心时，飞机会保持固定高度，但不会去平衡风等其他干扰所造成的水平位置的漂移。
+	\item 
+	Offboard Mode，场外模式；指通过电脑连接或地面站连接，使飞机按照设定的位置、速度或高度等参数飞行，该模式通过MAVLink与场外设备传递信息，是仿真中使用的主要模式。
+	\item 
+	其他模式，如圆轨迹模式、起飞降落模式、跟随模式、返回模式等。
+\end{enumerate}
 
 \subsection{联合MAVROS的Offboard模式} \label{2.2.3}
 
