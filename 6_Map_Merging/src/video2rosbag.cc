@@ -20,6 +20,7 @@ int main(int argc, char **argv){
 
     // define ros bag, set mode as write
     rosbag::Bag bag;
+    // revise the path!!!
     bag.open("/home/hazyparker/dataset/rosbag/sony_clip2.bag", rosbag::bagmode::Write);
 
     // provide input video
