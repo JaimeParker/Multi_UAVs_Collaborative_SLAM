@@ -29,6 +29,7 @@ public:
     vector<cv::KeyPoint> KeyPoint1_1;
     vector<cv::KeyPoint> KeyPoint1_2;
 
+
     // Depth Matches
     vector<cv::DMatch> Matches0;
     vector<cv::DMatch> Matches1;
@@ -36,7 +37,7 @@ public:
 
 
     // pose estimation 2D-2D
-    void getPose(cv::Mat &img1, cv::Mat &img2);
+    void getPose();
 
 };
 

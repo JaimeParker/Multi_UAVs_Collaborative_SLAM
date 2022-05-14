@@ -10,6 +10,6 @@ int main() {
     string path3 = "../image/img3.jpg";
     string path4 = "../image/img4.jpg";
     Data data(path1, path2, path3, path4);
-
+    data.getPose();
     return 0;
 }

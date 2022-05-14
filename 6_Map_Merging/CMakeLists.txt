@@ -24,7 +24,8 @@ add_library(${PROJECT_NAME} SHARED
         main.cpp
         src/Data.cc
         include/Data.h
-        src/ORBMatcher.cc include/ORBMatcher.h)
+        src/ORBMatcher.cc
+        include/ORBMatcher.h)
 target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}
         ${catkin_LIBRARIES})
