@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  13 MAY 2022 21:40
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  15 MAY 2022 21:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2438,7 +2438,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11])
+[11]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2446,10 +2446,59 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [12]
-\openout2 = `chapter-03.aux'.
+Overfull \hbox (29.54428pt too wide) in paragraph at lines 194--195
+[][][][][][][][][][][][][][][][][][][][][][] 
+ []
 
- (./chapter-03.tex
-第三章
+
+Overfull \hbox (7.94406pt too wide) in paragraph at lines 208--209
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (94.34494pt too wide) in paragraph at lines 210--211
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (87.14487pt too wide) in paragraph at lines 212--213
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (130.3453pt too wide) in paragraph at lines 214--215
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (115.94516pt too wide) in paragraph at lines 216--217
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13]
+Overfull \hbox (202.34604pt too wide) in paragraph at lines 269--270
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14]
+Overfull \hbox (58.34457pt too wide) in paragraph at lines 282--283
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
 )
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2457,11 +2506,49 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13
+[15]
+\openout2 = `chapter-03.aux'.
+
+ (./chapter-03.tex
+第三章
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[16
 
 
 
 ]
+File: figures/camera.png Graphic file (type bmp)
+<figures/camera.png>
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[17]
+File: figures/SLAM.png Graphic file (type bmp)
+<figures/SLAM.png>
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[19]
 \openout2 = `chapter-04.aux'.
 
  (./chapter-04.tex
@@ -2473,7 +2560,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14
+[20
 
 
 
@@ -2489,7 +2576,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15
+[21
 
 
 
@@ -2505,7 +2592,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16
+[22
 
 
 
@@ -2516,7 +2603,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17
+[23
 
 
 
@@ -2530,7 +2617,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18
+[24
 
 
 ]
@@ -2543,7 +2630,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[19
+[25
 
 
 
@@ -2563,12 +2650,12 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 91.
  ) 
 Here is how much of TeX's memory you used:
- 43583 strings out of 493007
- 854644 string characters out of 6136718
- 926145 words of memory out of 5000000
- 46859 multiletter control sequences out of 15000+600000
- 543218 words of font info for 118 fonts, out of 8000000 for 9000
+ 43754 strings out of 493007
+ 858435 string characters out of 6136718
+ 944236 words of memory out of 5000000
+ 47026 multiletter control sequences out of 15000+600000
+ 543234 words of font info for 120 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 63i,11n,76p,10411b,1147s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,12n,76p,10411b,1715s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (21 pages).
+Output written on main.pdf (27 pages).
