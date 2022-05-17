@@ -152,23 +152,147 @@ ORB-SLAM2是由萨拉戈萨大学的Raúl Mur-Artal开发，可以用在单目�
 ORB特征点是上文\ref{3.1.3}提到过的特征点的一种，它的全称是Oriented FAST and Rotated BRIEF；其中，FAST是角点的一种，BRIEF是Binary Robust Independent Elementary Feature，是一种二进制描述子；ORB特征点即由改进的FAST关键点和带旋转的BRIEF描述子组成。
 
 % FAST
-FAST角点选取的核心思想是，选取的点和周边像素点亮度差别很大，则该点可能是FAST角点。如图\ref{fig7}所示，对于可能被选取为FAST角点的像素点$p$，其亮度为$I_p$；设置亮度差异的阈值$T$，可以为$0.3I_p$；选取半径为3的圆上的16个点，对应图中的16个深色点，记录各点的像素值$I_i$，如果16个点中有连续$N$各点满足$|I_i-I_p|>T$，则像素点$p$可以被认为是FAST角点，该标准为FAST-N，N一般取9、11、12。
-
-% Oriented FAST
-
-
+FAST角点选取的核心思想是，选取的点和周边像素点亮度差别很大，则该点可能是FAST角点。如图\ref{fig7}所示，对于可能被选取为FAST角点的像素点$p$，其亮度为$I_p$；设置亮度差异的阈值$T$，可以为$0.3I_p$；选取半径为3的圆上的16个点，对应图中的16个深色点，记录各点的像素值$I_i$，如果16个点中有连续$N$个点满足$|I_i-I_p|>T$，则像素点$p$可以被认为是FAST角点，该标准为FAST-N，N一般取9、11、12。
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\textwidth]{FAST.png}
-	\caption{FAST关键点} 
+	\caption{FAST角点} 
 	\label{fig7}
 \end{figure}
 
+% Oriented FAST
+单纯的FAST关键点是不带方向性的，为了准确性，ORB的Oriented FAST关键点给FAST角点添加了方向和尺度的描述。其尺度的描述是由计算机视觉中构建金字塔模型的方法，在不同分辨率的图像下都能够提取到特征点，而旋转的描述则是由灰度质心法实现的，如图\ref{fig8}所示：
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{OFAST.png}
+	\caption{灰度质心法}
+	\label{fig8}
+\end{figure}
+
+设$O$为角点像素，取一个最小的图像块，只有四个像素构成，建立$O-x-y$坐标系，原点的像素用$I(0,0)$表示，则可以找到该图像块的质心为：
+$$
+C=(\frac{I(1,0)}{I(0,0)}, \frac{I(0,1)}{I(0,0)})
+$$
+
+则可以得到方向向量$\vec{OC}$，该关键点的方向定义为：
+$$
+\theta = \arctan{\frac{I(0,1)}{I(1,0)}}
+$$
+
+% BRIEF
+BRIEF描述子为二进制编码，反映了关键点附近128个像素对的大小关系，最终由0和1构成，其具有旋转不变性、选点速度快且易于存储。
+
 \subsection{ORB-SLAM2的主要进程} \label{3.2.2}
 
+ORB-SLAM2是一套规范完整的视觉SLAM系统，其主要进程可以分为四个：跟踪进程、本地地图进程、回环检测进程、可视化进程。如图\ref{fig9}所示，从以下五个主要函数中分析。
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{ORB2.png}
+	\caption{ORB-SLAM2框架}
+	\label{fig9}
+\end{figure}
+
+% System
+\textbf{System.cc}，SLAM系统顶端控制：
+
+首先是读取ORB词典，该词典是配合DoW2库训练得到的，用于回环检测时判断图像的外观相似度。
+
+其次是创建ORB特有的KeyFrameDatabase，该类用于处理关键帧数据；创建地图，实例化Map对象；创建画笔，为可视化做准备。
+
+\begin{lstlisting}[language={C++}]
+//Create KeyFrame Database
+mpKeyFrameDatabase = new KeyFrameDatabase(*mpVocabulary);
+
+//Create the Map
+mpMap = new Map();
+
+//Create Drawers. These are used by the Viewer
+mpFrameDrawer = new FrameDrawer(mpMap);
+mpMapDrawer = new MapDrawer(mpMap, strSettingsFile);
+\end{lstlisting}
+
+之后是主要线程的初始化，跟踪线程、本地地图线程和回环检测线程：
+\begin{lstlisting}[language={C++}]
+//Initialize the Tracking thread
+//(it will live in the main thread of execution, the one that called this constructor)
+mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer,
+mpMap, mpKeyFrameDatabase, strSettingsFile, mSensor);
+
+//Initialize the Local Mapping thread and launch
+mpLocalMapper = new LocalMapping(mpMap, mSensor==MONOCULAR);
+mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
+
+//Initialize the Loop Closing thread and launch
+mpLoopCloser = new LoopClosing(mpMap, mpKeyFrameDatabase, mpVocabulary, mSensor!=MONOCULAR);
+mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, mpLoopCloser);
+\end{lstlisting}
+
+System相当于工程中的Main函数，汇集了实现一个SLAM系统所需的全部流程，使用顶层的代码进行控制，具体功能则由底层的类及其中的函数去实现。
+
+% Tracking
+\textbf{Tracking.cc}，关键的跟踪进程，其主要函数为图像的转换函数和Track主函数：
+\begin{enumerate}
+	\item 
+	图像转换函数是针对不同传感器设置的，以弹幕相机为例；该函数需要判断图像是否为灰度图，判断图像为RGB或BGR编码，并最后将图像转为系统使用的灰度3通道图像，赋予其时间戳和ORB字典、相机的内参矩阵和畸变参数等信息，构成当前帧的对象。
+	\item 
+	Track函数，该函数是Tracking.cc中的主要函数，或称之为顶端函数。该函数首先判断系统状态，之后根据状态选择使用运动模型或里程计模型得到当前位姿，以及是否需要重定位；如果得到相机位姿和正确匹配，则依次在建立的Map中跟踪路标、将路标更新到画笔中、判断是否将该帧加入关键帧、清除里程计的匹配和未跟踪的MP。
+\end{enumerate}
+
+% KeyFrame
+\textbf{KeyFrame.cc}，该类的操作都基于关键帧进行：
+
+\begin{enumerate}
+	\item 
+	共视图；确定关键帧之间的共视关系，该内容将被用于优化及回环检测，最终建立一个关键帧之间的共视图关系。
+	\item 
+	地图点；还包括MP地图点的添加与移除、跟踪与匹配等；
+	\item 
+	位姿；包括获取位姿、旋转矩阵$\bf{R}$，平移向量$\bf{t}$等；
+\end{enumerate}
+
+% Loop Closing
+\textbf{LoopClosing.cc}，回环检测的主要函数：
+
+\begin{enumerate}
+	\item 检测是否有新的关键帧；在此之前要给回环的队列加互斥锁，之后返回逻辑变量，表示是否有新的关键帧；
+	\item 检测是否有闭环；提取出一个关键帧，并用互斥锁加锁，防止被擦除；之后对地图进行判断，如果地图包含少于10个关键帧，则直接判定为没有闭环；使用具有共视关系的关键帧基于词袋模型进行评分，将共视关键帧得到的最高分作为最低分；最后删除其他的闭环候选帧，暂时找到与当前关键帧一致的关键帧。
+	\item 计算相似变换；Sim3算法，其结果是得到两帧之间的相对位姿，只有Sim3求解器得到足够多的匹配点，才能接受该闭环帧。
+	\item 融合位姿图。
+\end{enumerate}
+
+\subsection{ORB-SLAM2的配置及使用}
+% config
+ORB-SLAM2是标准的CMake工程，这就意味着其可以使用CMake进行配置并且进行make编译；其虽然支持ROS，但并不是ROS的catkin工程，使用的是rosbuild相关命令，而不是ROS常见的catkin make编译指令。
+
+ORB-SLAM2的github主页上，详细介绍了其编译的方法，官方将编译代码集成到了build.sh文件中；正常情况下，可以通过chmod +x命令给该sh文件赋予可执行权限后，运行sh命令，直接编译。如图\ref{fig10}所示，需要编译的内容为两个第三方库和ORB-SLAM2主要函数；需要注意的是，make -j命令指的是只用全部线程进行编译，这样做可能会造成电脑资源锁死，可以根据电脑的配置自行修改所用线程数。
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{build.png}
+	\caption{配置ORB-SLAM2}
+	\label{fig10}
+\end{figure}
+
+ORB-SLAM2在普通编译过程中，可能会遇到一些问题：
+\begin{enumerate}
+	\item System.cc中，usleep未定义；这是由于System.h文件中缺少头文件unistd.h导致的，加上该头文件即可。
+	\item 
+	找不到Eigen3库；大概率是因为Pangolin版本为0.6，但ORB-SLAM2使用的Pangolin版本为0.5；一种方法是将Pangolin版本退回0.5，另一种方法是将CMakeList.txt中的Eigen3 REQUIRED改为REQUIRED NO\_MODULE。如果仍然找不到Eigen3库，如果是用Eigen3源代码编译安装的非模板类Eigen3库，则可以通过ln -s建立软链接的方式，在ORB需要找到Eigen3的位置添加上Eigen3的库。
+	\item 
+	Eigen3的问题，在ros编译的CMakeList中也需要修改。
+\end{enumerate}
+
+普通编译完成后，使用TUM数据集进行测试，从System.cc中可以得出，在终端中需要三个参数：ORB字典的路径、相机配置文件的路径、数据集的路径。
+
+由于需要在ROS环境下使用，首先执行build\_ros.sh。之后需要添加环境变量给ROS工作空间，即在.bashrc文件中，添加上ROS功能包的路径，指向Examples/ROS文件夹。至此，ORB-SLAM2在普通环境和ROS环境下均配置完成。
 
 \section{CCM-SLAM}
+
+% introduction of CCM
+CCM-SLAM是由苏黎世联邦理工大学
 
 \subsection{CCM-SLAM的结构} \label{3.3.1}
 \subsection{Client与Server机制} \label{3.3.2}
