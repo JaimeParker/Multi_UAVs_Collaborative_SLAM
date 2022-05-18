@@ -314,13 +314,70 @@ CCM在算法上使用了ORB-SLAM2的方法，保留了其跟踪、关键帧、�
 关键帧和地图点的数据进入服务器的信息处理单元后，地图点直接进入服务器的地图存储库中；对于新的关键帧，如果能够检测到地图场景重叠，则直接进入到优化过程，并将优化后的结果存储到地图存储库中；该关键帧正常情况下会进入地图匹配和地图融合模块，之后再进入优化环节，随后存储到库中；如果所有客户端都到达相同的场景，则最后地图存储库只会有一张地图。
 
 
-
 \subsection{Client与Server机制} \label{3.3.2}
 
+CCM-SLAM主要有两大板块的内容，一部分是地图的处理，另一部分是其客户端和服务器的机制及通讯方式。
+
+客户端的设计可以分为三步，如图\ref{fig12}所示，整体的流程是由ClientNode到ClientSystem再到ClientHandler，其中的引用关系即为该流程。
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Client.png}
+	\caption{Client设计}
+	\label{fig12}
+\end{figure}
+
+ClientNode负责的内容包括：ROS节点初始化，句柄的设计，使用指针创建ClientSystem。在ROS节点的初始化过程中，使用的节点名称是CSLAM client node；值得注意的是其句柄的设计，一般的ROS句柄都实例化NodeHandler，但其又实例化了NodeHandler("~")，该操作旨在给相机和地图等话题之前加上节点的名称，以于不同的终端作区分；最后使用了智能指针，创建了ClientSystem对象，意味着对该客户端创建了属于其自己的客户端系统。
+
+\begin{lstlisting}[language={C++}]
+ros::init(argc, argv, "CSLAM client node");
+
+if(argc != 3)
+{
+cerr << endl << "Usage: rosrun cslam clientnode path_to_vocabulary path_to_cam_params" << endl;
+ros::shutdown();
+return 1;
+}
+
+ros::NodeHandle Nh;  // topic name will be: node name(only), like "/image_raw"
+ros::NodeHandle NhPrivate("~");  // topic node will be: node name + topic name, like "iris_0/image_raw"
+// reference: <https://blog.csdn.net/weixin_44401286/article/details/112204903>
+
+boost::shared_ptr<cslam::ClientSystem> pCSys{new cslam::ClientSystem(Nh,NhPrivate,argv[1],argv[2])};
+\end{lstlisting}
+
+ClientSystem负责的内容包括：读取ID，SLAM初始化及预先数据准备。首先从ROS的参数服务器读取客户端ID，使用ROS的param方法读取该数据；之后进行标准的SLAM数据预先准备流程，即加载词典、创建关键帧数据库、创建地图；最后进行初始化步骤，在这里引入了ClientHandler。
+
+\begin{lstlisting}[language={C++}]
+int ClientId;
+// get ClientID from launch file, actually ROS parameter server
+mNhPrivate.param("ClientId",ClientId,-1);
+mClientId = static_cast<size_t>(ClientId);  // assign ClientID to member of class ClientSystem, mClientID
+
+// load vocabulary
+this->LoadVocabulary(strVocFile);
+
+// Create KeyFrame Database
+mpKFDB.reset(new KeyFrameDatabase(mpVoc));
+
+// Create the Map
+mpMap.reset(new Map(mNh,mNhPrivate,mClientId,eSystemState::CLIENT));
+usleep(10000); //wait to avoid race conditions
+
+// Initialize Agent
+mpAgent.reset(new ClientHandler(mNh,mNhPrivate,mpVoc,mpKFDB,mpMap,
+mClientId,mpUID,eSystemState::CLIENT,strCamFile,nullptr));
+usleep(10000); //wait to avoid race conditions
+mpAgent->InitializeThreads();
+usleep(10000); //wait to avoid race conditions
+\end{lstlisting}
+
+ClientHandler负责的内容包括：向总地图中添加该ID客户端的地图，定义Sim3转换，将该ID客户端的相机话题名加载到ROS的参数服务器，最后开始了具体的初始化。
 
 
+\subsection{CCM-SLAM的配置}
 
-
+与ORB-SLAM2相同，CCM-SLAM在其github上有详细的编译方法；与ORB-SLAM2不同的是，CCM-SLAM是完全的catkin架构，完全基于ROS，所以其必须被放置在ROS工作空间的src文件夹下，并且使用catkin make命令编译CCM-SLAM工程。需要注意的是最好不要使用全部线程进行编译。
 
 
 \section{多机协同及地图融合方案}

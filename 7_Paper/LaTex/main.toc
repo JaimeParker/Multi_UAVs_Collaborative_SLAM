@@ -22,22 +22,23 @@
 \contentsline {section}{\numberline {3.3}CCM-SLAM}{24}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}CCM-SLAM的结构}{24}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Client与Server机制}{25}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}多机协同及地图融合方案}{25}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}算法原理}{25}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}编程实现}{25}{subsection.3.4.2}
-\contentsline {chapter}{\numberline {第四章\hspace {.3em}}多无人机SLAM仿真}{26}{chapter.4}
-\contentsline {section}{\numberline {4.1}gazebo仿真环境配置}{26}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}场景}{26}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}launch文件}{26}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}单机SLAM仿真}{26}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}EKF设置及启动仿真}{26}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}视觉定位的坐标变换}{26}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}多机SLAM仿真}{26}{section.4.3}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{27}{chapter.5}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{28}{chapter.6}
-\contentsline {section}{\numberline {6.1}全文总结}{28}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{28}{section.6.2}
-\contentsline {chapter}{参考文献}{29}{chapter*.15}
-\contentsline {chapter}{致谢}{30}{chapter*.16}
-\contentsline {chapter}{毕业设计小结}{31}{chapter*.17}
+\contentsline {subsection}{\numberline {3.3.3}CCM-SLAM的配置}{26}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}多机协同及地图融合方案}{26}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}算法原理}{26}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}编程实现}{26}{subsection.3.4.2}
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}多无人机SLAM仿真}{27}{chapter.4}
+\contentsline {section}{\numberline {4.1}gazebo仿真环境配置}{27}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}场景}{27}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}launch文件}{28}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}单机SLAM仿真}{28}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}EKF设置及启动仿真}{28}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}视觉定位的坐标变换}{28}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}多机SLAM仿真}{28}{section.4.3}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{29}{chapter.5}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{30}{chapter.6}
+\contentsline {section}{\numberline {6.1}全文总结}{30}{section.6.1}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{30}{section.6.2}
+\contentsline {chapter}{参考文献}{31}{chapter*.17}
+\contentsline {chapter}{致谢}{32}{chapter*.18}
+\contentsline {chapter}{毕业设计小结}{33}{chapter*.19}
 \contentsfinish 

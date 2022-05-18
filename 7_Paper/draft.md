@@ -536,15 +536,75 @@ ORB-SLAM2在普通编译过程中，可能会遇到一些问题：
 
 ### 3.3 CCM-SLAM
 
-简单介绍一下CCM-SLAM；
+CCM-SLAM是由苏黎世联邦理工大学Patrik Schmuck开发，其含义是中心式协同单目视觉SLAM。
+其特点是适用于多个设备（最多四个）同时运行，并且有一个终端负责管理控制和处理数据，是一种联合协同式的SLAM方案。
 
 #### 3.3.1 CCM-SLAM的结构
 
-介绍CCM的架构，其实是和ORB类似的，着重介绍一下其通信方面；
+CCM在算法上使用了ORB-SLAM2的方法，保留了其跟踪、关键帧、关键帧数据库、Sim3求解等类；与此同时，更加明确了自己的Client+Server机制，其核心是中心式的协同结构和各设备之间的通信方法。
+
+如图\ref{fig11}所示，CCM的核心是其将整个系统的SLAM进程分为了Client和Server两个模块处理。应用了网络中的客户端与服务器模型，这里的客户端指的是携带相机传感器的各设备终端，设备的种类可以是无人机、无人车、无人船甚至改进的手持相机，而服务器一般是一台中央处理电脑。
+
+设备作为客户端，其并不是一个简单的相机加图片数据传输，而是一个有一定复杂的的运算系统。在客户端中，需要接收传感器得到的帧信息，并且做里程计运算，得到关键帧，通过通信模块将数据发送给服务器中负责接收信息的处理单元；除此之外，在客户端中还存储有建立的局部地图，地图点保持与服务器的地图数据库更新。
+
+关键帧和地图点的数据进入服务器的信息处理单元后，地图点直接进入服务器的地图存储库中；对于新的关键帧，如果能够检测到地图场景重叠，则直接进入到优化过程，并将优化后的结果存储到地图存储库中；该关键帧正常情况下会进入地图匹配和地图融合模块，之后再进入优化环节，随后存储到库中；如果所有客户端都到达相同的场景，则最后地图存储库只会有一张地图。
 
 #### 3.3.2 Client与Server机制
 
-这里详细分析一下其通信的方法；
+CCM-SLAM主要有两大板块的内容，一部分是地图的处理，另一部分是其客户端和服务器的机制及通讯方式。
+
+客户端的设计可以分为三步，如图\ref{fig12}所示，整体的流程是由ClientNode到ClientSystem再到ClientHandler，其中的引用关系即为该流程。
+
+ClientNode负责的内容包括：ROS节点初始化，句柄的设计，使用指针创建ClientSystem。在ROS节点的初始化过程中，使用的节点名称是CSLAM client node；值得注意的是其句柄的设计，一般的ROS句柄都实例化NodeHandler，但其又实例化了NodeHandler("~")，该操作旨在给相机和地图等话题之前加上节点的名称，以于不同的终端作区分；最后使用了智能指针，创建了ClientSystem对象，意味着对该客户端创建了属于其自己的客户端系统。
+
+```cpp
+ros::init(argc, argv, "CSLAM client node");
+
+if(argc != 3)
+{
+cerr << endl << "Usage: rosrun cslam clientnode path_to_vocabulary path_to_cam_params" << endl;
+ros::shutdown();
+return 1;
+}
+
+ros::NodeHandle Nh;  // topic name will be: node name(only), like "/image_raw"
+ros::NodeHandle NhPrivate("~");  // topic node will be: node name + topic name, like "iris_0/image_raw"
+// reference: <https://blog.csdn.net/weixin_44401286/article/details/112204903>
+
+boost::shared_ptr<cslam::ClientSystem> pCSys{new cslam::ClientSystem(Nh,NhPrivate,argv[1],argv[2])};
+```
+
+ClientSystem负责的内容包括：读取ID，SLAM初始化及预先数据准备。首先从ROS的参数服务器读取客户端ID，使用ROS的param方法读取该数据；之后进行标准的SLAM数据预先准备流程，即加载词典、创建关键帧数据库、创建地图；最后进行初始化步骤，在这里引入了ClientHandler。
+
+```cpp
+int ClientId;
+// get ClientID from launch file, actually ROS parameter server
+mNhPrivate.param("ClientId",ClientId,-1);
+mClientId = static_cast<size_t>(ClientId);  // assign ClientID to member of class ClientSystem, mClientID
+
+// load vocabulary
+this->LoadVocabulary(strVocFile);
+
+// Create KeyFrame Database
+mpKFDB.reset(new KeyFrameDatabase(mpVoc));
+
+// Create the Map
+mpMap.reset(new Map(mNh,mNhPrivate,mClientId,eSystemState::CLIENT));
+usleep(10000); //wait to avoid race conditions
+
+// Initialize Agent
+mpAgent.reset(new ClientHandler(mNh,mNhPrivate,mpVoc,mpKFDB,mpMap,
+mClientId,mpUID,eSystemState::CLIENT,strCamFile,nullptr));
+usleep(10000); //wait to avoid race conditions
+mpAgent->InitializeThreads();
+usleep(10000); //wait to avoid race conditions
+```
+
+ClientHandler负责的内容包括：向总地图中添加该ID客户端的地图，定义Sim3转换，将该ID客户端的相机话题名加载到ROS的参数服务器，最后开始了具体的初始化。
+
+#### 3.3.3 CCM-SLAM的配置
+
+与ORB-SLAM2相同，CCM-SLAM在其github上有详细的编译方法；与ORB-SLAM2不同的是，CCM-SLAM是完全的catkin架构，完全基于ROS，所以其必须被放置在ROS工作空间的src文件夹下，并且使用catkin make命令编译CCM-SLAM工程。需要注意的是最好不要使用全部线程进行编译。
 
 ### 3.4 多机协同及地图融合方案
 
@@ -556,17 +616,28 @@ ORB-SLAM2在普通编译过程中，可能会遇到一些问题：
 
 ## 第四章 多无人机SLAM仿真
 
-介绍章节逻辑；
+本章主要多无人机SLAM的仿真；为了循序渐进，首先介绍仿真环境的配置，其次是单机的SLAM仿真，最后过渡到多机的SLAM仿真。
 
 ### 4.1 gazebo仿真环境配置
 
-介绍仿真过程中gazebo环境的配制方法；
+在进行仿真之前，首先要对场景进行搭建，对launch文件进行配置。
 
 #### 4.1.1 场景
 
-自建场景的方法；相关参数的设置；
+仿真环境中，场景的设计不能过于简单，墙壁、地面等大面积重复物体应该具有纹理，否则ORB-SLAM2的特征点提取会十分困难；除了纹理的设计，还应尽可能多地提供物体，使场景丰富。如图\ref{fig3-1}所示：
+
+进入gazebo界面后，使用Control+B进入其编辑界面；之后有两种选择：
+
+* 建立基础模型，一般在这里会绘制上地面及其纹理；如果是室内场景，还会绘制一个大致的墙壁结构，墙壁的纹理，其上的门窗等；最后将该模型保存到.gazebo/model文件中，这是gazebo模型的默认文件。
+* 直接选择插入模型；可以在此直接插入上文建立的基础模型，也可以插入其他模型库已有的模型，默认存储在/.gazebo/models文件夹下
+
+最后需要将自建场景存储为一个.world文件，gazebo不会给文件后缀的提示，需要自己输入后缀，这一点需要特别注意。在此之后，就获得了自建的world场景，下一步需要在launch文件中更改该项，完成调用。
 
 #### 4.1.2 launch文件
+
+\ref{2.1.2}节中，曾简单介绍launch文件的功能。作为整个仿真环境的配置文件，launch文件中基本包含了仿真所需的参数。
+
+
 
 launch文件的意义；
 
