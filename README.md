@@ -28,6 +28,16 @@
 
 * [README](4_Multi_SLAM/README.md)
 
+### 0.6 第六阶段 Map Merge
+
+* [README](6_Map_Merging/README.md)
+
+### 0.7 第七阶段 Paper
+
+* [Outline](7_Paper/README.md)
+* [Draft](7_Paper/draft.md)
+* [pdf](7_Paper/LaTex/main.pdf)
+
 ## 1. 研究目标
 
 本研究旨在实现一套能够在室内高精度环境或GPS拒止环境下使用视觉进行多机定位和大范围建图的多无人机协同SLAM的方案；其中：
