@@ -637,27 +637,287 @@ ClientHandler负责的内容包括：向总地图中添加该ID客户端的地�
 
 \ref{2.1.2}节中，曾简单介绍launch文件的功能。作为整个仿真环境的配置文件，launch文件中基本包含了仿真所需的参数。
 
+launch文件使用XML标签语言书写，主要为确定启动的节点和加载参数使用，简单的开始节点、加载参数的方法如下：
 
+```XML
+<node pkg="your package name" name="your node name" type="your node type"/>
+<param name="param name" value="param value"/>
+<arg name="arg name" default="arg value"/>
+```
 
-launch文件的意义；
+在一个简单的launch文件中，主要会包括设备的信息设置、PX4配置和gazebo仿真配置。
 
-launch文件的修改方法；
+* 设备的信息设置；这一部分包括设备的位姿，通过$x,y,z,R,P,Y$6个变量表示三维位置坐标和滚转、俯仰、偏航姿态角；还包括设置设备的类型和名称，在四旋翼无人机仿真中使用iris作为参数vehicle的值，并且在sdf参数中，将sdf参数的值指向iris的sdf文件（一般在该位置，都使用默认参数加find指令去寻找软件在环仿真的gazebo模型路径）；最后是一些gui等参数的设置，默认使用官方设置的即可。
+* PX4软件在环仿真的参数；在这里启动了名为sitl的节点，其参数指向了EKF设置的rcS文件；
+* gazebo仿真参数配置；在这里需要修改world\_name参数，其默认是world参数的值，所以实际上也可以直接修改world参数值，将其指向自建的world文件。
+
+自此，launch文件配置完成，可以使用PX4启动launch文件来进行简单的仿真。
 
 ### 4.2 单机SLAM仿真
 
-#### 4.2.1 EKF设置及启动仿真
+在进行多机仿真前，首先要进行单机的SLAM仿真，为多机仿真做铺垫。单机SLAM仿真分为单机Offboard模式起降和航路点飞行，以及SLAM下的起降和航路点飞行四步。
 
-EKF的相关设置方法；
+#### 4.2.1 launch文件配置
 
-#### 4.2.2 视觉定位的坐标变换
+\ref{4.1.2}节中介绍了launch文件的详细配置方法，对于单机的SLAM仿真，配置方法基本与其相同，但是需要给iris无人机假装上双目相机。以下介绍给无人机加装相机的方法：
 
-从视觉定位坐标到MAVROS坐标的转换方法；
+选择mavros\_posix\_sitl.launch文件，找到设备模型和世界配置区块，原始设置如下：
 
-在这里需要附上仿真结果；
+```XML
+<!-- vehicle model and world -->
+<arg name="est" default="ekf2"/>
+<arg name="vehicle" default="iris"/>
+<arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
+<arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+```
+
+加载双目相机，也就是给iris无人机装上相机，需要在设备配置处，加上其附加配置的sdf文件；由于在这里只添加了相机的sdf文件，所以该附加sdf文件不需要手动修改，直接链接到相机上即可。因此需要新建camera参数，其值为iris\_stereo\_camera，是gazebo自带的可以添加到iris无人机上的双目相机，修改后的launch文件部分如下：
+
+```XML
+<!-- vehicle model and world -->
+<arg name="est" default="ekf2"/>
+<arg name="vehicle" default="iris"/>
+<!-- add stereo camera for iris -->
+<arg name="my_camera" default="iris_stereo_camera"/>
+<arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
+<!-- also need to revise sdf -->
+<arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg my_camera)/$(arg my_camera).sdf"/>
+<!-- <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/> -->
+```
+
+更改完launch文件的无人机配置后，可以试运行来检测，即roslaunch该launch文件。之后有两种方法可以检查，一是使用rostopic list命令，查找当前活跃的话题，如果MAVROS能顺利连接上双目相机，则会出现image\_raw话题（对于双目分为左右，但对于单目仅有一个话题），这种情况下一般是成功的；另一种方法是使用ROS自带的rqt\_graph命令，该命令可以以图的形式展示出，这种方式用途更广。装配成功后，仿真加载时应如图\ref{fig3-2}所示：
+
+需要注意，在需要与MAVROS建立通信的launch文件中，需要设置fcu端口号，具体表示为udp+本地端口号，在多机的launch文件中，每一架飞机的端口号都是不同的，但单机不需要作出修改。
+
+#### 4.2.2 Offboard程序
+
+完成双目相机的配置后，第二步是进入Offboard程序。与\ref{2.2.3}的Offboard模式类似，首先目标是完成一套完整的起飞降落。需要注意，Offboard模式中，所有消息指令都需要以大于$2Hz$的频率发送，否则会激活安全生效机制，飞机返航。
+
+* 起飞的方式。动力学模型上的起飞即给四旋翼增加动力，保持平衡并提供向上的大于重力的升力，在程序中表示为发布位置指令，该消息类型为MAVROS的geometry\_msgs数据类型。
+* 降落的方式。一般使用切换飞行模式的方法，将飞行模式切换到降落模式，选择降落模式中的自动降落即可。
+
+降落的程序如下：
+
+```cpp
+// proceed landing process
+ROS_INFO("landing");
+mavros_msgs::SetMode land_set_mode;
+land_set_mode.request.custom_mode = "AUTO.LAND";
+while (ros::ok()){
+if( current_state.mode != "AUTO.LAND" &&
+(ros::Time::now() - last_request > ros::Duration(5.0))){
+if( set_mode_client.call(land_set_mode) &&
+land_set_mode.response.mode_sent){
+ROS_INFO("Land enabled");
+}
+last_request = ros::Time::now();
+}
+if(!current_state.armed){
+break;
+}
+
+ros::spinOnce();
+rate.sleep();
+}
+```
+
+航路点飞行的简单实现方法为，依次发布各航路点的位置信息，但需要一个函数去判断飞机是否到达了航路点。函数的实现可以利用预计坐标和现处位置之间的欧式距离作评判标准，小于某值则认为到达航路点，实现的关键在现处位置消息的订阅。首先需要定义current\_pose作为现处位置的变量，之后定义回调函数，获得该信息，实现的代码如下：
+
+```cpp
+// record current pose
+geometry_msgs::PoseStamped current_pose; /* NOLINT */
+
+// callback function for Subscriber for local_pos_sub
+void local_cb(const geometry_msgs::PoseStamped::ConstPtr& msg){
+current_pose = *msg;
+}
+```
+
+检查是否到达航路点的函数如下：
+
+```cpp
+// check if reached a waypoint
+bool check_waypoint(const geometry_msgs::PoseStamped &now_pose, const geometry_msgs::PoseStamped &aim_pose){
+// define Point to hold current position and aim position
+geometry_msgs::Point curr, aim;
+curr = now_pose.pose.position;
+aim = aim_pose.pose.position;
+double precision = 0.1;
+
+// define return value
+bool reach = false;
+
+// calculate distance
+double dist = sqrt(pow((curr.x - aim.x), 2) +
+pow((curr.y - aim.y), 2) + pow((curr.z - aim.z), 2));
+if(dist < precision){
+reach = true;
+ROS_INFO("reached waypoint!");
+}
+
+return reach;
+}
+```
+
+前往下一个航路点的方法如下：
+
+```cpp
+// set second waypoint
+geometry_msgs::PoseStamped pose2;
+pose2.pose.position.x = 2;
+pose2.pose.position.y = 2;
+pose2.pose.position.z = 2;
+
+// heading for waypoint 2
+while(ros::ok()){
+// publish pose1 information
+local_pos_pub.publish(pose2);
+ros::spinOnce();
+
+// check if reached a waypoint
+if (check_waypoint(current_pose, pose2)) break;
+rate.sleep();
+}
+```
+
+按2个航路点飞行的地面站轨迹示意图如图\ref{fig3-3}所示：
+
+#### 4.2.3 视觉定位的坐标变换
+
+在正常GPS定位的Offboard模式下，飞机的位置在MAVROS中作为已知量存在。但在视觉定位模式下，MAVROS需要通过vision\_pose/pose话题获得飞机的位姿信息。而ORB-SLAM2解算出的位姿并不是MAVROS的地理位置消息格式，因此需要做一些转换。
+
+ORB-SLAM2得到的外参$\bf{Tcw}$矩阵为$4 \times 4$矩阵：
+
+$$
+\bf{Tcw}=\begin{bmatrix}
+\bf{R_{cw}} & \bf{t_{cw}}\\0 & 1
+\end{bmatrix}
+$$
+其中，$\bf{R_{cw}}$为旋转矩阵，$\bf{t_{cw}}$为平移向量。
+
+可以证明，从相机的外参矩阵得到相机位姿：
+
+$$
+\begin{aligned}
+\bf{R_{wc}}= &\bf{R_{cw}}^T\\
+\bf{t_{wc}}= &-\bf{R_{wc}} \cdot  \bf{t_{cw}}
+\end{aligned}
+$$
+
+在此之后，还需要将$\bf{R_{wc}}$和$\bf{t_{wc}}$赋值给ROS中tf坐标系类型的Transform变量，之后通过调用ROS的poseTFToMsg函数，将tf类型的变量转为MAVROS的地理位置消息类型变量。实现的代码如下：
+
+```cpp
+Rwc = Tcw.rowRange(0,3).colRange(0,3).t(); // Rotation information
+twc = -Rwc*Tcw.rowRange(0,3).col(3); // translation information
+vector<float> q = ORB_SLAM2::Converter::toQuaternion(Rwc);
+
+tf::Transform new_transform;
+new_transform.setOrigin(tf::Vector3(twc.at<float>(0, 0), twc.at<float>(0, 1), twc.at<float>(0, 2)));
+
+tf::Quaternion quaternion(q[0], q[1], q[2], q[3]);
+new_transform.setRotation(quaternion);
+
+tf::poseTFToMsg(new_transform, pose.pose);
+x = pose.pose.position.x;
+y = pose.pose.position.y;
+z = pose.pose.position.z;
+pose.pose.position.x = z;
+pose.pose.position.y = -x;
+pose.pose.position.z = -y;
+orb_pub->publish(pose);
+```
+
+#### 4.2.4 结果
+
+进行起飞后SLAM建图的结果：
 
 ### 4.3 多机SLAM仿真
 
-不写三级标题了，直接写内容
+#### 4.3.1 launch文件配置
+
+多机配置与单机配置最大的区别是，引用的子文件不同；单机引用posix\_sitl文件，而多机则引用vehicle\_spawn文件，而spawn文件是多机所独有的。
+
+进入多机的launch文件，则需要引入组的概念。一个组使用一个命名空间，具有一套MAVROS的配置信息，多个组可以并行存在。因此在多机的launch文件设计中，一个组就是一架飞机，需要设置该组的命名空间，该组下的所有话题将共同使用该命名空间开头的话题。除此之外，还需要修改无人机的ID，ID默认从0到10；之后修改fcu地址和MAVLINK的udp端口，一般在末尾加上该无人机的ID即可。完整的双机launch配置代码如下：
+
+```XML
+<!-- UAV0 -->
+<group ns="uav0">
+<!-- MAVROS and vehicle configs -->
+<arg name="ID" value="0"/>
+<arg name="fcu_url" default="udp://:14540@localhost:14580"/>
+<!-- PX4 SITL and vehicle spawn -->
+<include file="$(find px4)/launch/single_vehicle_spawn_rcs.launch">
+<arg name="x" value="0"/>
+<arg name="y" value="0"/>
+<arg name="z" value="0"/>
+<arg name="R" value="0"/>
+<arg name="P" value="0"/>
+<arg name="Y" value="0"/>
+<arg name="vehicle" value="$(arg vehicle)"/>
+
+<arg name="my_camera" value="iris_fpv_cam"/>
+
+<arg name="mavlink_udp_port" value="14560"/>
+<arg name="mavlink_tcp_port" value="4560"/>
+<arg name="ID" value="$(arg ID)"/>
+<arg name="gst_udp_port" value="$(eval 5600 + arg('ID'))"/>
+<arg name="video_uri" value="$(eval 5600 + arg('ID'))"/>
+<arg name="mavlink_cam_udp_port" value="$(eval 14530 + arg('ID'))"/>
+
+
+</include>
+<!-- MAVROS -->
+<include file="$(find mavros)/launch/px4.launch">
+<arg name="fcu_url" value="$(arg fcu_url)"/>
+<arg name="gcs_url" value=""/>
+<arg name="tgt_system" value="$(eval 1 + arg('ID'))"/>
+<arg name="tgt_component" value="1"/>
+</include>
+</group>
+
+<!-- UAV1 -->
+<group ns="uav1">                              
+<!-- MAVROS and vehicle configs -->
+<arg name="ID" value="1"/>
+<arg name="fcu_url" default="udp://:14541@localhost:14581"/>
+<!-- PX4 SITL and vehicle spawn -->
+<include file="$(find px4)/launch/single_vehicle_spawn_rcs.launch">
+<arg name="x" value="2"/>
+<arg name="y" value="0"/>
+<arg name="z" value="0"/>
+<arg name="R" value="0"/>
+<arg name="P" value="0"/>
+<arg name="Y" value="0"/>
+<arg name="vehicle" value="$(arg vehicle)"/>
+
+<arg name="my_camera" value="iris_fpv_cam"/>
+
+<arg name="mavlink_udp_port" value="14561"/>
+<arg name="mavlink_tcp_port" value="4560"/>
+<arg name="ID" value="$(arg ID)"/>
+<arg name="gst_udp_port" value="$(eval 5600 + arg('ID'))"/>
+<arg name="video_uri" value="$(eval 5600 + arg('ID'))"/>
+<arg name="mavlink_cam_udp_port" value="$(eval 14530 + arg('ID'))"/>
+
+
+</include>
+<!-- MAVROS -->
+<include file="$(find mavros)/launch/px4.launch">
+<arg name="fcu_url" value="$(arg fcu_url)"/>
+<arg name="gcs_url" value=""/>
+<arg name="tgt_system" value="$(eval 1 + arg('ID'))"/>
+<arg name="tgt_component" value="1"/>
+</include>
+</group>
+```
+
+#### 4.3.2 多机编队
+
+
+
+#### 4.3.3 多机SLAM仿真结果
+
+
 
 ## 第五章 实验与评估
 
