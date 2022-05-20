@@ -38,12 +38,14 @@
 \contentsline {section}{\numberline {4.3}多机SLAM仿真}{36}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}launch文件配置}{36}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}多机编队处理}{39}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{39}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{41}{chapter.5}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{42}{chapter.6}
-\contentsline {section}{\numberline {6.1}全文总结}{42}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{42}{section.6.2}
-\contentsline {chapter}{参考文献}{43}{chapter*.24}
-\contentsline {chapter}{致谢}{44}{chapter*.25}
-\contentsline {chapter}{毕业设计小结}{45}{chapter*.26}
+\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{40}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{42}{chapter.5}
+\contentsline {section}{\numberline {5.1}真机配置与实验}{42}{section.5.1}
+\contentsline {section}{\numberline {5.2}地图融合实验}{42}{section.5.2}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{43}{chapter.6}
+\contentsline {section}{\numberline {6.1}全文总结}{43}{section.6.1}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{43}{section.6.2}
+\contentsline {chapter}{参考文献}{44}{chapter*.25}
+\contentsline {chapter}{致谢}{45}{chapter*.26}
+\contentsline {chapter}{毕业设计小结}{46}{chapter*.27}
 \contentsfinish 

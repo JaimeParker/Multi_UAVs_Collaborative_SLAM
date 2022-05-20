@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  19 MAY 2022 21:38
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  20 MAY 2022 22:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2330,7 +2330,7 @@ Overfull \hbox (41.25003pt too wide) detected at line 42
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 43
+Overfull \hbox (41.25003pt too wide) detected at line 45
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 六 章  
  []
 
@@ -2671,14 +2671,13 @@ Overfull \hbox (5.95023pt too wide) in paragraph at lines 364--365
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[27]
+[27])
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2841,6 +2840,8 @@ Overfull \hbox (5.95023pt too wide) in paragraph at lines 346--349
 ][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+File: figures/sdf.png Graphic file (type bmp)
+<figures/sdf.png>
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2848,11 +2849,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [38]
-File: figures/formation.png Graphic file (type bmp)
-<figures/formation.png>
-File: figures/multi.png Graphic file (type bmp)
-<figures/multi.png>
-)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2860,6 +2856,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [39]
+File: figures/formation.png Graphic file (type bmp)
+<figures/formation.png>
+File: figures/multi.png Graphic file (type bmp)
+<figures/multi.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2867,6 +2868,45 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [40]
+Overfull \hbox (360.07657pt too wide) in paragraph at lines 435--437
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (442.28447pt too wide) in paragraph at lines 437--439
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (81.83444pt too wide) in paragraph at lines 445--447
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (138.7476pt too wide) in paragraph at lines 447--448
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (170.36603pt too wide) in paragraph at lines 448--450
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[41]
 \openout2 = `chapter-05.aux'.
 
  (./chapter-05.tex
@@ -2878,7 +2918,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[41
+[42
 
 
 
@@ -2894,7 +2934,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[42
+[43
 
 
 
@@ -2905,7 +2945,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[43
+[44
 
 
 
@@ -2919,7 +2959,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[44
+[45
 
 
 ]
@@ -2932,7 +2972,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[45
+[46
 
 
 
@@ -2955,12 +2995,12 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 44144 strings out of 493007
- 864669 string characters out of 6136718
- 945968 words of memory out of 5000000
- 47391 multiletter control sequences out of 15000+600000
+ 44172 strings out of 493007
+ 864984 string characters out of 6136718
+ 946014 words of memory out of 5000000
+ 47418 multiletter control sequences out of 15000+600000
  544425 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 63i,12n,76p,10411b,1773s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,12n,76p,10411b,1775s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (47 pages).
+Output written on main.pdf (48 pages).
