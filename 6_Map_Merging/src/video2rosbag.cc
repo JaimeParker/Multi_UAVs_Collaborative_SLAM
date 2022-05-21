@@ -69,19 +69,12 @@ int main(int argc, char **argv){
         header.stamp = ros::Time::now();
 
         sensor_msgs::ImagePtr image_msg = cv_bridge::CvImage(header, "bgr8", frame).toImageMsg();
-        // sensor_msgs::CompressedImagePtr compressed_image_msg = cv_bridge::CvImage(header, "bgr8", frame).toCompressedImageMsg();
 
         if(FrameCount % 2 == 0){
             bag.write(topicName, ros::Time::now(), image_msg);
             cout << "recording frames:" << FrameCount << endl;
         }
 
-
-        // bag.write("image_raw/compressed", ros::Time::now(), compressed_image_msg);
-
-        //ros::Time time;
-        //time.fromNSec(timestamp); // 从图像数据集生成bag时，timestamp一般为图像名
-        //bag.write("image_topic", time, msg);
         ++FrameCount;
     }
 
