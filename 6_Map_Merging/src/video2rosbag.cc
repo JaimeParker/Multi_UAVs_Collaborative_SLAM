@@ -13,6 +13,14 @@ using namespace std;
 using namespace cv;
 
 int main(int argc, char **argv){
+    string mp4Path;
+    string bagPath;
+    string topicName;
+
+    mp4Path = "/home/hazyparker/dataset/sony_clip1/video1.MP4";
+    bagPath = "/home/hazyparker/dataset/rosbag/sony_clip4.bag";
+    topicName = "/camera1/image_raw";
+
     // ros init
     ros::init(argc, argv, "rosbag_recode_node");
     // create ros handle
@@ -21,10 +29,10 @@ int main(int argc, char **argv){
     // define ros bag, set mode as write
     rosbag::Bag bag;
     // revise the path!!!
-    bag.open("/home/hazyparker/dataset/rosbag/sony_clip2.bag", rosbag::bagmode::Write);
+    bag.open(bagPath, rosbag::bagmode::Write);
 
     // provide input video
-    cv::VideoCapture cap("/home/hazyparker/dataset/sony_clip1/C0003.MP4");
+    cv::VideoCapture cap(mp4Path);
 
     // get frame of the video
     long totalFrameNum = cap.get(CAP_PROP_FRAME_COUNT);
@@ -63,8 +71,12 @@ int main(int argc, char **argv){
         sensor_msgs::ImagePtr image_msg = cv_bridge::CvImage(header, "bgr8", frame).toImageMsg();
         // sensor_msgs::CompressedImagePtr compressed_image_msg = cv_bridge::CvImage(header, "bgr8", frame).toCompressedImageMsg();
 
-        if(FrameCount % 2 == 0)
-            bag.write("/camera/image_raw", ros::Time::now(), image_msg);
+        if(FrameCount % 2 == 0){
+            bag.write(topicName, ros::Time::now(), image_msg);
+            cout << "recording frames:" << FrameCount << endl;
+        }
+
+
         // bag.write("image_raw/compressed", ros::Time::now(), compressed_image_msg);
 
         //ros::Time time;

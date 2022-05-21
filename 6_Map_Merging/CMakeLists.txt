@@ -10,14 +10,18 @@ find_package(OpenCV REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
         roscpp
         rosbag
-        cv_bridge)
+        cv_bridge
+        )
+# Pangolin
+find_package(Pangolin)
 
 # Including Directories
 include_directories(
         ${PROJECT_SOURCE_DIR}
         ${PROJECT_SOURCE_DIR}/include
         ${catkin_INCLUDE_DIRS}
-        ${OpenCV_INCLUDE_DIRS})
+        ${OpenCV_INCLUDE_DIRS}
+        ${Pangolin_INCLUDE_DIRS})
 
 # Using Project Name as Executable File
 add_library(${PROJECT_NAME} SHARED
@@ -28,7 +32,8 @@ add_library(${PROJECT_NAME} SHARED
         include/ORBMatcher.h)
 target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}
-        ${catkin_LIBRARIES})
+        ${catkin_LIBRARIES}
+        ${Pangolin_LIBRARIES})
 
 add_executable(main main.cpp)
 target_link_libraries(main ${PROJECT_NAME})

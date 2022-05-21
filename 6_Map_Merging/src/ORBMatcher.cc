@@ -6,6 +6,8 @@
 #include <opencv2/features2d/features2d.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/opencv.hpp>
+#include <pangolin/pangolin.h>
+
 
 using namespace std;
 using namespace cv;
@@ -110,3 +112,104 @@ void ORBMatcher::getPoseEstimation(vector<cv::KeyPoint> keyPoints1, vector<cv::K
     cout << "R is " << endl << R << endl;
     cout << "t is " << endl << t << endl;
 }
+
+void ORBMatcher::getKeyPointPosition(const Mat &K, const vector<cv::KeyPoint> &keypoint_1,
+                                     const vector<cv::KeyPoint> &keypoint_2,
+                                     const vector<cv::DMatch> &matches,
+                                     const Mat &R, const Mat &t, vector<cv::Point3d> &points) {
+
+    Mat T1 = (Mat_<float>(3, 4) <<
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0);
+
+    Mat T2 = (Mat_<float>(3, 4) <<
+            R.at<double>(0, 0), R.at<double>(0, 1), R.at<double>(0, 2), t.at<double>(0, 0),
+            R.at<double>(1, 0), R.at<double>(1, 1), R.at<double>(1, 2), t.at<double>(1, 0),
+            R.at<double>(2, 0), R.at<double>(2, 1), R.at<double>(2, 2), t.at<double>(2, 0));
+
+    // define vector to hold MP position
+    vector<Point2f> Pc1, Pc2;  // position of camera 1 and 2
+
+    // pixel pos to camera pos
+    for (DMatch match:matches){
+        Pc1.push_back(pixel2cam(keypoint_1[match.queryIdx].pt, K));
+        Pc2.push_back(pixel2cam(keypoint_2[match.trainIdx].pt, K));
+    }
+
+    //define Mat to hold MP
+    Mat MP_pos4d;
+
+    // triangulate
+    triangulatePoints(T1, T2, Pc1, Pc2, MP_pos4d);
+
+    // into 3 axis
+    for (int i = 0; i < MP_pos4d.cols; i++){
+        Mat x = MP_pos4d.col(i);
+
+        x = x / x.at<float>(3, 0);
+        Point3d p(
+                x.at<float>(0, 0),
+                x.at<float>(1, 0),
+                x.at<float>(2, 0)
+                );
+
+        // save p to point
+        points.push_back(p);
+    }
+
+}
+
+cv::Point2f ORBMatcher::pixel2cam(const Point2d &point, const Mat &K) {
+    return Point2f (
+            (point.x - K.at<double>(0, 2)) / K.at<double>(0, 0),
+            (point.y - K.at<double>(1, 2)) / K.at<double>(1, 1)
+            );
+}
+
+void ORBMatcher::showMapPoints(const vector<cv::Point3d> &MapPoints) {
+    // create GUI window
+    pangolin::CreateWindowAndBind("MapPoint", 800, 600);
+    // start depth test
+    glEnable(GL_DEPTH_TEST);
+
+    // create a camera viewer
+    pangolin::OpenGlRenderState cam_view(
+            pangolin::ProjectionMatrix(800, 600, 420, 420, 320, 320, 0.2, 100),
+            pangolin::ModelViewLookAt(2, 0, 2, 0, 0, 0, pangolin::AxisY)
+            );
+
+    // create inter viewer
+    pangolin::Handler3D handler(cam_view);
+    pangolin::View &d_cam = pangolin::CreateDisplay()
+            .SetBounds(0.0, 1.0, 0.0, 1.0, -800.0f/600.0f)
+            .SetHandler(&handler);
+
+    Point3d point;
+
+    int iter = 0;
+
+    while(!pangolin::ShouldQuit() && iter < MapPoints.size()){
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        d_cam.Activate(cam_view);
+
+        glPointSize(10.0);
+
+        glBegin(GL_POINTS);
+        glColor3f(0, 1, 0);
+
+        point = MapPoints[iter];
+        glVertex3d(point.x * 10, point.y * 10, point.z * 10);
+        iter++;
+
+        glVertex3d(0, 0, 0);
+        glVertex3d(1, 0, 0);
+        glVertex3d(2, 0, 0);
+
+        glEnd();
+        pangolin::FinishFrame();
+    }
+
+}
+
+

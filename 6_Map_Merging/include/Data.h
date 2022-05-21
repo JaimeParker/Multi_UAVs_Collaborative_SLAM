@@ -17,6 +17,9 @@ public:
     // constructor function, loading images
     Data(string &path1, string &path2, string &path3, string &path4);
 
+    // camera config
+    cv::Mat K;
+
     // pictures needed in algorithm realization
     cv::Mat Client0Img1;
     cv::Mat Client0Img2;

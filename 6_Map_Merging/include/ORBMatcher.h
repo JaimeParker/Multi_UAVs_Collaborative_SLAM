@@ -19,6 +19,20 @@ public:
                                   vector<cv::KeyPoint> keyPoints2,
                                   vector<cv::DMatch> matches,
                                   cv::Mat &R, cv::Mat &t);
+
+    // get landmark position
+    static void getKeyPointPosition(const cv::Mat &K,
+                                    const vector<cv::KeyPoint> &keypoint_1,
+                                    const vector<cv::KeyPoint> &keypoint_2,
+                                    const std::vector<cv::DMatch> &matches,
+                                    const cv::Mat &R, const cv::Mat &t,
+                                    vector<cv::Point3d> &points);
+
+    // pixel to camera coordination
+    static cv::Point2f pixel2cam(const cv::Point2d &point, const cv::Mat &K);
+
+    // plot MapPoints
+    static void showMapPoints(const vector<cv::Point3d> &MapPoints);
 };
 
 

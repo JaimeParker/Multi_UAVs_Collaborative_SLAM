@@ -4,7 +4,7 @@
 // However, we are using pictures here
 //
 
-// Project and Cpp
+// Project and cpp
 #include "Data.h"
 #include "ORBMatcher.h"
 #include <iostream>
@@ -25,6 +25,8 @@ Data::Data(string &path1, string &path2, string &path3, string &path4) {
     Client0Img2 = imread(path2);
     Client1Img1 = imread(path3);
     Client1Img2 = imread(path4);
+
+    K = (Mat_<double>(3, 3) << 520.9, 0, 325.1, 0, 521.0, 249.7, 0, 0, 1);
 
     //ORBMatcher::findFeatures(Client0Img1, Client0Img2);
 }
@@ -84,12 +86,30 @@ void Data::getPose() {
         }
     }
 
-    cout << Matches0.size();
-
     // get Pose
     Mat R0, t0;
     Mat R1, t1;
     ORBMatcher::getPoseEstimation(KeyPoint0_1, KeyPoint0_2, Matches0, R0, t0);
     ORBMatcher::getPoseEstimation(KeyPoint1_1, KeyPoint1_2, Matches1, R1, t1);
 
+    // get KP position
+    vector<Point3d> map_points0, map_points1;
+    ORBMatcher::getKeyPointPosition(K, KeyPoint0_1, KeyPoint0_2,
+                                    matches0, R0, t0, map_points0);
+    ORBMatcher::getKeyPointPosition(K, KeyPoint1_1, KeyPoint1_2,
+                                    matches1, R1, t1, map_points1);
+
+    // show test
+    cout << "MP size:" << map_points0.size() << endl;
+    for (int i = 0; i < 100; i++) cout << map_points0[i].x << ", " << map_points0[i].y << ", " << map_points0[i].z << endl;
+    ORBMatcher::showMapPoints(map_points0);
+
+}
+
+
+inline cv::Scalar get_color(float depth) {
+    float up_th = 50, low_th = 10, th_range = up_th - low_th;
+    if (depth > up_th) depth = up_th;
+    if (depth < low_th) depth = low_th;
+    return cv::Scalar(255 * depth / th_range, 0, 255 * (1 - depth / th_range));
 }
