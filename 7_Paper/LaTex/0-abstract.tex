@@ -13,13 +13,13 @@
 % 目的、方法、结果和结论称为摘要的四要素。
 
 % 研究背景 1,2句话
-无人机应用的场景越发广泛，机上搭载设备的多样化意味着其能实现更多的功能
+无人机应用的场景越发广泛，机上搭载设备的多样化意味着其能实现更多的功能。
 % 问题，一句话
-
+但是，在GPS拒止环境下，无人机完成对自身周围的环境感知较为困难；单架无人机执行任务的效率和成功率也不能保证。
 % 文章主旨
-
+为了解决这一问题，本文主要研究集群无人机协同SLAM。SLAM技术使得无人机在GPS拒止环境下也能完成对环境的感知和对任务的决策，集群无人机则使得任务的完成更加高效。
 % 试验方法及主要结论
-
+本文通过对ROS、PX4的研究和SLAM理论知识及开源方案的学习，进行了两架配备有单目相机的无人机在gazebo仿真环境下进行视觉感知，完成定位与建图任务；这样协作的方案使得每一架无人机拥有自己的地图，并通过特定的融合策略得到一致估计的地图；最后，在真机上进行了视觉SLAM的实验，为进一步多机自主定位与建图创造了条件。
 % 学术意义
 
 \vspace{0.1in}
@@ -36,10 +36,11 @@
 \noindent 
 \vspace{1em}
 
-
-摘要正文-英文
-
+Drones are being used in a wider and wider range of scenarios, and the diversity of equipment on board means they can achieve more functions.
+However, in the GPS denial environment, it is difficult for UAVs to sense their own surroundings; the efficiency and success rate of a single UAV mission cannot be guaranteed.
+In order to solve this problem, this paper focuses on cluster UAV collaborative SLAM, which enables UAVs to sense the environment and make decisions about the mission even in GPS-denied environment, and cluster UAVs make the mission accomplishment more efficient.
+In this paper, through the study of ROS, PX4 and theoretical knowledge of SLAM and open-source schemes, two UAVs equipped with monocular cameras perform visual perception and complete localization and map building tasks in a gazebo simulation environment; such a collaborative scheme allows each UAV to have its own map and get a consistently estimated map through a specific fusion strategy; finally, a real aircraft on Finally, experiments of visual SLAM were conducted on real aircraft, creating conditions for further multi-aircraft autonomous localization and map building.
 
 
 \vspace{0.1in}
-\noindent \textbf{Key Words:} Flight control model, Quaternion, Three-dimensional visual simulation system, Loop simulation
+\noindent \textbf{Key Words:} SLAM，Multi UAVs

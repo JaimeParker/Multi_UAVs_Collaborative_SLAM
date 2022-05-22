@@ -1,24 +1,40 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[于琰平(2010)]{yuyanping2010}
-于琰平.
-\newblock {基于 FlightGear
-  的四旋翼无人机三维可视仿真系统研究}[J].
-\newblock 天津大学, 2010.
+\bibitem[高翔(2017)]{6}
+高翔 �~�, 张涛.
+\newblock
+\newblock {视觉SLAM十四讲：从理论到实践}[M].[S.l.]:
+  电子工业出版社, 2017.
 
-\bibitem[刘鹏(2011)]{liupeng2011}
-刘鹏.
-\newblock {基于 FlightGear 的无人直升机飞行仿真技术研究}[J].
-\newblock 南京航空航天大学, 2011.
+\bibitem[E.~Rublee and Bradski(2011)]{5}
+E.~RUBLEE K~K, V.~RABAUD, BRADSKI G.
+\newblock {ORB: An efficient alternative to SIFT or SURF}[J].
+\newblock International Conference on Computer Vision, 2011.
 
-\bibitem[李海泉(2011)]{lihaiquan2011}
-李海泉.
-\newblock {小型无人机飞行力学建模及虚拟训练平台的建立}[J].
-\newblock 南京航空航天大学, 2011.
+\bibitem[杨明(2000)]{7}
+杨明 �.
+\newblock {基于激光雷达的移动机器人环境建模与避障}[J].
+\newblock 清华大学学报(自然科学版), 2000.
+
+\bibitem[Avrutov(2017)]{8}
+AVRUTOV S~A~S~Z, V.V.
+\newblock {Calibration of an Inertial Measurement Unit}[J].
+\newblock Int Appl Mech, 2017:228~236.
+
+\bibitem[T.~Qin and Shen(2018)]{9}
+T.~QIN P~L, SHEN S.
+\newblock {VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State
+  Estimator}[J].
+\newblock IEEE Transactions on Robotics, 2018.
+
+\bibitem[任伟建(2022)]{11}
+任伟建 �~�~�, 高强.
+\newblock {移动机器人同步定位与建图技术综述}[J].
+\newblock 计算机测量与控制, 2022.
 
 \end{thebibliography}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  22 MAY 2022 04:34
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  22 MAY 2022 18:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2952,7 +2952,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
  (./chapter-06.tex
 第六章
-)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2963,14 +2962,34 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-] (./main.bbl)
+])
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[46
+[46] (./main.bbl
+Invalid UTF-8 byte or sequence at line 9 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 9 replaced by U+FFFD.
+Missing character: There is no � in font Times New Roman/OT:mapping=tex-text;!
+Missing character: There is no � in font Times New Roman/OT:mapping=tex-text;!
+Invalid UTF-8 byte or sequence at line 20 replaced by U+FFFD.
+Missing character: There is no � in font Times New Roman/OT:mapping=tex-text;!
+Invalid UTF-8 byte or sequence at line 36 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 36 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 36 replaced by U+FFFD.
+Missing character: There is no � in font Times New Roman/OT:mapping=tex-text;!
+Missing character: There is no � in font Times New Roman/OT:mapping=tex-text;!
+Missing character: There is no � in font Times New Roman/OT:mapping=tex-text;!
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[47
 
 
 
@@ -2984,7 +3003,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[47
+[48
 
 
 ]
@@ -2997,7 +3016,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[48
+[49
 
 
 
@@ -3020,12 +3039,12 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 44229 strings out of 493007
- 865717 string characters out of 6136718
- 946281 words of memory out of 5000000
- 47472 multiletter control sequences out of 15000+600000
+ 44238 strings out of 493007
+ 865699 string characters out of 6136718
+ 946404 words of memory out of 5000000
+ 47481 multiletter control sequences out of 15000+600000
  544425 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1775s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (50 pages).
+Output written on main.pdf (51 pages).

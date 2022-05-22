@@ -44,8 +44,8 @@
 \contentsline {section}{\numberline {5.2}地图融合实验}{43}{section.5.2}
 \contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{45}{chapter.6}
 \contentsline {section}{\numberline {6.1}全文总结}{45}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{45}{section.6.2}
-\contentsline {chapter}{参考文献}{46}{chapter*.29}
-\contentsline {chapter}{致谢}{47}{chapter*.30}
-\contentsline {chapter}{毕业设计小结}{48}{chapter*.31}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{46}{section.6.2}
+\contentsline {chapter}{参考文献}{47}{chapter*.29}
+\contentsline {chapter}{致谢}{48}{chapter*.30}
+\contentsline {chapter}{毕业设计小结}{49}{chapter*.31}
 \contentsfinish 

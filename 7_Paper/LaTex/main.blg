@@ -6,8 +6,11 @@ A level-1 auxiliary file: 0-cover.aux
 A level-1 auxiliary file: 0-abstract.aux
 A level-1 auxiliary file: chapter-01.aux
 A level-1 auxiliary file: chapter-02.aux
+A level-1 auxiliary file: chapter-03.aux
+A level-1 auxiliary file: chapter-04.aux
+A level-1 auxiliary file: chapter-05.aux
 A level-1 auxiliary file: chapter-06.aux
-Illegal, another \bibstyle command---line 27 of file main.aux
+Illegal, another \bibstyle command---line 30 of file main.aux
  : \bibstyle
  :          {nwputhesis}
 I'm skipping whatever remains of this command
@@ -34,57 +37,91 @@ format.conference.title is an unknown function---line 2622 of file GBT7714-2005N
 format.cconference.title is an unknown function---line 2657 of file GBT7714-2005NLang-UTF8.bst
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: reference.bib
-You can't pop an empty literal stack for entry yuyanping2010
+Too many commas in name 1 of "高翔, 张涛, 颜沁睿, 刘毅" for entry 6
+while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "Avrutov, V.V., Sapegin, A.N., Stefanishin, Z.S" for entry 8
+while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "Avrutov, V.V., Sapegin, A.N., Stefanishin, Z.S" for entry 8
+while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "Avrutov, V.V., Sapegin, A.N., Stefanishin, Z.S" for entry 8
+while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "任伟建,高强,康朝海,霍凤财,张志强" for entry 11
+while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "任伟建,高强,康朝海,霍凤财,张志强" for entry 11
+while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "高翔, 张涛, 颜沁睿, 刘毅" for entry 6
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
-You can't pop an empty literal stack for entry yuyanping2010
+You can't pop an empty literal stack for entry 6
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
-You can't pop an empty literal stack for entry liupeng2011
+You can't pop an empty literal stack for entry 5
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
-You can't pop an empty literal stack for entry liupeng2011
+You can't pop an empty literal stack for entry 5
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
-You can't pop an empty literal stack for entry lihaiquan2011
+You can't pop an empty literal stack for entry 7
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
-You can't pop an empty literal stack for entry lihaiquan2011
+You can't pop an empty literal stack for entry 7
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
-You've used 3 entries,
+Too many commas in name 1 of "Avrutov, V.V., Sapegin, A.N., Stefanishin, Z.S" for entry 8
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "Avrutov, V.V., Sapegin, A.N., Stefanishin, Z.S" for entry 8
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "Avrutov, V.V., Sapegin, A.N., Stefanishin, Z.S" for entry 8
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 8
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 8
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 9
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 9
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "任伟建,高强,康朝海,霍凤财,张志强" for entry 11
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "任伟建,高强,康朝海,霍凤财,张志强" for entry 11
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 11
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 11
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You've used 6 entries,
             6753 wiz_defined-function locations,
-            1211 strings with 8727 characters,
-and the built_in function-call counts, 772 in all, are:
-= -- 66
-> -- 12
-< -- 3
-+ -- 9
-- -- 3
-* -- 35
-:= -- 125
-add.period$ -- 9
-call.type$ -- 3
-change.case$ -- 6
-chr.to.int$ -- 3
-cite$ -- 3
-duplicate$ -- 45
-empty$ -- 100
-format.name$ -- 6
-if$ -- 178
+            1231 strings with 9196 characters,
+and the built_in function-call counts, 1662 in all, are:
+= -- 145
+> -- 34
+< -- 6
++ -- 22
+- -- 8
+* -- 88
+:= -- 252
+add.period$ -- 18
+call.type$ -- 6
+change.case$ -- 12
+chr.to.int$ -- 6
+cite$ -- 6
+duplicate$ -- 92
+empty$ -- 215
+format.name$ -- 20
+if$ -- 393
 int.to.chr$ -- 1
-int.to.str$ -- 4
-missing$ -- 3
-newline$ -- 23
-num.names$ -- 6
-pop$ -- 15
+int.to.str$ -- 7
+missing$ -- 7
+newline$ -- 38
+num.names$ -- 12
+pop$ -- 37
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 6
 quote$ -- 0
-skip$ -- 37
+skip$ -- 73
 stack$ -- 0
-substring$ -- 6
-swap$ -- 3
+substring$ -- 33
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 22
 warning$ -- 0
-while$ -- 3
+while$ -- 7
 width$ -- 0
-write$ -- 49
-(There were 25 error messages)
+write$ -- 89
+(There were 42 error messages)
