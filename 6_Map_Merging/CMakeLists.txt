@@ -14,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
         )
 # Pangolin
 find_package(Pangolin)
+# Eigen3
+find_package(Eigen3)
 
 # Including Directories
 include_directories(
@@ -21,7 +23,9 @@ include_directories(
         ${PROJECT_SOURCE_DIR}/include
         ${catkin_INCLUDE_DIRS}
         ${OpenCV_INCLUDE_DIRS}
-        ${Pangolin_INCLUDE_DIRS})
+        ${Pangolin_INCLUDE_DIRS}
+        ${Eigen3_INCLUDE_DIRS}
+)
 
 # Using Project Name as Executable File
 add_library(${PROJECT_NAME} SHARED
@@ -33,7 +37,8 @@ add_library(${PROJECT_NAME} SHARED
 target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}
         ${catkin_LIBRARIES}
-        ${Pangolin_LIBRARIES})
+        ${Pangolin_LIBRARIES}
+        ${Eigen3_LIBRARIES})
 
 add_executable(main main.cpp)
 target_link_libraries(main ${PROJECT_NAME})

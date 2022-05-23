@@ -28,7 +28,7 @@ Data::Data(string &path1, string &path2, string &path3, string &path4) {
 
     K = (Mat_<double>(3, 3) << 520.9, 0, 325.1, 0, 521.0, 249.7, 0, 0, 1);
 
-    //ORBMatcher::findFeatures(Client0Img1, Client0Img2);
+    ORBMatcher::findFeatures(Client0Img1, Client0Img2);
 }
 
 void Data::getPose() {
@@ -49,6 +49,8 @@ void Data::getPose() {
     Ptr<FeatureDetector> detector1 = ORB::create();
     Ptr<DescriptorExtractor> descriptor1 = ORB::create();
     Ptr<DescriptorMatcher> matcher1 = DescriptorMatcher::create("BruteForce-Hamming");
+
+    Ptr<DescriptorMatcher> matcher2 = DescriptorMatcher::create("BruteForce-Hamming");
 
     // detect FAST points
     detector0->detect(Client0Img1, KeyPoint0_1);
@@ -76,7 +78,7 @@ void Data::getPose() {
             Matches0.push_back(matches0[i]);
         }
     }
-    auto min_max1 = minmax_element(matches0.begin(), matches0.end(),
+    auto min_max1 = minmax_element(matches1.begin(), matches1.end(),
                                   [](const DMatch &m1, const DMatch &m2) { return m1.distance < m2.distance; });
     double min_dist1 = min_max1.first->distance;
     double max_dist1 = min_max1.second->distance;
@@ -100,9 +102,33 @@ void Data::getPose() {
                                     matches1, R1, t1, map_points1);
 
     // show test
-    cout << "MP size:" << map_points0.size() << endl;
-    for (int i = 0; i < 100; i++) cout << map_points0[i].x << ", " << map_points0[i].y << ", " << map_points0[i].z << endl;
-    ORBMatcher::showMapPoints(map_points0);
+    cout << "MP(0) size:" << map_points0.size() << endl;
+    cout << "MP(1) size:" << map_points1.size() << endl;
+//    ORBMatcher::showMapPoints(map_points0);
+//    ORBMatcher::showMapPoints(map_points1);
+
+    // detect transform from 1 to 3
+    vector<DMatch> matches2, Matches2;
+    matcher2->match(descriptor0_1, descriptor1_1, matches2);
+    auto min_max2 = minmax_element(matches2.begin(), matches2.end(),
+                                   [](const DMatch &m1, const DMatch &m2) { return m1.distance < m2.distance; });
+    double min_dist2 = min_max2.first->distance;
+    double max_dist2 = min_max2.second->distance;
+    for (int i = 0; i < descriptor1_1.rows; i++) {
+        if (matches1[i].distance <= max(2 * min_dist2, 30.0)) {
+            Matches2.push_back(matches1[i]);
+        }
+    }
+    Mat R, t;
+    ORBMatcher::getPoseEstimation(KeyPoint0_1, KeyPoint1_1, Matches2, R, t);
+
+    // get KeyPoint position of Client0 in Client1
+    vector<Point3d> map_point0_1;
+    map_point0_1 = ORBMatcher::shiftCoordinate(R, t, K, map_points0);
+    map_point0_1.insert(map_point0_1.end(), map_points1.begin(), map_points1.end());
+
+    // show combination map
+    ORBMatcher::showMapPoints(map_point0_1);
 
 }
 

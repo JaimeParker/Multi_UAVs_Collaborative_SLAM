@@ -3,10 +3,14 @@
 //
 
 #include "ORBMatcher.h"
+#include <Eigen/Eigen>
+#include <Eigen/Dense>
 #include <opencv2/features2d/features2d.hpp>
 #include <opencv2/core/core.hpp>
+#include <opencv2/core/eigen.hpp>
 #include <opencv2/opencv.hpp>
 #include <pangolin/pangolin.h>
+
 
 
 using namespace std;
@@ -33,6 +37,12 @@ void ORBMatcher::findFeatures(Mat &img1, Mat &img2) {
     chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
     chrono::duration<double> time_used = chrono::duration_cast<chrono::duration<double>>(t2 - t1);
     cout << "extract ORB cost = " << time_used.count() << " seconds. " << endl;
+
+
+    // create window
+    namedWindow("ORB features", WINDOW_NORMAL);
+    namedWindow("all matches", WINDOW_NORMAL);
+    namedWindow("good matches", WINDOW_NORMAL);
 
     Mat outimg1;
     drawKeypoints(img1, keypoints_1, outimg1, Scalar::all(-1), DrawMatchesFlags::DEFAULT);
@@ -176,7 +186,7 @@ void ORBMatcher::showMapPoints(const vector<cv::Point3d> &MapPoints) {
     // create a camera viewer
     pangolin::OpenGlRenderState cam_view(
             pangolin::ProjectionMatrix(800, 600, 420, 420, 320, 320, 0.2, 100),
-            pangolin::ModelViewLookAt(2, 0, 2, 0, 0, 0, pangolin::AxisY)
+            pangolin::ModelViewLookAt(0, 0, 0, 1, 1, 1, pangolin::AxisY)
             );
 
     // create inter viewer
@@ -185,31 +195,51 @@ void ORBMatcher::showMapPoints(const vector<cv::Point3d> &MapPoints) {
             .SetBounds(0.0, 1.0, 0.0, 1.0, -800.0f/600.0f)
             .SetHandler(&handler);
 
-    Point3d point;
-
-    int iter = 0;
-
-    while(!pangolin::ShouldQuit() && iter < MapPoints.size()){
+    while(!pangolin::ShouldQuit()){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         d_cam.Activate(cam_view);
 
-        glPointSize(10.0);
+        glPointSize(1.0);
 
         glBegin(GL_POINTS);
         glColor3f(0, 1, 0);
 
-        point = MapPoints[iter];
-        glVertex3d(point.x * 10, point.y * 10, point.z * 10);
-        iter++;
-
-        glVertex3d(0, 0, 0);
-        glVertex3d(1, 0, 0);
-        glVertex3d(2, 0, 0);
+        for (const auto & MapPoint : MapPoints){
+            glVertex3d(MapPoint.x, MapPoint.y, MapPoint.z);
+        }
 
         glEnd();
         pangolin::FinishFrame();
     }
 
 }
+
+vector<cv::Point3d> ORBMatcher::shiftCoordinate(const Mat &R, const Mat &t, const Mat &K,
+                                                const vector<cv::Point3d> &pos) {
+    // Pos_new = K(RP + t)
+    vector<Point3d> shiftedPos;
+    Point3d p;
+
+    Eigen::Matrix<double, 3, 3> Mat_R;
+    Eigen::Matrix<double, 3, 1> Mat_t;
+    Eigen::Matrix<double, 3, 1> Mat_P;
+    Eigen::Matrix<double, 3, 3> Mat_K;
+    Eigen::Matrix<double, 3, 1> Mat_Pos;
+
+    cv2eigen(R, Mat_R);
+    cv2eigen(t, Mat_t);
+
+    for (const auto & po : pos){
+        Mat_Pos << po.x, po.y, po.z;
+        Mat_P = Mat_R * Mat_Pos + Mat_t;
+        p.x = Mat_P(0);
+        p.y = Mat_P(1);
+        p.z = Mat_P(2);
+        shiftedPos.push_back(p);
+    }
+
+    return shiftedPos;
+}
+
 
 

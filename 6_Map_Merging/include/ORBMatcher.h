@@ -61,6 +61,9 @@ public:
      * @param MapPoints cv::Point3d, MapPoint position
      */
     static void showMapPoints(const vector<cv::Point3d> &MapPoints);
+
+    static vector<cv::Point3d> shiftCoordinate(const cv::Mat &R, const cv::Mat &t,
+                                const cv::Mat &K, const vector<cv::Point3d> &pos);
 };
 
 
