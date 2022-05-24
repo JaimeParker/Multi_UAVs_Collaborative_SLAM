@@ -37,6 +37,8 @@ format.conference.title is an unknown function---line 2622 of file GBT7714-2005N
 format.cconference.title is an unknown function---line 2657 of file GBT7714-2005NLang-UTF8.bst
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: reference.bib
+Too many commas in name 1 of "王晨捷, 罗斌, 李成源, 等" for entry 1
+while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
 Too many commas in name 1 of "高翔, 张涛, 颜沁睿, 刘毅" for entry 6
 while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
 Too many commas in name 1 of "Avrutov, V.V., Sapegin, A.N., Stefanishin, Z.S" for entry 8
@@ -49,6 +51,12 @@ Too many commas in name 1 of "任伟建,高强,康朝海,霍凤财,张志强" fo
 while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
 Too many commas in name 1 of "任伟建,高强,康朝海,霍凤财,张志强" for entry 11
 while executing---line 3478 of file GBT7714-2005NLang-UTF8.bst
+Too many commas in name 1 of "王晨捷, 罗斌, 李成源, 等" for entry 1
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 1
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 1
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
 Too many commas in name 1 of "高翔, 张涛, 颜沁睿, 刘毅" for entry 6
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
 You can't pop an empty literal stack for entry 6
@@ -83,45 +91,45 @@ You can't pop an empty literal stack for entry 11
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
 You can't pop an empty literal stack for entry 11
 while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
-You've used 6 entries,
+You've used 7 entries,
             6753 wiz_defined-function locations,
-            1231 strings with 9196 characters,
-and the built_in function-call counts, 1662 in all, are:
-= -- 145
-> -- 34
-< -- 6
-+ -- 22
-- -- 8
-* -- 88
-:= -- 252
-add.period$ -- 18
-call.type$ -- 6
-change.case$ -- 12
-chr.to.int$ -- 6
-cite$ -- 6
-duplicate$ -- 92
-empty$ -- 215
-format.name$ -- 20
-if$ -- 393
+            1235 strings with 9287 characters,
+and the built_in function-call counts, 1908 in all, are:
+= -- 167
+> -- 38
+< -- 7
++ -- 25
+- -- 9
+* -- 99
+:= -- 290
+add.period$ -- 21
+call.type$ -- 7
+change.case$ -- 14
+chr.to.int$ -- 7
+cite$ -- 7
+duplicate$ -- 107
+empty$ -- 248
+format.name$ -- 22
+if$ -- 452
 int.to.chr$ -- 1
-int.to.str$ -- 7
-missing$ -- 7
-newline$ -- 38
-num.names$ -- 12
-pop$ -- 37
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 43
+num.names$ -- 14
+pop$ -- 42
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 7
 quote$ -- 0
-skip$ -- 73
+skip$ -- 85
 stack$ -- 0
-substring$ -- 33
-swap$ -- 6
+substring$ -- 35
+swap$ -- 7
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 22
+type$ -- 26
 warning$ -- 0
-while$ -- 7
+while$ -- 8
 width$ -- 0
-write$ -- 89
-(There were 42 error messages)
+write$ -- 103
+(There were 46 error messages)
