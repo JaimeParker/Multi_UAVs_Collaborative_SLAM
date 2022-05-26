@@ -16,7 +16,6 @@ Illegal, another \bibstyle command---line 30 of file main.aux
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: 1-acknowledgements.aux
 A level-1 auxiliary file: 1-design-conclusion.aux
-I found no \citation commands---while reading file main.aux
 new.block is an unknown function---line 73 of file GBT7714-2005NLang-UTF8.bst
 remove.dots is an unknown function---line 461 of file GBT7714-2005NLang-UTF8.bst
 remove.dots is an unknown function---line 514 of file GBT7714-2005NLang-UTF8.bst
@@ -38,45 +37,88 @@ format.conference.title is an unknown function---line 2622 of file GBT7714-2005N
 format.cconference.title is an unknown function---line 2657 of file GBT7714-2005NLang-UTF8.bst
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: reference.bib
-You've used 0 entries,
+Warning--empty journal in 王晨捷2020无人机视觉
+You can't pop an empty literal stack for entry 王晨捷2020无人机视觉
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 王晨捷2020无人机视觉
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 高家隆2019多无人机协同定位与建图技术研究
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry meier2015px4
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry meier2015px4
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry rublee2011orb
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry rublee2011orb
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry avrutov2017calibration
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry qin2018vins
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry 任伟建2022移动机器人同步定位与建图技术综述
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry Gao2017SLAM
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry zhang2010understanding
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry mur2017orb
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry schmuck2019ccm
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry karrer2021distributed
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry karrer2021distributed
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry forster2013collaborative
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry forster2013collaborative
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry XiaoKun
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry XiaoKun
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You can't pop an empty literal stack for entry XiaoKun
+while executing---line 3560 of file GBT7714-2005NLang-UTF8.bst
+You've used 15 entries,
             6753 wiz_defined-function locations,
-            1201 strings with 8466 characters,
-and the built_in function-call counts, 34 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 11
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+            1295 strings with 11329 characters,
+and the built_in function-call counts, 5656 in all, are:
+= -- 520
+> -- 206
+< -- 4
++ -- 111
+- -- 48
+* -- 418
+:= -- 799
+add.period$ -- 50
+call.type$ -- 15
+change.case$ -- 30
+chr.to.int$ -- 15
+cite$ -- 16
+duplicate$ -- 250
+empty$ -- 652
+format.name$ -- 83
+if$ -- 1315
 int.to.chr$ -- 1
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 8
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 16
+missing$ -- 18
+newline$ -- 88
+num.names$ -- 30
+pop$ -- 122
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 15
 quote$ -- 0
-skip$ -- 1
+skip$ -- 187
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 320
+swap$ -- 15
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
+type$ -- 58
+warning$ -- 1
+while$ -- 37
 width$ -- 0
-write$ -- 7
-(There were 20 error messages)
+write$ -- 215
+(There were 40 error messages)

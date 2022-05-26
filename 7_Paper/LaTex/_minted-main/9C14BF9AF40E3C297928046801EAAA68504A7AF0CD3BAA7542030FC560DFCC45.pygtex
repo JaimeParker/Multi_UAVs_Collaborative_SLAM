@@ -8,7 +8,8 @@
 \PYG{p}{\PYGZcb{}}
 
 \PYG{n}{ros}\PYG{o}{::}\PYG{n}{NodeHandle}\PYG{+w}{ }\PYG{n}{Nh}\PYG{p}{;}\PYG{+w}{  }\PYG{c+c1}{// topic name will be: node name(only), like \PYGZdq{}/image\PYGZus{}raw\PYGZdq{}}
-\PYG{n}{ros}\PYG{o}{::}\PYG{n}{NodeHandle}\PYG{+w}{ }\PYG{n+nf}{NhPrivate}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}\PYGZdq{}}\PYG{p}{);}\PYG{+w}{  }\PYG{c+c1}{// topic node will be: node name + topic name, like \PYGZdq{}iris\PYGZus{}0/image\PYGZus{}raw\PYGZdq{}}
+\PYG{c+c1}{// topic node will be: node name + topic name, like \PYGZdq{}iris\PYGZus{}0/image\PYGZus{}raw\PYGZdq{}}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{NodeHandle}\PYG{+w}{ }\PYG{n+nf}{NhPrivate}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}\PYGZdq{}}\PYG{p}{);}
 
 \PYG{n}{boost}\PYG{o}{::}\PYG{n}{shared\PYGZus{}ptr}\PYG{o}{\PYGZlt{}}\PYG{n}{cslam}\PYG{o}{::}\PYG{n}{ClientSystem}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{pCSys}\PYG{p}{\PYGZob{}}\PYG{k}{new}
 \PYG{+w}{                }\PYG{n}{cslam}\PYG{o}{::}\PYG{n}{ClientSystem}\PYG{p}{(}\PYG{n}{Nh}\PYG{p}{,}\PYG{n}{NhPrivate}\PYG{p}{,}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{])\PYGZcb{};}

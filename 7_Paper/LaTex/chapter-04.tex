@@ -104,7 +104,7 @@ launch文件使用XML标签语言书写，主要为确定启动的节点和加�
 
 需要注意，在需要与MAVROS建立通信的launch文件中，需要设置fcu端口号，具体表示为udp+本地端口号，在多机的launch文件中，每一架飞机的端口号都是不同的，但单机不需要作出修改。
 
-如果设置双目相机参数后加载失败或加载到一个正方体模型，则是双目相机模型缺失导致的。一种方法是删除gazebo自带的models中的双目相机，并用PX4中的双目相机模型代替；另一种方法则是直接将sdf的值指向PX4的双目相机，即其值为PX4双目相机的路径。
+如果设置双目相机参数后加载失败或加载到一个正方体模型，则是双目相机模型缺失导致的。一种方法是删除gazebo自带的models中的双目相机，并用PX4中的双目相机飞机代替；另一种方法则是直接将sdf的值指向PX4的双目相机飞机，即其值为PX4双目相机飞机的路径。
 
 \subsection{Offboard程序} \label{4.2.2}
 
@@ -211,18 +211,18 @@ while(ros::ok()){
 
 \subsection{视觉定位的坐标变换} \label{4.2.3}
 
-在正常GPS定位的Offboard模式下，飞机的位置在MAVROS中作为已知量存在。但在视觉定位模式下，MAVROS需要通过vision\_pose/pose话题获得飞机的位姿信息。而ORB-SLAM2解算出的位姿并不是MAVROS的地理位置消息格式，因此需要做一些转换。
+在正常GPS定位的Offboard模式下，飞机的位置在MAVROS中作为已知量存在。但在视觉定位模式下，可以参照图\ref{fig4-5}的节点与话题关系，MAVROS需要通过vision\_pose/pose话题获得飞机的位姿信息。而ORB-SLAM2解算出的位姿并不是MAVROS的地理位置消息格式，因此需要做一些转换。
+
+%\begin{figure}[!ht]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{rqtOffboard.png}
+%	\caption{Offboard节点话题关系}
+%	\label{fig4-4}
+%\end{figure}
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{rqtOffboard.png}
-	\caption{Offboard节点话题关系}
-	\label{fig4-4}
-\end{figure}
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=0.4\textwidth]{rqtRGBD.png}
+	\includegraphics[scale=0.25]{rqtRGBD.png}
 	\caption{视觉SLAM节点话题关系}
 	\label{fig4-5}
 \end{figure}
@@ -414,18 +414,34 @@ $$
 
 有$N_{2,1},N_{3,1},N_{3,2},N_{4,2},N_{4,3},N_{5,3},N_{5,4}$均不为0，则在这些对之间，按由小到大的顺序建立通信，传输长机的位置信息，保持相对位置的跟随。
 
-在无人机发生编队队形变换时，则需要考虑最小总路径，可以用KM匈牙利算法解得每一架飞机对应的最小路径，并且在队形变换过程中需要考虑碰撞的影响。
+在无人机发生编队队形变换时，则需要考虑最小总路径，可以用KM匈牙利算法解得每一架飞机对应的最小路径，并且在队形变换过程中需要考虑碰撞的影响\cite{XiaoKun}。
 
 图\ref{fig4-8}展示了三机编队的仿真结果：
 
-\begin{figure}[!ht]
+%\begin{figure}[!ht]
+%	\centering
+%	\includegraphics[width=0.5\textwidth]{multi.png}
+%	\caption{三机编队仿真}
+%	\label{fig4-8}
+%\end{figure}
+
+
+% 注意caption (a)(b)
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.5\textwidth]{multi.png}
-	\caption{三机编队仿真}
-	\label{fig4-8}
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{multi.png}
+		\caption{三机编队仿真}
+		\label{fig4-8}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{multi1.png}
+		\caption{三机跟随仿真}
+		\label{fig4-8-1}
+	\end{minipage}
 \end{figure}
-
-
 
 
 \subsection{多机SLAM仿真} \label{4.3.3}

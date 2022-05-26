@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  27 MAY 2022 01:35
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  27 MAY 2022 03:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2852,7 +2852,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \openout4 = `main.pyg'.
 
 
-(./_minted-main/3E638DD0DD78DB0A3E861C4713B203DE504A7AF0CD3BAA7542030FC560DFCC4
+(./_minted-main/9C14BF9AF40E3C297928046801EAAA68504A7AF0CD3BAA7542030FC560DFCC4
 5.pygtex)
 \openout4 = `main.pyg'.
 
@@ -2998,10 +2998,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [39])
 File: figures/waypoint.png Graphic file (type bmp)
 <figures/waypoint.png>
-File: figures/rqtOffboard.png Graphic file (type bmp)
-<figures/rqtOffboard.png>
 File: figures/rqtRGBD.png Graphic file (type bmp)
 <figures/rqtRGBD.png>
+
+Overfull \hbox (23.862pt too wide) in paragraph at lines 225--226
+ [][] 
+ []
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3043,6 +3045,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [43])
+File: figures/sdf.png Graphic file (type bmp)
+<figures/sdf.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -3050,9 +3055,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [44]
-File: figures/sdf.png Graphic file (type bmp)
-<figures/sdf.png>
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -3064,6 +3066,8 @@ File: figures/formation.png Graphic file (type bmp)
 <figures/formation.png>
 File: figures/multi.png Graphic file (type bmp)
 <figures/multi.png>
+File: figures/multi1.png Graphic file (type bmp)
+<figures/multi1.png>
 \openout4 = `main.pyg'.
 
 
@@ -3075,17 +3079,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[46]
+[46])
+File: figures/ccm1.png Graphic file (type bmp)
+<figures/ccm1.png>
+)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[47])
-File: figures/ccm1.png Graphic file (type bmp)
-<figures/ccm1.png>
-)
+[47]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -3156,10 +3160,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [53] (./main.bbl
+Underfull \hbox (badness 1242) in paragraph at lines 82--87
+[]\TU/TimesNewRoman(0)/m/n/12 KARRER M, CHLI M.   Distributed variable-baseline
+ stereo SLAM from
+ []
 
-Package natbib Warning: Empty `thebibliography' environment on input line 8.
-
-)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -3170,7 +3175,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-]
+])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[55]
 \openout2 = `1-acknowledgements.aux'.
 
  (./1-acknowledgements.tex)
@@ -3180,7 +3192,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[55
+[56
 
 
 ]
@@ -3193,7 +3205,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[56
+[57
 
 
 
@@ -3218,12 +3230,12 @@ runsystem(rm main.pyg)...executed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
  ) 
 Here is how much of TeX's memory you used:
- 46581 strings out of 493007
- 922470 string characters out of 6136718
- 1019687 words of memory out of 5000000
- 49700 multiletter control sequences out of 15000+600000
+ 46626 strings out of 493007
+ 923559 string characters out of 6136718
+ 1021153 words of memory out of 5000000
+ 49745 multiletter control sequences out of 15000+600000
  543266 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1017s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (58 pages).
+Output written on main.pdf (59 pages).

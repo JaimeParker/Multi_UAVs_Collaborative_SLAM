@@ -24,7 +24,7 @@
 \contentsline {subsection}{\numberline {3.3.2}Client与Server机制}{29}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}CCM-SLAM的配置}{31}{subsection.3.3.3}
 \contentsline {section}{\numberline {3.4}多机协同及地图融合方案}{31}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}算法原理}{31}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.1}算法原理}{32}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}编程实现}{33}{subsection.3.4.2}
 \contentsline {chapter}{\numberline {第四章\hspace {.3em}}多无人机SLAM仿真}{34}{chapter.4}
 \contentsline {section}{\numberline {4.1}gazebo仿真环境配置}{34}{section.4.1}
@@ -45,7 +45,7 @@
 \contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{52}{chapter.6}
 \contentsline {section}{\numberline {6.1}全文总结}{52}{section.6.1}
 \contentsline {section}{\numberline {6.2}对未来工作的展望}{53}{section.6.2}
-\contentsline {chapter}{参考文献}{54}{chapter*.31}
-\contentsline {chapter}{致谢}{55}{chapter*.32}
-\contentsline {chapter}{毕业设计小结}{56}{chapter*.33}
+\contentsline {chapter}{参考文献}{55}{chapter*.30}
+\contentsline {chapter}{致谢}{56}{chapter*.31}
+\contentsline {chapter}{毕业设计小结}{57}{chapter*.32}
 \contentsfinish 
