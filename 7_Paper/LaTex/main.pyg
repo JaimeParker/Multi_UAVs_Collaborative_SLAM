@@ -1,6 +1,0 @@
-import numpy as np
-import matplotlib.pyplot as plt
-t = np.linspace(-3,3,200)
-y = np.sin(t)
-plt.plot(t,y,'r')
-plt.show()

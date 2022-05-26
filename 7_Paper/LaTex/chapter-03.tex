@@ -1,3 +1,6 @@
+\renewcommand{\baselinestretch}{1.5}
+\fontsize{12pt}{13pt}\selectfont
+
 \chapter{SLAM系统设计} \label{System Overview}
 本章节主要介绍SLAM的概念和原理、一个基本SLAM系统的框架、两个优秀的开源SLAM框架和地图融合算法。
 
@@ -9,19 +12,19 @@
 SLAM主要分为视觉SLAM、激光SLAM、融合SLAM和新颖SLAM。
 
 
-对于视觉SLAM，即用相机完成同时定位与建图的任务。由于相机造价相对较低、电量消耗相对较少、能够获取环境的大量信息，因此相机成为了完成定位与建图任务常用的传感器。视觉SLAM主要有五个步骤，传感器信息读取、视觉里程计（Visual Odometry）、后端优化（Optimization）、回环检测（Loop Closing）、建图（Mapping）\cite{6}。对于静态、刚体、光照变化不明显、且没有过多人为干扰的场景，视觉SLAM技术已经十分成熟。当前比较好的方案有ORB-SLAM；其在对特征点的描述上做了很大创新，相比于SIFT（尺度不变特征变换，Scale-invariant feature transform）的大计算量和对GPU的特殊需求、FAST关键点描述没有描述子的缺点，ORB改进了FAST的检测子，为其增加了方向性，并且采用了二进制描述子BRIEF（Binary Robust Independent Elementary Feature）\cite{5}。
+对于视觉SLAM，即用相机完成同时定位与建图的任务。由于相机造价相对较低、电量消耗相对较少、能够获取环境的大量信息，因此相机成为了完成定位与建图任务常用的传感器。视觉SLAM主要有五个步骤，传感器信息读取、视觉里程计（Visual Odometry）、后端优化（Optimization）、回环检测（Loop Closing）、建图（Mapping。对于静态、刚体、光照变化不明显、且没有过多人为干扰的场景，视觉SLAM技术已经十分成熟。当前比较好的方案有ORB-SLAM；其在对特征点的描述上做了很大创新，相比于SIFT（尺度不变特征变换，Scale-invariant feature transform）的大计算量和对GPU的特殊需求、FAST关键点描述没有描述子的缺点，ORB改进了FAST的检测子，为其增加了方向性，并且采用了二进制描述子BRIEF（Binary Robust Independent Elementary Feature）。
 
 
-对于激光SLAM，主要有两种传感器，单线束激光雷达和多线束激光雷达；单线束激光雷达即2D雷达，2D激光雷达的扫描范围比较单一，角度有限，因此比较适合仅平面运动的机器人的定位与建图，对应的经典算法如GMapping；多线束雷达即3D雷达，其获取的信息包含距离和角度，能够还原出目标的三维点云，且不受光照影响，缺点是造价比较昂贵且易受不良天气影响\cite{7} ，对应的经典算法如谷歌提出的Cartographer。
+对于激光SLAM，主要有两种传感器，单线束激光雷达和多线束激光雷达；单线束激光雷达即2D雷达，2D激光雷达的扫描范围比较单一，角度有限，因此比较适合仅平面运动的机器人的定位与建图，对应的经典算法如GMapping；多线束雷达即3D雷达，其获取的信息包含距离和角度，能够还原出目标的三维点云，且不受光照影响，缺点是造价比较昂贵且易受不良天气影响，对应的经典算法如谷歌提出的Cartographer。
 
 
-对于融合SLAM，常见的有视觉和惯性的融合，即相机+IMU（inertial measurement unit，惯性测量单元，包含加速度计和角加速度计）等的多传感器融合；IMU的工作原理是对加速度的积分、初始速度和起始位置进行混合运算，得到运动轨迹和位姿。但是其容易产生漂移（Drift），并且这种累积误差会随时间增加\cite{8} 。
+对于融合SLAM，常见的有视觉和惯性的融合，即相机+IMU（inertial measurement unit，惯性测量单元，包含加速度计和角加速度计）等的多传感器融合；IMU的工作原理是对加速度的积分、初始速度和起始位置进行混合运算，得到运动轨迹和位姿。但是其容易产生漂移（Drift），并且这种累积误差会随时间增加。
 
 
-对于VIO（视觉惯性里程计），即上文提到的由相机和惯性测量单元组成的融合传感器，根据融合的框架可以分为松耦合和紧耦合两种。松耦合中对相机关键帧数据的视觉运动估计和对IMU测量数据的运动估计是两个独立的模块，计算时互不干涉；计算完成后将其轨迹结果按一定的方法进行融合。紧耦合则是共同使用相机视觉数据和惯导运动估计数据，共同完成对一组变量的估计；因此其算法更加复杂，且传感器之间的噪声也会相互影响，但是具有更好的效果，也是目前阶段研究的重点方向。这方向上好的方案有VINS-fusion\cite{9}。
+对于VIO（视觉惯性里程计），即上文提到的由相机和惯性测量单元组成的融合传感器，根据融合的框架可以分为松耦合和紧耦合两种。松耦合中对相机关键帧数据的视觉运动估计和对IMU测量数据的运动估计是两个独立的模块，计算时互不干涉；计算完成后将其轨迹结果按一定的方法进行融合。紧耦合则是共同使用相机视觉数据和惯导运动估计数据，共同完成对一组变量的估计；因此其算法更加复杂，且传感器之间的噪声也会相互影响，但是具有更好的效果，也是目前阶段研究的重点方向。这方向上好的方案有VINS-fusion。
 
 
-对于新颖SLAM，比如语义SLAM；使用神经网络的语义分割、目标检测方法，从图像到位姿，使用其语义分割的结果来完成点云地图的建立和场景识别。语义SLAM能够探测出图像中的各个物体，并且能得到在图像中的位置，可以节省传统的人工标定物品的成本，方便机器人的自主理解能力和简便的人机交互\cite{11} 。
+对于新颖SLAM，比如语义SLAM；使用神经网络的语义分割、目标检测方法，从图像到位姿，使用其语义分割的结果来完成点云地图的建立和场景识别。语义SLAM能够探测出图像中的各个物体，并且能得到在图像中的位置，可以节省传统的人工标定物品的成本，方便机器人的自主理解能力和简便的人机交互。
 
 
 \subsection{成像原理及相机参数} \label{3.1.2}
@@ -39,22 +42,24 @@ $Oxy$平面为相机光心（垂直主光轴）所在的平面，称其为相机
 
 理论下，小孔成像为倒立的实像，但在实际的相机中，成像被人为旋转，成正立的像，因此不考虑坐标系正负号的影响，由相似三角形关系，有：
 
-$$
+\begin{equation}
 \frac{Z}{f}=\frac{X}{X'}=\frac{Y}{Y'}
-$$
+\end{equation}
+
 
 在此基础上，定义像素坐标系。像素坐标系为二维坐标系，在物理成像平面上；像素坐标系的原点位于图像的左上角，横轴为$u$轴，向右与$x$轴平行，纵轴为$v$轴，向下与$y$轴平行，则可以得到像素坐标与$P'$坐标的关系为：
 
-$$
+\begin{equation}
 \begin{cases}
 u=\alpha X'+c_x=\alpha f \cfrac{X}{Z}+c_x \\
 v=\beta Y' +c_y=\beta f  \cfrac{Y}{Z}+c_y \\
 \end{cases}
-$$
+\end{equation}
+
 
 其中，$\alpha$和$\beta$为横轴和纵轴的缩放倍数，$c_x$为图像横向像素的一半，$c_y$为图像纵向像素的一半。令$f_x=\alpha f$，$f_y=\beta f$，将像素坐标系下的坐标转换为齐次坐标：
 
-$$
+\begin{equation}
 \begin{bmatrix}
 u\\v\\1
 \end{bmatrix}=
@@ -68,19 +73,21 @@ f_x & 0 & c_x\\
 X\\Y\\Z
 \end{bmatrix}=
 \frac{1}{Z} \bf{KP}
-$$
+\end{equation}
+
 
 则得到了相机的内参矩阵（Camera Intrinsics）$\bf{K}$。通常情况下，对于焦距固定的相机（或定焦镜头），其出厂之后内参矩阵是固定的；如果无法从厂家得到相机的内参，可以使用标定的方法获得相机的内参矩阵，常见的标定算法有张正友标定法。
 
 除相机的内参外，还有相机外参（Camera Extrinsics）的定义；相机的外参由其旋转矩阵$\bf{R}$和平移向量$\bf{t}$构成。对于$P$点而言，其在相机坐标系（像素坐标平面）下的坐标应为其在世界坐标系下的坐标根据相机相对于世界坐标系的位姿所变换得到的，相机的位姿即由其外参决定，则世界坐标系下$P$点的坐标$\bf{P_w}$在相机坐标系下的坐标为：
 
-$$
+
+\begin{equation}
 Z
 \begin{bmatrix}
 u\\v\\1
 \end{bmatrix}=
 \bf{K(RP_w+t)}
-$$
+\end{equation}
 
 \subsection{视觉SLAM的基本步骤} \label{3.1.3}
 
@@ -172,14 +179,17 @@ FAST角点选取的核心思想是，选取的点和周边像素点亮度差别�
 \end{figure}
 
 设$O$为角点像素，取一个最小的图像块，只有四个像素构成，建立$O-x-y$坐标系，原点的像素用$I(0,0)$表示，则可以找到该图像块的质心为：
-$$
+
+\begin{equation}
 C=(\frac{I(1,0)}{I(0,0)}, \frac{I(0,1)}{I(0,0)})
-$$
+\end{equation}
 
 则可以得到方向向量$\vec{OC}$，该关键点的方向定义为：
-$$
+
+\begin{equation}
 \theta = \arctan{\frac{I(0,1)}{I(1,0)}}
-$$
+\end{equation}
+
 
 % BRIEF
 BRIEF描述子为二进制编码，反映了关键点附近128个像素对的大小关系，最终由0和1构成，其具有旋转不变性、选点速度快且易于存储。
@@ -202,7 +212,7 @@ ORB-SLAM2是一套规范完整的视觉SLAM系统，其主要进程可以分为�
 
 其次是创建ORB特有的KeyFrameDatabase，该类用于处理关键帧数据；创建地图，实例化Map对象；创建画笔，为可视化做准备。
 
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 //Create KeyFrame Database
 mpKeyFrameDatabase = new KeyFrameDatabase(*mpVocabulary);
 
@@ -212,10 +222,10 @@ mpMap = new Map();
 //Create Drawers. These are used by the Viewer
 mpFrameDrawer = new FrameDrawer(mpMap);
 mpMapDrawer = new MapDrawer(mpMap, strSettingsFile);
-\end{lstlisting}
+\end{minted}
 
 之后是主要线程的初始化，跟踪线程、本地地图线程和回环检测线程：
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 //Initialize the Tracking thread
 //(it will live in the main thread of execution, the one that called this constructor)
 mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer,
@@ -228,7 +238,7 @@ mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
 //Initialize the Loop Closing thread and launch
 mpLoopCloser = new LoopClosing(mpMap, mpKeyFrameDatabase, mpVocabulary, mSensor!=MONOCULAR);
 mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, mpLoopCloser);
-\end{lstlisting}
+\end{minted}
 
 System相当于工程中的Main函数，汇集了实现一个SLAM系统所需的全部流程，使用顶层的代码进行控制，具体功能则由底层的类及其中的函数去实现。
 
@@ -329,30 +339,30 @@ CCM-SLAM主要有两大板块的内容，一部分是地图的处理，另一部
 
 ClientNode负责的内容包括：ROS节点初始化，句柄的设计，使用指针创建ClientSystem。在ROS节点的初始化过程中，使用的节点名称是CSLAM client node；值得注意的是其句柄的设计，一般的ROS句柄都实例化NodeHandler，但其又实例化了NodeHandler("~")，该操作旨在给相机和地图等话题之前加上节点的名称，以于不同的终端作区分；最后使用了智能指针，创建了ClientSystem对象，意味着对该客户端创建了属于其自己的客户端系统。
 
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 ros::init(argc, argv, "CSLAM client node");
 
-if(argc != 3)
-{
-cerr << endl << "Usage: rosrun cslam clientnode path_to_vocabulary path_to_cam_params" << endl;
-ros::shutdown();
-return 1;
+if(argc != 3){
+    cerr << "Usage: rosrun cslam clientnode path_to_vocabulary path_to_cam_params";
+    ros::shutdown();
+    return 1;
 }
 
 ros::NodeHandle Nh;  // topic name will be: node name(only), like "/image_raw"
 ros::NodeHandle NhPrivate("~");  // topic node will be: node name + topic name, like "iris_0/image_raw"
-// reference: <https://blog.csdn.net/weixin_44401286/article/details/112204903>
 
-boost::shared_ptr<cslam::ClientSystem> pCSys{new cslam::ClientSystem(Nh,NhPrivate,argv[1],argv[2])};
-\end{lstlisting}
+boost::shared_ptr<cslam::ClientSystem> pCSys{new
+                cslam::ClientSystem(Nh,NhPrivate,argv[1],argv[2])};
+\end{minted}
 
 ClientSystem负责的内容包括：读取ID，SLAM初始化及预先数据准备。首先从ROS的参数服务器读取客户端ID，使用ROS的param方法读取该数据；之后进行标准的SLAM数据预先准备流程，即加载词典、创建关键帧数据库、创建地图；最后进行初始化步骤，在这里引入了ClientHandler。
 
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 int ClientId;
 // get ClientID from launch file, actually ROS parameter server
 mNhPrivate.param("ClientId",ClientId,-1);
-mClientId = static_cast<size_t>(ClientId);  // assign ClientID to member of class ClientSystem, mClientID
+mClientId = static_cast<size_t>(ClientId);
+// assign ClientID to member of class ClientSystem, mClientID
 
 // load vocabulary
 this->LoadVocabulary(strVocFile);
@@ -370,7 +380,7 @@ mClientId,mpUID,eSystemState::CLIENT,strCamFile,nullptr));
 usleep(10000); //wait to avoid race conditions
 mpAgent->InitializeThreads();
 usleep(10000); //wait to avoid race conditions
-\end{lstlisting}
+\end{minted}
 
 ClientHandler负责的内容包括：向总地图中添加该ID客户端的地图，定义Sim3转换，将该ID客户端的相机话题名加载到ROS的参数服务器，最后开始了具体的初始化。
 
@@ -413,6 +423,35 @@ ClientHandler负责的内容包括：向总地图中添加该ID客户端的地�
 
 
 \subsection{编程实现} \label{3.4.2}
+
+设有四张包含场景重叠但在不同位置拍摄的图片，随机对其分为2组，一组的图片序号为1,2；二组图片的序号为3,4；
+
+对两组图片首先进行ORB特征点提取，之后使用提取和匹配到的特征点，计算两组相机运动的位姿变换矩阵，为$T_{12},T_{34}$，则现有两套坐标转换关系，并且可以根据三角测量的方法，获得两组地图点相对于各自参考图片（1,3）的位置$P_{12},P_{34}$；
+
+由于该场景包含重叠场景，我们默认其符合拼接地图的要求；接下来对1,3进行特征点提取和匹配，并随后计算1,3之间的转换矩阵$T_{13}$，则可以由此矩阵，将1中的地图点转换到3坐标系下：
+
+\begin{equation}
+P_{12-3}={\bf R_{13}} \times P_{12} + \bf{t_{13}}
+\end{equation}
+
+
+由此获得了简单的拼合场景；
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{merge3.png}
+		\caption{单独地图点}
+		\label{merge1}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{merge4.png}
+		\caption{合并地图点}
+		\label{merge2}
+	\end{minipage}
+\end{figure}
 
 
 

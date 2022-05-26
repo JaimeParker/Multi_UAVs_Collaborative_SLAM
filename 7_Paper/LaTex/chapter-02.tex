@@ -1,3 +1,5 @@
+\renewcommand{\baselinestretch}{1.5}
+\fontsize{12pt}{13pt}\selectfont
 
 \chapter{ROS与PX4介绍}\label{introduction}
 
@@ -36,28 +38,30 @@ ROS提供了一套松耦合分布式通信机制，这种分布式处理框架�
 
 % 介绍Topic的编程
 发布和订阅话题的方法，发布者和订阅者类似，以发布者为例：先实例化一个发布者对象，定义发布的话题名称、数据类型和队列长度，最后对消息进行定义并发送，简单的逻辑代码如下：
-\begin{lstlisting}[language={C++}]
+
+\begin{minted}[fontsize=\small]{cpp}
 ros::NodeHandle n;  // define ros node handle
 // define a publisher
 ros::Publisher pub = n.advertise<'message type'>
-	("topic name", `queue length`);
+("topic name", `queue length`);
 // publish message
 pub.publish(message);
-\end{lstlisting}
+\end{minted}
 
 需要注意的是，订阅者则需要声明并定义一个回调函数，在实例化Subscriber的对象后，通过ROS的spin()函数，循环等待回调函数获得话题消息。
 
 % 介绍Service的编程
 客户端-服务器模型下的服务通信，则比话题的发布和订阅复杂；客户端的编程实现中，需要设置阻塞函数，其作用是直到发现对应的服务时才向下进行，否则程序被截止在该位置；如果对应的服务被发现，阻塞函数通过，之后创建客户端并且进行数据的设置，完成服务调用的请求，其代码实现如下：
-\begin{lstlisting}[language={C++}]
+
+\begin{minted}[fontsize=\small]{cpp}
 // wait for right service
 ros::service::waitForService("service name");
 // create a client, connecting to service
 ros::ServiceClient client = n.serviceClient
-	<'data type'>("service name");
+<'data type'>("service name");
 // call service
 client.call(srv);
-\end{lstlisting}
+\end{minted}
 
 服务器的实现与订阅者类似，需要一个回调函数，如果收到了客户端发来的请求，则会触发回调函数，程序向下进行，否则将循环等待回调函数收到客户端发来的请求。
 
@@ -164,9 +168,8 @@ Offboard模式下的无人机正常起飞，需要首先解锁，然后切换飞
 其程序的实现如下：
 
 首先是需要的头文件定义，其包括了C++的基本库，MAVROS的消息相关库，和ROS库；
-\begin{lstlisting}[language={C++}]
-//
-// Created by hazyparker on 2022/1/11.
+
+\begin{minted}[fontsize=\small]{cpp}
 // realize mode switching and anto takeoff and landing
 
 #include <iostream>
@@ -175,10 +178,10 @@ Offboard模式下的无人机正常起飞，需要首先解锁，然后切换飞
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
 #include <mavros_msgs/PositionTarget.h>
-\end{lstlisting}
+\end{minted}
 
 之后需要在main函数之前，声明定义回调函数，其中包括对当前状态和当前位置的回调函数和消息定义：
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 // record current state
 mavros_msgs::State current_state; /* NOLINT */
 
@@ -194,10 +197,10 @@ geometry_msgs::PoseStamped current_pose; /* NOLINT */
 void local_cb(const geometry_msgs::PoseStamped::ConstPtr& msg){
 current_pose = *msg;
 }
-\end{lstlisting}
+\end{minted}
 
 在main函数中，首先要定义ROS节点和句柄，实例化飞行模式和当前位置信息的订阅者和发布者，然后以一定的频率发送一些点，以便切换到Offboard模式：
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 // init ros node
 ros::init(argc, argv, "offb_node");
 
@@ -221,9 +224,9 @@ ros::Rate rate(20.0);
 
 // wait for FCU connection
 while(ros::ok() && !current_state.connected){
-ros::spinOnce();
-rate.sleep();
-ROS_INFO("wait for fcu connecting...");
+    ros::spinOnce();
+    rate.sleep();
+    ROS_INFO("wait for fcu connecting...");
 }
 ROS_INFO("fcu connected successfully");
 
@@ -235,68 +238,64 @@ pose.pose.position.z = 2;
 
 //send a few set-points before starting
 for(int i = 100; ros::ok() && i > 0; --i){
-local_pos_pub.publish(pose);
-ros::spinOnce();
-rate.sleep();
+    local_pos_pub.publish(pose);
+    ros::spinOnce();
+    rate.sleep();
 }
-\end{lstlisting}
+\end{minted}
 
 最后首先发送指令，使无人机解锁，之后使其切换到Offboard模式，完成起飞并到达目标点的指令：
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 int main(int argc, char **argv){
+    mavros_msgs::SetMode offb_set_mode;
+    offb_set_mode.request.custom_mode = "OFFBOARD";
 
+    mavros_msgs::CommandBool arm_cmd;
+    arm_cmd.request.value = true;
 
-mavros_msgs::SetMode offb_set_mode;
-offb_set_mode.request.custom_mode = "OFFBOARD";
+    ros::Time last_request = ros::Time::now();
+    ROS_INFO("Off boarding");
+    
+    while(ros::ok()){
+        if( current_state.mode != "OFFBOARD" &&
+        (ros::Time::now() - last_request > ros::Duration(5.0))){
+            if( set_mode_client.call(offb_set_mode) &&
+            offb_set_mode.response.mode_sent){
+                ROS_INFO("Off-board mode enabling...");
+            }
+        last_request = ros::Time::now();
 
-mavros_msgs::CommandBool arm_cmd;
-arm_cmd.request.value = true;
+        } else {
+            if( !current_state.armed &&
+            (ros::Time::now() - last_request > ros::Duration(5.0))){
+                if (current_state.mode != "OFFBOARD") ROS_INFO("Off board mode down");
+                if( arming_client.call(arm_cmd) && arm_cmd.response.success){
+                    ROS_INFO("Vehicle armed");
+                }
+            last_request = ros::Time::now();
+            }
+        }
 
-ros::Time last_request = ros::Time::now();
-ROS_INFO("Off boarding");
-while(ros::ok()){
-if( current_state.mode != "OFFBOARD" &&
-(ros::Time::now() - last_request > ros::Duration(5.0))){
-if( set_mode_client.call(offb_set_mode) &&
-offb_set_mode.response.mode_sent){
-ROS_INFO("Off-board mode enabling...");
-}
-last_request = ros::Time::now();
+        local_pos_pub.publish(pose);
 
-} else {
-if( !current_state.armed &&
-(ros::Time::now() - last_request > ros::Duration(5.0))){
-if (current_state.mode != "OFFBOARD") ROS_INFO("Off board mode was shut unexpectedly");
-if( arming_client.call(arm_cmd) &&
-arm_cmd.response.success){
-ROS_INFO("Vehicle armed");
-}
-last_request = ros::Time::now();
-}
-}
-
-local_pos_pub.publish(pose);
-
-// wait until reach set point
-ros::spinOnce();
-// define Point: current position and set point position (expected)
-geometry_msgs::Point curr,aim;
-curr = current_pose.pose.position;
-aim = pose.pose.position;
-double dist = sqrt(pow((curr.x - aim.x), 2) +
+        // wait until reach set point
+        ros::spinOnce();
+        // define Point: current position and set point position (expected)
+        geometry_msgs::Point curr,aim;
+        curr = current_pose.pose.position;
+        aim = pose.pose.position;
+        double dist = sqrt(pow((curr.x - aim.x), 2) +
 pow((curr.y - aim.y), 2) + pow((curr.z - aim.z), 2));
-if(dist < 0.1){
-ROS_INFO("reached the goal...");
-break;
-}
-rate.sleep();
-}
+        if(dist < 0.1){
+        ROS_INFO("reached the goal...");
+        break;}
+        rate.sleep();
+        }
+    }
 
+    return 0;
 }
-
-return 0;
-}
-\end{lstlisting}
+\end{minted}
 
 
 

@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} vehicle model and world \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}est\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}ekf2\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}vehicle\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}iris\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}world\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find mavlink\PYGZus{}sitl\PYGZus{}gazebo)/worlds/empty.world\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}sdf\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find mavlink\PYGZus{}sitl\PYGZus{}gazebo)/models/\PYGZdl{}(arg vehicle)}
+\PYG{l+s}{          /\PYGZdl{}(arg vehicle).sdf\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\end{Verbatim}

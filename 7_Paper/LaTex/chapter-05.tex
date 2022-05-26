@@ -1,3 +1,6 @@
+\renewcommand{\baselinestretch}{1.5}
+\fontsize{12pt}{13pt}\selectfont
+
 \chapter{实验与评估} \label{experiment}
 
 进行的实验主要有两部分，真机的SLAM实验和地图融合实验。
@@ -10,8 +13,28 @@
 
 除摄像头外，真机还搭载Jetson Xavier NX计算机，体积较小且接口丰富。需要注意的是，无人机在地面时，可以使用显示器和鼠标设备对其进行操作，运行ROS节点；但当无人机在空中时，没有显示信息和鼠标的操作输入，因此需要使用远程控制，在这里使用了No Machine软件进行远程控制。
 
-实验内容；
+实验内容如下：
 
+在真机实验之前，首先使用T265相机中的单目相机进行室内的建图实验；使用单目相机进行ORB-SLAM2的关键是初始化，这是由单目相机的特性决定的；由于其拍摄到的图片不具有深度信息，因此需要依靠三角化恢复深度。而三角化的特点是，两帧之间的平移向量不能为零，否则解出的旋转矩阵也为零；因此单目相机的初始化方法是使相机在相同场景中不断左右或上下平移。初始化成功后，ORB-SLAM2进入跟踪模式，需要注意当进入陌生场景（比如直角转弯）时，移动应尽量缓慢，否则很容易跟丢，进入重定位模式。
+但进入重定位模式后，只要将视角对准经历过的场景，一般又能重新恢复跟踪。
+
+共进行两个场景的稀疏点云建图，如图\ref{result1}，图\ref{result2}所示：
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{ou1-1.png}
+		\caption{教东B一楼楼道}
+		\label{result1}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{ou3-1.png}
+		\caption{教东C二楼楼道}
+		\label{result2}
+	\end{minipage}
+\end{figure}
 
 
 \section{地图融合实验}
@@ -31,7 +54,7 @@
 
 完成MP4格式到rosbag的部分代码如下：
 
-\begin{lstlisting}[language={C++}]
+\begin{minted}[fontsize=\small]{cpp}
 // set wait key = 1000/fps
 cv::waitKey(int(1000/fps));
 
@@ -39,13 +62,14 @@ std_msgs::Header header;
 header.frame_id = "frame";
 header.stamp = ros::Time::now();
 
-sensor_msgs::ImagePtr ImageMsg = cv_bridge::CvImage(header, "bgr8", frame).toImageMsg();
+sensor_msgs::ImagePtr ImageMsg = cv_bridge::CvImage(header, 
+    "bgr8", frame).toImageMsg();
 
 if(FrameNum % 2 == 0){
-my_bag.write(topicName, ros::Time::now(), ImageMsg);
-cout << "recording frames:" << frameNum << endl;
+    my_bag.write(topicName, ros::Time::now(), ImageMsg);
+    cout << "recording frames:" << frameNum << endl;
 }
-\end{lstlisting}
+\end{minted}
 
 其主要逻辑是，将每一帧的信息转换成sensor\_msg类型的消息，之后写入到rosbag中。这里需要注意waitKey函数，其含义为循环等待，单位是1/1000秒，因此1000/fps即为按照fps帧率，每一帧需要等待的时间；该参数控制了视频的帧率，从而控制了rosbag包的长度。topicName为录制的话题名，已经提前定义好。
 

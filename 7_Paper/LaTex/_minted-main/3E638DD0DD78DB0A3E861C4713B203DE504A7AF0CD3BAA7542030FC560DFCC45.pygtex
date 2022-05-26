@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{init}\PYG{p}{(}\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}CSLAM client node\PYGZdq{}}\PYG{p}{);}
+
+\PYG{k}{if}\PYG{p}{(}\PYG{n}{argc}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{cerr}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Usage: rosrun cslam clientnode path\PYGZus{}to\PYGZus{}vocabulary path\PYGZus{}to\PYGZus{}cam\PYGZus{}params\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{shutdown}\PYG{p}{();}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{NodeHandle}\PYG{+w}{ }\PYG{n}{Nh}\PYG{p}{;}\PYG{+w}{  }\PYG{c+c1}{// topic name will be: node name(only), like \PYGZdq{}/image\PYGZus{}raw\PYGZdq{}}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{NodeHandle}\PYG{+w}{ }\PYG{n+nf}{NhPrivate}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZti{}\PYGZdq{}}\PYG{p}{);}\PYG{+w}{  }\PYG{c+c1}{// topic node will be: node name + topic name, like \PYGZdq{}iris\PYGZus{}0/image\PYGZus{}raw\PYGZdq{}}
+
+\PYG{n}{boost}\PYG{o}{::}\PYG{n}{shared\PYGZus{}ptr}\PYG{o}{\PYGZlt{}}\PYG{n}{cslam}\PYG{o}{::}\PYG{n}{ClientSystem}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{pCSys}\PYG{p}{\PYGZob{}}\PYG{k}{new}
+\PYG{+w}{                }\PYG{n}{cslam}\PYG{o}{::}\PYG{n}{ClientSystem}\PYG{p}{(}\PYG{n}{Nh}\PYG{p}{,}\PYG{n}{NhPrivate}\PYG{p}{,}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{])\PYGZcb{};}
+\end{Verbatim}

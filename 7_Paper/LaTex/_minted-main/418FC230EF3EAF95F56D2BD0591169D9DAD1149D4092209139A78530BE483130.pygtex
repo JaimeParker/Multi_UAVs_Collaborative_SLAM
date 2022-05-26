@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{\PYGZlt{}node} \PYG{n+na}{pkg=}\PYG{l+s}{\PYGZdq{}your package name\PYGZdq{}} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}your node name\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}your node type\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}param} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}param name\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}param value\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}arg name\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}arg value\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\end{Verbatim}

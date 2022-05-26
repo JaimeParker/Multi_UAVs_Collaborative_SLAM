@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// wait for right service}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{service}\PYG{o}{::}\PYG{n}{waitForService}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}service name\PYGZdq{}}\PYG{p}{);}
+\PYG{c+c1}{// create a client, connecting to service}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ServiceClient}\PYG{+w}{ }\PYG{n}{client}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{.}\PYG{n}{serviceClient}
+\PYG{o}{\PYGZlt{}}\PYG{err}{\PYGZsq{}}\PYG{n}{data}\PYG{+w}{ }\PYG{n}{type}\PYG{err}{\PYGZsq{}}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}service name\PYGZdq{}}\PYG{p}{);}
+\PYG{c+c1}{// call service}
+\PYG{n}{client}\PYG{p}{.}\PYG{n}{call}\PYG{p}{(}\PYG{n}{srv}\PYG{p}{);}
+\end{Verbatim}

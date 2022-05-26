@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// proceed landing process}
+\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}landing\PYGZdq{}}\PYG{p}{);}
+\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{SetMode}\PYG{+w}{ }\PYG{n}{land\PYGZus{}set\PYGZus{}mode}\PYG{p}{;}
+\PYG{n}{land\PYGZus{}set\PYGZus{}mode}\PYG{p}{.}\PYG{n}{request}\PYG{p}{.}\PYG{n}{custom\PYGZus{}mode}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}AUTO.LAND\PYGZdq{}}\PYG{p}{;}
+\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ok}\PYG{p}{())\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{current\PYGZus{}state}\PYG{p}{.}\PYG{n}{mode}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}AUTO.LAND\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}
+\PYG{+w}{        }\PYG{p}{(}\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{last\PYGZus{}request}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Duration}\PYG{p}{(}\PYG{l+m+mf}{5.0}\PYG{p}{)))\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{set\PYGZus{}mode\PYGZus{}client}\PYG{p}{.}\PYG{n}{call}\PYG{p}{(}\PYG{n}{land\PYGZus{}set\PYGZus{}mode}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}
+\PYG{+w}{            }\PYG{n}{land\PYGZus{}set\PYGZus{}mode}\PYG{p}{.}\PYG{n}{response}\PYG{p}{.}\PYG{n}{mode\PYGZus{}sent}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Land enabled\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{n}{last\PYGZus{}request}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{();}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{current\PYGZus{}state}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{spinOnce}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{rate}\PYG{p}{.}\PYG{n}{sleep}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

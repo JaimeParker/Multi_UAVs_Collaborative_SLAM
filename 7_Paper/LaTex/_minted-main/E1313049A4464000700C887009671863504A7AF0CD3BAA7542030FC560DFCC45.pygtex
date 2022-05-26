@@ -1,0 +1,43 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// init ros node}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{init}\PYG{p}{(}\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}offb\PYGZus{}node\PYGZdq{}}\PYG{p}{);}
+
+\PYG{c+c1}{// create node handle}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{NodeHandle}\PYG{+w}{ }\PYG{n}{nh}\PYG{p}{;}
+
+\PYG{c+c1}{// define subscribers and clients}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Subscriber}\PYG{+w}{ }\PYG{n}{state\PYGZus{}sub}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{nh}\PYG{p}{.}\PYG{n}{subscribe}\PYG{o}{\PYGZlt{}}\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{State}\PYG{o}{\PYGZgt{}}
+\PYG{p}{(}\PYG{l+s}{\PYGZdq{}mavros/state\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{state\PYGZus{}cb}\PYG{p}{);}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Subscriber}\PYG{+w}{ }\PYG{n}{local\PYGZus{}pos\PYGZus{}sub}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{nh}\PYG{p}{.}\PYG{n}{subscribe}\PYG{o}{\PYGZlt{}}\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{o}{\PYGZgt{}}
+\PYG{p}{(}\PYG{l+s}{\PYGZdq{}mavros/local\PYGZus{}position/pose\PYGZdq{}}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{n}{local\PYGZus{}cb}\PYG{p}{);}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Publisher}\PYG{+w}{ }\PYG{n}{local\PYGZus{}pos\PYGZus{}pub}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{nh}\PYG{p}{.}\PYG{n}{advertise}\PYG{o}{\PYGZlt{}}\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{o}{\PYGZgt{}}
+\PYG{p}{(}\PYG{l+s}{\PYGZdq{}mavros/setpoint\PYGZus{}position/local\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{);}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ServiceClient}\PYG{+w}{ }\PYG{n}{arming\PYGZus{}client}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{nh}\PYG{p}{.}\PYG{n}{serviceClient}\PYG{o}{\PYGZlt{}}\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{CommandBool}\PYG{o}{\PYGZgt{}}
+\PYG{p}{(}\PYG{l+s}{\PYGZdq{}mavros/cmd/arming\PYGZdq{}}\PYG{p}{);}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ServiceClient}\PYG{+w}{ }\PYG{n}{set\PYGZus{}mode\PYGZus{}client}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{nh}\PYG{p}{.}\PYG{n}{serviceClient}\PYG{o}{\PYGZlt{}}\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{SetMode}\PYG{o}{\PYGZgt{}}
+\PYG{p}{(}\PYG{l+s}{\PYGZdq{}mavros/set\PYGZus{}mode\PYGZdq{}}\PYG{p}{);}
+
+\PYG{c+c1}{//the set\PYGZhy{}point publishing rate MUST be faster than 2Hz}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Rate}\PYG{+w}{ }\PYG{n+nf}{rate}\PYG{p}{(}\PYG{l+m+mf}{20.0}\PYG{p}{);}
+
+\PYG{c+c1}{// wait for FCU connection}
+\PYG{k}{while}\PYG{p}{(}\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ok}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{current\PYGZus{}state}\PYG{p}{.}\PYG{n}{connected}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{spinOnce}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{rate}\PYG{p}{.}\PYG{n}{sleep}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}wait for fcu connecting...\PYGZdq{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}fcu connected successfully\PYGZdq{}}\PYG{p}{);}
+
+\PYG{c+c1}{// set pose}
+\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{+w}{ }\PYG{n}{pose}\PYG{p}{;}
+\PYG{n}{pose}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{.}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{pose}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{.}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{pose}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{.}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+
+\PYG{c+c1}{//send a few set\PYGZhy{}points before starting}
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ok}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{local\PYGZus{}pos\PYGZus{}pub}\PYG{p}{.}\PYG{n}{publish}\PYG{p}{(}\PYG{n}{pose}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{spinOnce}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{rate}\PYG{p}{.}\PYG{n}{sleep}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

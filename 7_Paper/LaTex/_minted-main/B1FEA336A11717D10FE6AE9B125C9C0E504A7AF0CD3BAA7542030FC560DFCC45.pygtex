@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//Initialize the Tracking thread}
+\PYG{c+c1}{//(it will live in the main thread of execution, the one that called this constructor)}
+\PYG{n}{mpTracker}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tracking}\PYG{p}{(}\PYG{k}{this}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mpVocabulary}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mpFrameDrawer}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mpMapDrawer}\PYG{p}{,}
+\PYG{n}{mpMap}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mpKeyFrameDatabase}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{strSettingsFile}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mSensor}\PYG{p}{);}
+
+\PYG{c+c1}{//Initialize the Local Mapping thread and launch}
+\PYG{n}{mpLocalMapper}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{LocalMapping}\PYG{p}{(}\PYG{n}{mpMap}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mSensor}\PYG{o}{==}\PYG{n}{MONOCULAR}\PYG{p}{);}
+\PYG{n}{mptLocalMapping}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{k+kr}{thread}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{ORB\PYGZus{}SLAM2}\PYG{o}{::}\PYG{n}{LocalMapping}\PYG{o}{::}\PYG{n}{Run}\PYG{p}{,}\PYG{n}{mpLocalMapper}\PYG{p}{);}
+
+\PYG{c+c1}{//Initialize the Loop Closing thread and launch}
+\PYG{n}{mpLoopCloser}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{LoopClosing}\PYG{p}{(}\PYG{n}{mpMap}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mpKeyFrameDatabase}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mpVocabulary}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mSensor}\PYG{o}{!=}\PYG{n}{MONOCULAR}\PYG{p}{);}
+\PYG{n}{mptLoopClosing}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{k+kr}{thread}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{ORB\PYGZus{}SLAM2}\PYG{o}{::}\PYG{n}{LoopClosing}\PYG{o}{::}\PYG{n}{Run}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mpLoopCloser}\PYG{p}{);}
+\end{Verbatim}

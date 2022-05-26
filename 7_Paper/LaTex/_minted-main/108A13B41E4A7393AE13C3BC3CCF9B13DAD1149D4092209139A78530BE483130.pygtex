@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZlt{}?xml version=\PYGZdq{}1.0\PYGZdq{}?\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}launch\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}dist\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}cam\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find ccmslam)/conf/px4\PYGZus{}sitl.yaml\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}group} \PYG{n+na}{ns=}\PYG{l+s}{\PYGZdq{}ccmslam\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}node} \PYG{n+na}{pkg=}\PYG{l+s}{\PYGZdq{}tf\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}static\PYGZus{}transform\PYGZus{}publisher\PYGZdq{}}
+\PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}linkC0\PYGZus{}broadcaster\PYGZdq{}} \PYG{n+na}{args=}\PYG{l+s}{\PYGZdq{}\PYGZhy{}100 300 5 \PYGZhy{}1.571 0 \PYGZhy{}2 world odomC0 100\PYGZdq{}} \PYG{n+nt}{/\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}node} \PYG{n+na}{pkg=}\PYG{l+s}{\PYGZdq{}ccmslam\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}ccmslamClientNode\PYGZdq{}}
+\PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}ccmslamClientNode0\PYGZdq{}} \PYG{n+na}{args=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find ccmslam)/conf/ORBvoc.txt \PYGZdl{}(arg cam)\PYGZdq{}} \PYG{n+na}{output=}\PYG{l+s}{\PYGZdq{}screen\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} ++++++++++++++++++++++++++++++++++++++++++++++ \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} Agent Specific Params \PYGZhy{} !!!MUST BE ADJUSTED!!! \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}param} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}\PYGZti{}FrameId\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}string\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}odomC0\PYGZdq{}} \PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}param} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}\PYGZti{}ClientId\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}int\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}} \PYG{n+nt}{/\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}param} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}\PYGZti{}TopicNameCamSub\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}string\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}/iris0/usb\PYGZus{}cam/image\PYGZus{}raw\PYGZdq{}} \PYG{n+nt}{/\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}param} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}\PYGZti{}MapInTopicName\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}string\PYGZdq{}}
+\PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}MapOutServer0\PYGZdq{}} \PYG{n+na}{unless=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(arg dist)\PYGZdq{}} \PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}param} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}\PYGZti{}MapInTopicName\PYGZdq{}} \PYG{n+na}{type=}\PYG{l+s}{\PYGZdq{}string\PYGZdq{}}
+\PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}MapOutServer0Disturbed\PYGZdq{}} \PYG{n+na}{if=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(arg dist)\PYGZdq{}} \PYG{n+nt}{/\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}/node\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}/group\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}/launch\PYGZgt{}}
+\end{Verbatim}

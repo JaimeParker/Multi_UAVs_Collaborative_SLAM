@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// record current state}
+\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{State}\PYG{+w}{ }\PYG{n}{current\PYGZus{}state}\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* NOLINT */}
+
+\PYG{c+c1}{// callback function for Subscriber stats\PYGZus{}sub}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{state\PYGZus{}cb}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{State}\PYG{o}{::}\PYG{n}{ConstPtr}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{msg}\PYG{p}{)\PYGZob{}}
+\PYG{n}{current\PYGZus{}state}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{msg}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// record current pose}
+\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pose}\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* NOLINT */}
+
+\PYG{c+c1}{// callback function for Subscriber for local\PYGZus{}pos\PYGZus{}sub}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{local\PYGZus{}cb}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{o}{::}\PYG{n}{ConstPtr}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{msg}\PYG{p}{)\PYGZob{}}
+\PYG{n}{current\PYGZus{}pose}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{msg}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

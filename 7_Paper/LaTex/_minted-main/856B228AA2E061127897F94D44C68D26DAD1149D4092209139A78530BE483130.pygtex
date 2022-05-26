@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} vehicle model and world \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}est\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}ekf2\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}vehicle\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}iris\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} add stereo camera for iris \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}my\PYGZus{}camera\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}iris\PYGZus{}stereo\PYGZus{}camera\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}world\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find mavlink\PYGZus{}sitl\PYGZus{}gazebo)/worlds}
+\PYG{l+s}{        /empty.world\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} also need to revise sdf \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}sdf\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find mavlink\PYGZus{}sitl\PYGZus{}gazebo)/models}
+\PYG{l+s}{        /\PYGZdl{}(arg my\PYGZus{}camera)/\PYGZdl{}(arg my\PYGZus{}camera).sdf\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} \PYGZlt{}arg name=\PYGZdq{}sdf\PYGZdq{} default=\PYGZdq{}\PYGZdl{}(find mavlink\PYGZus{}sitl\PYGZus{}gazebo)/models}
+\PYG{c+cm}{        /\PYGZdl{}(arg vehicle)/\PYGZdl{}(arg vehicle).sdf\PYGZdq{}/\PYGZgt{} \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\end{Verbatim}

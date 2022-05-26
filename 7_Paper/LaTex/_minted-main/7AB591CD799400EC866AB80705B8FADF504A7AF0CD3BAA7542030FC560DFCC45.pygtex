@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// set second waypoint}
+\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{+w}{ }\PYG{n}{pose2}\PYG{p}{;}
+\PYG{n}{pose2}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{.}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{pose2}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{.}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{n}{pose2}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{.}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+
+\PYG{c+c1}{// heading for waypoint 2}
+\PYG{k}{while}\PYG{p}{(}\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ok}\PYG{p}{())\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// publish pose1 information}
+\PYG{+w}{    }\PYG{n}{local\PYGZus{}pos\PYGZus{}pub}\PYG{p}{.}\PYG{n}{publish}\PYG{p}{(}\PYG{n}{pose2}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{spinOnce}\PYG{p}{();}
+
+\PYG{+w}{    }\PYG{c+c1}{// check if reached a waypoint}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{check\PYGZus{}waypoint}\PYG{p}{(}\PYG{n}{current\PYGZus{}pose}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pose2}\PYG{p}{))}\PYG{+w}{ }\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{rate}\PYG{p}{.}\PYG{n}{sleep}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// set wait key = 1000/fps}
+\PYG{n}{cv}\PYG{o}{::}\PYG{n}{waitKey}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{o}{/}\PYG{n}{fps}\PYG{p}{));}
+
+\PYG{n}{std\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{Header}\PYG{+w}{ }\PYG{n}{header}\PYG{p}{;}
+\PYG{n}{header}\PYG{p}{.}\PYG{n}{frame\PYGZus{}id}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}frame\PYGZdq{}}\PYG{p}{;}
+\PYG{n}{header}\PYG{p}{.}\PYG{n}{stamp}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{();}
+
+\PYG{n}{sensor\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{ImagePtr}\PYG{+w}{ }\PYG{n}{ImageMsg}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cv\PYGZus{}bridge}\PYG{o}{::}\PYG{n}{CvImage}\PYG{p}{(}\PYG{n}{header}\PYG{p}{,}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}bgr8\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{frame}\PYG{p}{).}\PYG{n}{toImageMsg}\PYG{p}{();}
+
+\PYG{k}{if}\PYG{p}{(}\PYG{n}{FrameNum}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{my\PYGZus{}bag}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{topicName}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{ImageMsg}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}recording frames:\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{frameNum}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

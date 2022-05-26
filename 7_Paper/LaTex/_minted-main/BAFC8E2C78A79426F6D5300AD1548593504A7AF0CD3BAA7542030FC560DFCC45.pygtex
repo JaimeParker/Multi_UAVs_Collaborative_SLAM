@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{**}\PYG{n}{argv}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{SetMode}\PYG{+w}{ }\PYG{n}{offb\PYGZus{}set\PYGZus{}mode}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{offb\PYGZus{}set\PYGZus{}mode}\PYG{p}{.}\PYG{n}{request}\PYG{p}{.}\PYG{n}{custom\PYGZus{}mode}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}OFFBOARD\PYGZdq{}}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{mavros\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{CommandBool}\PYG{+w}{ }\PYG{n}{arm\PYGZus{}cmd}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{arm\PYGZus{}cmd}\PYG{p}{.}\PYG{n}{request}\PYG{p}{.}\PYG{n}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{+w}{ }\PYG{n}{last\PYGZus{}request}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Off boarding\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{k}{while}\PYG{p}{(}\PYG{n}{ros}\PYG{o}{::}\PYG{n}{ok}\PYG{p}{())\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{current\PYGZus{}state}\PYG{p}{.}\PYG{n}{mode}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}OFFBOARD\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}
+\PYG{+w}{        }\PYG{p}{(}\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{last\PYGZus{}request}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Duration}\PYG{p}{(}\PYG{l+m+mf}{5.0}\PYG{p}{)))\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{set\PYGZus{}mode\PYGZus{}client}\PYG{p}{.}\PYG{n}{call}\PYG{p}{(}\PYG{n}{offb\PYGZus{}set\PYGZus{}mode}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}
+\PYG{+w}{            }\PYG{n}{offb\PYGZus{}set\PYGZus{}mode}\PYG{p}{.}\PYG{n}{response}\PYG{p}{.}\PYG{n}{mode\PYGZus{}sent}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Off\PYGZhy{}board mode enabling...\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{n}{last\PYGZus{}request}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{current\PYGZus{}state}\PYG{p}{.}\PYG{n}{armed}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}
+\PYG{+w}{            }\PYG{p}{(}\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{last\PYGZus{}request}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Duration}\PYG{p}{(}\PYG{l+m+mf}{5.0}\PYG{p}{)))\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{current\PYGZus{}state}\PYG{p}{.}\PYG{n}{mode}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}OFFBOARD\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Off board mode down\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{k}{if}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{arming\PYGZus{}client}\PYG{p}{.}\PYG{n}{call}\PYG{p}{(}\PYG{n}{arm\PYGZus{}cmd}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{arm\PYGZus{}cmd}\PYG{p}{.}\PYG{n}{response}\PYG{p}{.}\PYG{n}{success}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{                    }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Vehicle armed\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{n}{last\PYGZus{}request}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Time}\PYG{o}{::}\PYG{n}{now}\PYG{p}{();}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{n}{local\PYGZus{}pos\PYGZus{}pub}\PYG{p}{.}\PYG{n}{publish}\PYG{p}{(}\PYG{n}{pose}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{c+c1}{// wait until reach set point}
+\PYG{+w}{        }\PYG{n}{ros}\PYG{o}{::}\PYG{n}{spinOnce}\PYG{p}{();}
+\PYG{+w}{        }\PYG{c+c1}{// define Point: current position and set point position (expected)}
+\PYG{+w}{        }\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{Point}\PYG{+w}{ }\PYG{n}{curr}\PYG{p}{,}\PYG{n}{aim}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{curr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{current\PYGZus{}pose}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{aim}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{pose}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{dist}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{pow}\PYG{p}{((}\PYG{n}{curr}\PYG{p}{.}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{aim}\PYG{p}{.}\PYG{n}{x}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}
+\PYG{n}{pow}\PYG{p}{((}\PYG{n}{curr}\PYG{p}{.}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{aim}\PYG{p}{.}\PYG{n}{y}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{pow}\PYG{p}{((}\PYG{n}{curr}\PYG{p}{.}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{aim}\PYG{p}{.}\PYG{n}{z}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{));}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{n}{dist}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mf}{0.1}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}reached the goal...\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{break}\PYG{p}{;\PYGZcb{}}
+\PYG{+w}{        }\PYG{n}{rate}\PYG{p}{.}\PYG{n}{sleep}\PYG{p}{();}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

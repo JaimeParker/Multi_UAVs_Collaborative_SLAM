@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// check if reached a waypoint}
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{check\PYGZus{}waypoint}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{now\PYGZus{}pose}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{PoseStamped}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{aim\PYGZus{}pose}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// define Point to hold current position and aim position}
+\PYG{+w}{    }\PYG{n}{geometry\PYGZus{}msgs}\PYG{o}{::}\PYG{n}{Point}\PYG{+w}{ }\PYG{n}{curr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{aim}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{curr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{now\PYGZus{}pose}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{aim}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{aim\PYGZus{}pose}\PYG{p}{.}\PYG{n}{pose}\PYG{p}{.}\PYG{n}{position}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{precision}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.1}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// define return value}
+\PYG{+w}{    }\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{reach}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// calculate distance}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{dist}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{pow}\PYG{p}{((}\PYG{n}{curr}\PYG{p}{.}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{aim}\PYG{p}{.}\PYG{n}{x}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}
+\PYG{+w}{    }\PYG{n}{pow}\PYG{p}{((}\PYG{n}{curr}\PYG{p}{.}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{aim}\PYG{p}{.}\PYG{n}{y}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{pow}\PYG{p}{((}\PYG{n}{curr}\PYG{p}{.}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{aim}\PYG{p}{.}\PYG{n}{z}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{));}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n}{dist}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{precision}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{reach}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{ROS\PYGZus{}INFO}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}reached waypoint!\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{reach}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

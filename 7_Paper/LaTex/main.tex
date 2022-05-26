@@ -5,24 +5,15 @@
 
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{graphicx}
 %\usepackage[space]{ctex}
-%\usepackage{minted}
+\usepackage{minted}
+\usemintedstyle{vs}
 % link: <>
 \lstset{
 	basicstyle = \small	
 }
 
-\lstset{
-	columns=fixed,       
-	%numbers=left,   % 在左侧显示行号
-	frame=none,     % 不显示背景边框
-	backgroundcolor=\color[RGB]{245,245,244},   % 设定背景颜色
-	keywordstyle=\color[RGB]{40,40,255},        % 设定关键字颜色
-	numberstyle=\footnotesize\color{darkgray},  % 设定行号格式
-	commentstyle=\it\color[RGB]{0,96,96},       % 设置代码注释的格式
-	stringstyle=\rmfamily\slshape\color[RGB]{128,0,0}, % 设置字符串格式
-	showstringspaces=false,                   % 不显示字符串中的空格
-}
 
 
 % Author Information
@@ -54,10 +45,12 @@
 
 
 % content
+% 设置1.25倍行距
 \renewcommand{\baselinestretch}{1.25}
 \fontsize{12pt}{12pt} \selectfont
 
 \tableofcontents
+
 \mainmatter
 
 
@@ -79,8 +72,10 @@
 % reference
 \renewcommand{\baselinestretch}{1.0}
 \backmatter
+
 \bibliographystyle{nwputhesis}
-% \bibliographystyle{plain}  
+%\bibliographystyle{plain}  
+
 \bibliography{reference}
 % 添加目录到参考文献
 \addcontentsline{toc}{chapter}{参考文献}

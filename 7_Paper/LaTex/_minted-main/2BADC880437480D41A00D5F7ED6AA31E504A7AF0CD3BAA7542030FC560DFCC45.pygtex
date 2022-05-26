@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//Create KeyFrame Database}
+\PYG{n}{mpKeyFrameDatabase}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{KeyFrameDatabase}\PYG{p}{(}\PYG{o}{*}\PYG{n}{mpVocabulary}\PYG{p}{);}
+
+\PYG{c+c1}{//Create the Map}
+\PYG{n}{mpMap}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Map}\PYG{p}{();}
+
+\PYG{c+c1}{//Create Drawers. These are used by the Viewer}
+\PYG{n}{mpFrameDrawer}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{FrameDrawer}\PYG{p}{(}\PYG{n}{mpMap}\PYG{p}{);}
+\PYG{n}{mpMapDrawer}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{MapDrawer}\PYG{p}{(}\PYG{n}{mpMap}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{strSettingsFile}\PYG{p}{);}
+\end{Verbatim}

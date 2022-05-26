@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{NodeHandle}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{;}\PYG{+w}{  }\PYG{c+c1}{// define ros node handle}
+\PYG{c+c1}{// define a publisher}
+\PYG{n}{ros}\PYG{o}{::}\PYG{n}{Publisher}\PYG{+w}{ }\PYG{n}{pub}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{.}\PYG{n}{advertise}\PYG{o}{\PYGZlt{}}\PYG{err}{\PYGZsq{}}\PYG{n}{message}\PYG{+w}{ }\PYG{n}{type}\PYG{err}{\PYGZsq{}}\PYG{o}{\PYGZgt{}}
+\PYG{p}{(}\PYG{l+s}{\PYGZdq{}topic name\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{err}{`}\PYG{n}{queue}\PYG{+w}{ }\PYG{n}{length}\PYG{err}{`}\PYG{p}{);}
+\PYG{c+c1}{// publish message}
+\PYG{n}{pub}\PYG{p}{.}\PYG{n}{publish}\PYG{p}{(}\PYG{n}{message}\PYG{p}{);}
+\end{Verbatim}

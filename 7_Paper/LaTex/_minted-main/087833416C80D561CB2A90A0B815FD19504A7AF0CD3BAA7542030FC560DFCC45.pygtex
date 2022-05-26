@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{ClientId}\PYG{p}{;}
+\PYG{c+c1}{// get ClientID from launch file, actually ROS parameter server}
+\PYG{n}{mNhPrivate}\PYG{p}{.}\PYG{n}{param}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}ClientId\PYGZdq{}}\PYG{p}{,}\PYG{n}{ClientId}\PYG{p}{,}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{);}
+\PYG{n}{mClientId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{static\PYGZus{}cast}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{size\PYGZus{}t}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{ClientId}\PYG{p}{);}
+\PYG{c+c1}{// assign ClientID to member of class ClientSystem, mClientID}
+
+\PYG{c+c1}{// load vocabulary}
+\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{LoadVocabulary}\PYG{p}{(}\PYG{n}{strVocFile}\PYG{p}{);}
+
+\PYG{c+c1}{// Create KeyFrame Database}
+\PYG{n}{mpKFDB}\PYG{p}{.}\PYG{n}{reset}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{KeyFrameDatabase}\PYG{p}{(}\PYG{n}{mpVoc}\PYG{p}{));}
+
+\PYG{c+c1}{// Create the Map}
+\PYG{n}{mpMap}\PYG{p}{.}\PYG{n}{reset}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Map}\PYG{p}{(}\PYG{n}{mNh}\PYG{p}{,}\PYG{n}{mNhPrivate}\PYG{p}{,}\PYG{n}{mClientId}\PYG{p}{,}\PYG{n}{eSystemState}\PYG{o}{::}\PYG{n}{CLIENT}\PYG{p}{));}
+\PYG{n}{usleep}\PYG{p}{(}\PYG{l+m+mi}{10000}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//wait to avoid race conditions}
+
+\PYG{c+c1}{// Initialize Agent}
+\PYG{n}{mpAgent}\PYG{p}{.}\PYG{n}{reset}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{ClientHandler}\PYG{p}{(}\PYG{n}{mNh}\PYG{p}{,}\PYG{n}{mNhPrivate}\PYG{p}{,}\PYG{n}{mpVoc}\PYG{p}{,}\PYG{n}{mpKFDB}\PYG{p}{,}\PYG{n}{mpMap}\PYG{p}{,}
+\PYG{n}{mClientId}\PYG{p}{,}\PYG{n}{mpUID}\PYG{p}{,}\PYG{n}{eSystemState}\PYG{o}{::}\PYG{n}{CLIENT}\PYG{p}{,}\PYG{n}{strCamFile}\PYG{p}{,}\PYG{k}{nullptr}\PYG{p}{));}
+\PYG{n}{usleep}\PYG{p}{(}\PYG{l+m+mi}{10000}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//wait to avoid race conditions}
+\PYG{n}{mpAgent}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{InitializeThreads}\PYG{p}{();}
+\PYG{n}{usleep}\PYG{p}{(}\PYG{l+m+mi}{10000}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//wait to avoid race conditions}
+\end{Verbatim}
