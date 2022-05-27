@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.10)
 project(6_Map_Merging)
 
 set(CMAKE_CXX_STANDARD 14)
