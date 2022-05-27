@@ -5,73 +5,66 @@
 #include "GetKeyBoard.h"
 #include <cstdio>
 #include <termios.h>
-#include <iostream>
+#include <csignal>
+#include <cstring>
+#include <cstdlib>
 #include <unistd.h>
+#include <iostream>
 
-static struct termios initial_settings, new_settings;
-static int peek_character = -1;
+using namespace std;
 
-void init_keyboard(void);
-void close_keyboard(void);
-int kbhit(void);
-int readch(void);
+#define KEYCODE_R 0x43
+#define KEYCODE_L 0x44
+#define KEYCODE_U 0x41
+#define KEYCODE_D 0x42
 
-void init_keyboard(){
-    tcgetattr(0,&initial_settings);
-    new_settings = initial_settings;
-    new_settings.c_lflag |= ICANON;
-    new_settings.c_lflag |= ECHO;
-    new_settings.c_lflag |= ISIG;
-    new_settings.c_cc[VMIN] = 1;
-    new_settings.c_cc[VTIME] = 0;
-    tcsetattr(0, TCSANOW, &new_settings);
-}
 
-void close_keyboard(){
-    tcsetattr(0, TCSANOW, &initial_settings);
-}
+int kfd = 0;
+struct termios cooked, raw;
 
-int kbhit(){
-    unsigned char ch;
-    int nread;
+int main() {
+    char c;
+    bool dirty = false;
 
-    if (peek_character != -1) return 1;
-    new_settings.c_cc[VMIN]=0;
-    tcsetattr(0, TCSANOW, &new_settings);
-    nread = read(0,&ch,1);
-    new_settings.c_cc[VMIN]=1;
-    tcsetattr(0, TCSANOW, &new_settings);
 
-    if(nread == 1){
-        peek_character = ch;
-        return 1;
+    // get the console in raw mode
+    tcgetattr(kfd, &cooked);
+    memcpy(&raw, &cooked, sizeof(struct termios));
+    raw.c_lflag &= ~(ICANON | ECHO);
+    // Setting a new line, then end of file
+    raw.c_cc[VEOL] = 1;
+    raw.c_cc[VEOF] = 2;
+    tcsetattr(kfd, TCSANOW, &raw);
+
+    puts("Reading from keyboard");
+    puts("---------------------------");
+
+
+    for (;;) {
+        // get the next event from the keyboard
+        if (read(kfd, &c, 1) < 0) {
+            perror("read():");
+            exit(-1);
+        }
+
+        switch (c) {
+            case KEYCODE_L:
+                cout << "left is pressed" << endl;
+                dirty = true;
+                break;
+            case KEYCODE_R:
+                cout << "right is pressed" << endl;
+                dirty = true;
+                break;
+            case KEYCODE_U:
+                cout << "up is pressed" << endl;
+                dirty = true;
+                break;
+            case KEYCODE_D:
+                cout << "down is pressed" << endl;
+                dirty = true;
+                break;
+        }
+        return 0;
     }
-    return 0;
-}
-
-int readch()
-{
-    char ch;
-
-    if(peek_character != -1){
-        ch = peek_character;
-        peek_character = -1;
-        return ch;
-    }
-
-    read(0,&ch,1);
-    return ch;
-}
-
-int main()
-{
-    init_keyboard();
-
-    while(1){
-        kbhit();
-        printf("\n%d\n", readch());
-    }
-
-    close_keyboard();
-    return 0;
 }
