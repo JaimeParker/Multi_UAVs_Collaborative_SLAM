@@ -52,3 +52,6 @@ target_link_libraries(gen_rosbag ${OpenCV_LIBS} ${catkin_LIBRARIES})
 # SIFT
 add_executable(SIFT_extract src/SIFT_extract.cpp)
 target_link_libraries(SIFT_extract ${OpenCV_LIBS})
+
+# test KeyBoard staff
+add_executable(keyboard src/GetKeyBoard.cc)
