@@ -197,12 +197,13 @@ void ORBMatcher::showMapPoints(const vector<cv::Point3d> &MapPoints) {
 
     while(!pangolin::ShouldQuit()){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
         d_cam.Activate(cam_view);
 
-        glPointSize(1.0);
+        glPointSize(2.0);
 
         glBegin(GL_POINTS);
-        glColor3f(0, 1, 0);
+        glColor3f(1, 0, 0);
 
         for (const auto & MapPoint : MapPoints){
             glVertex3d(MapPoint.x, MapPoint.y, MapPoint.z);
@@ -216,7 +217,7 @@ void ORBMatcher::showMapPoints(const vector<cv::Point3d> &MapPoints) {
 
 vector<cv::Point3d> ORBMatcher::shiftCoordinate(const Mat &R, const Mat &t, const Mat &K,
                                                 const vector<cv::Point3d> &pos) {
-    // Pos_new = K(RP + t)
+    // Pos_new = (RP + t)
     vector<Point3d> shiftedPos;
     Point3d p;
 

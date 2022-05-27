@@ -126,6 +126,7 @@ void Data::getPose() {
     vector<Point3d> map_point0_1;
     map_point0_1 = ORBMatcher::shiftCoordinate(R, t, K, map_points0);
     map_point0_1.insert(map_point0_1.end(), map_points1.begin(), map_points1.end());
+    // FIXME: all map_point1 were added to map_point0_1, no comparison of these MPs
 
     // show combination map
     ORBMatcher::showMapPoints(map_point0_1);
