@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  28 MAY 2022 21:34
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  28 MAY 2022 23:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3154,8 +3154,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [51])
-File: figures/ccm1.png Graphic file (type bmp)
-<figures/ccm1.png>
+File: figures/ccm2.png Graphic file (type bmp)
+<figures/ccm2.png>
 )
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3253,10 +3253,10 @@ runsystem(rm main.pyg)...executed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
  ) 
 Here is how much of TeX's memory you used:
- 46656 strings out of 493007
- 924344 string characters out of 6136718
+ 46660 strings out of 493007
+ 924413 string characters out of 6136718
  1021607 words of memory out of 5000000
- 49767 multiletter control sequences out of 15000+600000
+ 49770 multiletter control sequences out of 15000+600000
  543266 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1017s stack positions out of 5000i,500n,10000p,200000b,80000s
