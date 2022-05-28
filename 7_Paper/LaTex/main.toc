@@ -34,18 +34,19 @@
 \contentsline {subsection}{\numberline {4.2.1}launch文件配置}{36}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Offboard程序}{37}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}视觉定位的坐标变换}{40}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}单机仿真实验结果}{42}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}多机SLAM仿真}{42}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}launch文件配置}{42}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}多机编队处理}{45}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{46}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{49}{chapter.5}
-\contentsline {section}{\numberline {5.1}真机配置与实验}{49}{section.5.1}
-\contentsline {section}{\numberline {5.2}地图融合实验}{49}{section.5.2}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{52}{chapter.6}
-\contentsline {section}{\numberline {6.1}全文总结}{52}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{53}{section.6.2}
-\contentsline {chapter}{参考文献}{55}{chapter*.30}
-\contentsline {chapter}{致谢}{56}{chapter*.31}
-\contentsline {chapter}{毕业设计小结}{57}{chapter*.32}
+\contentsline {subsection}{\numberline {4.2.4}MAVROS键盘控制}{42}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}单机仿真实验结果}{43}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}多机SLAM仿真}{43}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}launch文件配置}{43}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}多机编队处理}{46}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{47}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{50}{chapter.5}
+\contentsline {section}{\numberline {5.1}真机配置与实验}{50}{section.5.1}
+\contentsline {section}{\numberline {5.2}地图融合实验}{50}{section.5.2}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{53}{chapter.6}
+\contentsline {section}{\numberline {6.1}全文总结}{53}{section.6.1}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{54}{section.6.2}
+\contentsline {chapter}{参考文献}{56}{chapter*.31}
+\contentsline {chapter}{致谢}{57}{chapter*.32}
+\contentsline {chapter}{毕业设计小结}{58}{chapter*.33}
 \contentsfinish 

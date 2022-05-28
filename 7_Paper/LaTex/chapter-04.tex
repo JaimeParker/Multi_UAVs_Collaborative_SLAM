@@ -13,7 +13,7 @@
 
 \subsection{场景} \label{4.1.1}
 
-仿真环境中，场景的设计不能过于简单，墙壁、地面等大面积重复物体应该具有纹理，否则ORB-SLAM2的特征点提取会十分困难；除了纹理的设计，还应尽可能多地提供物体，使场景丰富。如图\ref{fig3-1}所示：
+仿真环境中，场景的设计不能过于简单，墙壁、地面等大面积重复物体应该具有纹理，否则ORB-SLAM2的特征点提取会十分困难；除了纹理的设计，还应尽可能多地提供物体，使场景丰富。如图\ref{fig4-1}所示：
 
 \begin{figure}[!ht]
 	\centering
@@ -270,20 +270,84 @@ pose.pose.position.z = -y;
 pose_pub->publish(pose);
 \end{minted}
 
-\subsection{单机仿真实验结果} \label{4.2.4}
+\subsection{MAVROS键盘控制} \label{4.2.4}
 
-% 多补充几张图
+尽管可以使用Offboard模式下的position信息进行航路点的控制，但是无人机起飞和前进的动作幅度过大，直接影响了SLAM系统的跟踪效果，因此需要考虑通过MAVROS发布的信息，对无人机的速度进行详细控制。
 
-进行起飞后SLAM建图的结果：
+可以选择设置其速度，利用循环控制话题执行的时间来设置距离的方法，但该方法在灵活性上有所欠缺；为了更加真实地进行无人机的仿真，本文研究了一套利用键盘输入信息控制无人机飞行的程序。
 
-\begin{figure}[!ht]
+首先，在对MAVROS的话题进行分析后，发现其订阅的话题有setpoint\_velocity下的cmd\_vel\_unstamped话题；该话题用于发送速度信息给FCU处理，因此本程序的核心为手动控制发送给FCU的速度信息，即MAVROS订阅的速度信息。
+
+该信息属于地理信息的Twist类型，该类型包含三方向的线速度和角速度，因此可以通过更改信息的内容并且完成发布，则MAVROS会订阅并接收到该消息，完成对其速度的控制。
+
+以键盘上的T和W为例，两者分别代表进行切换模式起飞与增加X方向的速度：
+
+\begin{minted}[fontsize=\small]{cpp}
+    case KEYCODE_T:
+        ROS_INFO("Command Offboard mode RECEIVED!");
+        Offboard(set_mode_client, offb_set_mode, arm_cmd,
+            arming_client, local_pos_pub, pose, rate);
+        velocityTuning(twist, 0);
+        flag = true;
+        break;
+    case KEYCODE_W:
+        ROS_INFO("Command Add forward speed RECEIVED!");
+        velocityTuning(twist, 1);
+        flag = true;
+        break;
+\end{minted}
+
+在这之中用到了自定义的velocityTuning函数，其作用是根据第二个参数的值完成对应线速度或角速度的预设变化。其中的标志位flag用来给switch语句结束后判断是否应该发送twist的速度信息，并且在发送过后重新将标志位设为false。
+
+\subsection{单机仿真实验结果} \label{4.2.5}
+
+首先尝试了在简单的gazebo环境中进行起飞，场景如图\ref{fig4-6-1}所示；由于使用双目相机，不需要初始化过程，因此飞机在非速度控制下的起飞中，也能匹配到较多特征点，但由于轨迹较短，并不能展示出完成的稀疏地图。
+
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.4\textwidth]{single.png}
-	\caption{单机SLAM的效果}
-	\label{fig4-6}
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{single.png}
+		\caption{起飞过程的轨迹与建图}
+		\label{fig4-6}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{single1.png}
+		\caption{起飞过程的场景}
+		\label{fig4-6-1}
+	\end{minipage}
 \end{figure}
 
+在这之后，使用图\ref{4.2.4}中设计的键盘控制程序，更换了比较复杂的场景进行仿真，图\ref{fig4-6-2}为场景的俯视图，处在一个类似迷宫的墙壁之中，沿墙壁边缘行进，并在行进过程中不断转动视角以探测自身周边的特征点；其结果如图\ref{fig4-6-3}，\ref{fig4-6-4}，\ref{fig4-6-5}所示，最终逐渐构建出了半个地图场景的轮廓。
 
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.24\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{single2.png}
+		\caption{场景俯视图}
+		\label{fig4-6-2}
+	\end{minipage}
+	\begin{minipage}[t]{0.24\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{single3.png}
+		\caption{阶段1}
+		\label{fig4-6-3}
+	\end{minipage}
+	\begin{minipage}[t]{0.24\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{single4.png}
+		\caption{阶段2}
+		\label{fig4-6-4}
+	\end{minipage}
+	\begin{minipage}[t]{0.24\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{single5.png}
+		\caption{阶段3}
+		\label{fig4-6-5}
+	\end{minipage}
+\end{figure}
 
 
 \section{多机SLAM仿真}
@@ -416,7 +480,7 @@ $$
 
 在无人机发生编队队形变换时，则需要考虑最小总路径，可以用KM匈牙利算法解得每一架飞机对应的最小路径，并且在队形变换过程中需要考虑碰撞的影响\cite{XiaoKun}。
 
-图\ref{fig4-8}展示了三机编队的仿真结果：
+图\ref{fig4-8}展示了三机编队的仿真结果，
 
 %\begin{figure}[!ht]
 %	\centering
