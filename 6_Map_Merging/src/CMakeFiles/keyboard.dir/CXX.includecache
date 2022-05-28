@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/GetKeyBoard.h
+
+/home/hazyparker/project/Multi_UAVs_Collaborative_SLAM/6_Map_Merging/src/GetKeyBoard.cc
+GetKeyBoard.h
+/home/hazyparker/project/Multi_UAVs_Collaborative_SLAM/6_Map_Merging/src/GetKeyBoard.h
+cstdio
+-
+termios.h
+-
+csignal
+-
+cstring
+-
+cstdlib
+-
+unistd.h
+-
+iostream
+-
+
