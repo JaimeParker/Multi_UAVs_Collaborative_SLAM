@@ -74,13 +74,22 @@ if(FrameNum % 2 == 0){
 
 其主要逻辑是，将每一帧的信息转换成sensor\_msg类型的消息，之后写入到rosbag中。这里需要注意waitKey函数，其含义为循环等待，单位是1/1000秒，因此1000/fps即为按照fps帧率，每一帧需要等待的时间；该参数控制了视频的帧率，从而控制了rosbag包的长度。topicName为录制的话题名，已经提前定义好。
 
-准备就绪后，进入SLAM程序，得到的结果如下：
+实验在教东B教室进行，从后门和窗户两个方向相向而行，录制两段视频，尽量保证两段视频中出现重叠场景，以方便地图融合；
 
-\begin{figure}[!ht]
+\begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.7\textwidth]{ccm2.png}
-	\caption{地图融合结果}
-	\label{fig5-1}
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{ccm4.png}
+		\caption{教室特征点匹配示例}
+		\label{fig5-1}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{ccm2.png}
+		\caption{地图融合}
+		\label{fig5-2}
+	\end{minipage}
 \end{figure}
 
 可以看出，基本完成了建图和地图融合的任务。

@@ -438,6 +438,50 @@ ClientHandler负责的内容包括：向总地图中添加该ID客户端的地�
 P_{12-3}={\bf R_{13}} \times P_{12} + \bf{t_{13}}
 \end{equation}
 
+这一部分的代码实现如下，其中，shiftCoordinate函数为实现上式的函数。
+
+\begin{minted}[fontsize=\small]{cpp}
+// get KeyPoint position of Client0 in Client1
+vector<Point3d> map_point0_1;
+map_point0_1 = ORBMatcher::shiftCoordinate(R, t, K, map_points0);
+map_point0_1.insert(map_point0_1.end(), map_points1.begin(), map_points1.end());
+// show combination map
+ORBMatcher::showMapPoints(map_point0_1);
+
+vector<cv::Point3d> ORBMatcher::shiftCoordinate(const Mat &R, const Mat &t, const Mat &K,
+const vector<cv::Point3d> &pos) {
+    // Pos_new = (RP + t)
+    vector<Point3d> shiftedPos;
+    Point3d p;
+
+    Eigen::Matrix<double, 3, 3> Mat_R;
+    Eigen::Matrix<double, 3, 1> Mat_t;
+    Eigen::Matrix<double, 3, 1> Mat_P;
+    Eigen::Matrix<double, 3, 3> Mat_K;
+    Eigen::Matrix<double, 3, 1> Mat_Pos;
+
+    cv2eigen(R, Mat_R);
+    cv2eigen(t, Mat_t);
+
+    for (const auto & po : pos){
+        Mat_Pos << po.x, po.y, po.z;
+        Mat_P = Mat_R * Mat_Pos + Mat_t;
+        p.x = Mat_P(0);
+        p.y = Mat_P(1);
+        p.z = Mat_P(2);
+        shiftedPos.push_back(p);
+    }
+    return shiftedPos;
+}
+\end{minted}
+
+实现点云绘制的为showMapPoints函数，主要使用了Pangilin库，使用OpenGL对各点进行绘制并且给出可交互窗口。其中的关键循环如下：
+
+\begin{minted}[fontsize=\small]{cpp}
+for (const auto & MapPoint : MapPoints){
+    glVertex3d(MapPoint.x, MapPoint.y, MapPoint.z);
+}
+\end{minted}
 
 由此获得了简单的拼合场景；
 
@@ -445,13 +489,13 @@ P_{12-3}={\bf R_{13}} \times P_{12} + \bf{t_{13}}
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
 		\centering
-		\includegraphics[width=1.0\columnwidth]{merge3.png}
+		\includegraphics[width=0.8\columnwidth]{merge3.png}
 		\caption{单独地图点}
 		\label{merge1}
 	\end{minipage}
 	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
-		\includegraphics[width=1.0\columnwidth]{merge4.png}
+		\includegraphics[width=0.8\columnwidth]{merge4.png}
 		\caption{合并地图点}
 		\label{merge2}
 	\end{minipage}

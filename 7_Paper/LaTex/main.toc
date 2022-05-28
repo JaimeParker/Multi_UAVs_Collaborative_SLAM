@@ -26,27 +26,27 @@
 \contentsline {section}{\numberline {3.4}多机协同及地图融合方案}{31}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}算法原理}{32}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}编程实现}{33}{subsection.3.4.2}
-\contentsline {chapter}{\numberline {第四章\hspace {.3em}}多无人机SLAM仿真}{34}{chapter.4}
-\contentsline {section}{\numberline {4.1}gazebo仿真环境配置}{34}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}场景}{34}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}launch文件}{35}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}单机SLAM仿真}{36}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}launch文件配置}{36}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Offboard程序}{37}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}视觉定位的坐标变换}{40}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}MAVROS键盘控制}{42}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}单机仿真实验结果}{43}{subsection.4.2.5}
-\contentsline {section}{\numberline {4.3}多机SLAM仿真}{43}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}launch文件配置}{43}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}多机编队处理}{46}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{47}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{50}{chapter.5}
-\contentsline {section}{\numberline {5.1}真机配置与实验}{50}{section.5.1}
-\contentsline {section}{\numberline {5.2}地图融合实验}{50}{section.5.2}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{53}{chapter.6}
-\contentsline {section}{\numberline {6.1}全文总结}{53}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{54}{section.6.2}
-\contentsline {chapter}{参考文献}{56}{chapter*.31}
-\contentsline {chapter}{致谢}{57}{chapter*.32}
-\contentsline {chapter}{毕业设计小结}{58}{chapter*.33}
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}多无人机SLAM仿真}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}gazebo仿真环境配置}{35}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}场景}{35}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}launch文件}{36}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}单机SLAM仿真}{37}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}launch文件配置}{37}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Offboard程序}{38}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}视觉定位的坐标变换}{41}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}MAVROS键盘控制}{43}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}单机仿真实验结果}{44}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}多机SLAM仿真}{44}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}launch文件配置}{44}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}多机编队处理}{47}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{48}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{51}{chapter.5}
+\contentsline {section}{\numberline {5.1}真机配置与实验}{51}{section.5.1}
+\contentsline {section}{\numberline {5.2}地图融合实验}{51}{section.5.2}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{54}{chapter.6}
+\contentsline {section}{\numberline {6.1}全文总结}{54}{section.6.1}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{55}{section.6.2}
+\contentsline {chapter}{参考文献}{57}{chapter*.31}
+\contentsline {chapter}{致谢}{58}{chapter*.32}
+\contentsline {chapter}{毕业设计小结}{59}{chapter*.33}
 \contentsfinish 

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{k}{auto}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{MapPoint}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{MapPoints}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{glVertex3d}\PYG{p}{(}\PYG{n}{MapPoint}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MapPoint}\PYG{p}{.}\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MapPoint}\PYG{p}{.}\PYG{n}{z}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

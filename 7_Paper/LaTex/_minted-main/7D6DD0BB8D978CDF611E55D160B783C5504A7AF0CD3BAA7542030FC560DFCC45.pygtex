@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// get KeyPoint position of Client0 in Client1}
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Point3d}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{map\PYGZus{}point0\PYGZus{}1}\PYG{p}{;}
+\PYG{n}{map\PYGZus{}point0\PYGZus{}1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ORBMatcher}\PYG{o}{::}\PYG{n}{shiftCoordinate}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{K}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{map\PYGZus{}points0}\PYG{p}{);}
+\PYG{n}{map\PYGZus{}point0\PYGZus{}1}\PYG{p}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{map\PYGZus{}point0\PYGZus{}1}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{map\PYGZus{}points1}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),}\PYG{+w}{ }\PYG{n}{map\PYGZus{}points1}\PYG{p}{.}\PYG{n}{end}\PYG{p}{());}
+\PYG{c+c1}{// show combination map}
+\PYG{n}{ORBMatcher}\PYG{o}{::}\PYG{n}{showMapPoints}\PYG{p}{(}\PYG{n}{map\PYGZus{}point0\PYGZus{}1}\PYG{p}{);}
+
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{cv}\PYG{o}{::}\PYG{n}{Point3d}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{ORBMatcher}\PYG{o}{::}\PYG{n}{shiftCoordinate}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{Mat}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{R}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{Mat}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{t}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{Mat}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{K}\PYG{p}{,}
+\PYG{k}{const}\PYG{+w}{ }\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{cv}\PYG{o}{::}\PYG{n}{Point3d}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{pos}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// Pos\PYGZus{}new = (RP + t)}
+\PYG{+w}{    }\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Point3d}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{shiftedPos}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Point3d}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{Eigen}\PYG{o}{::}\PYG{n}{Matrix}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}R}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Eigen}\PYG{o}{::}\PYG{n}{Matrix}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}t}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Eigen}\PYG{o}{::}\PYG{n}{Matrix}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}P}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Eigen}\PYG{o}{::}\PYG{n}{Matrix}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}K}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Eigen}\PYG{o}{::}\PYG{n}{Matrix}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}Pos}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{n}{cv2eigen}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}R}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{cv2eigen}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}t}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{k}{auto}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{po}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{pos}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{Mat\PYGZus{}Pos}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{po}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{po}\PYG{p}{.}\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{po}\PYG{p}{.}\PYG{n}{z}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{Mat\PYGZus{}P}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}R}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}Pos}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}t}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{p}\PYG{p}{.}\PYG{n}{x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}P}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{p}\PYG{p}{.}\PYG{n}{y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}P}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{p}\PYG{p}{.}\PYG{n}{z}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Mat\PYGZus{}P}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{shiftedPos}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{p}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{shiftedPos}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
