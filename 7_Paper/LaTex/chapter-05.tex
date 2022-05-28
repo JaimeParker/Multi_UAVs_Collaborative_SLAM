@@ -70,7 +70,7 @@ if(FrameNum % 2 == 0){
     my_bag.write(topicName, ros::Time::now(), ImageMsg);
     cout << "recording frames:" << frameNum << endl;
 }
-\end{minted}
+\end{minted}                
 
 其主要逻辑是，将每一帧的信息转换成sensor\_msg类型的消息，之后写入到rosbag中。这里需要注意waitKey函数，其含义为循环等待，单位是1/1000秒，因此1000/fps即为按照fps帧率，每一帧需要等待的时间；该参数控制了视频的帧率，从而控制了rosbag包的长度。topicName为录制的话题名，已经提前定义好。
 
