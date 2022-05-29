@@ -40,20 +40,21 @@
 
 
 \chapter*{ABSTRACT}
-\noindent 
+%\noindent 
 \vspace{1em}
-
-Drones are being used in a wider range of scenarios, 
-and they can realize more functions with the diversity of equipents on board.
-% However
-It is vital that drones being capable of sensing their own surroundings. 
-However, it is difficult for them to acquire local position in the GPS-denial environment, which can lead to unguarantee of mission efficiency and success rate. 
-In order to tackle this problem, this thesis focuses on multi drones' colloborative SLAM, enabling drones 
-
-However, in the GPS denial environment, it is difficult for UAVs to sense their own surroundings; the efficiency and success rate of a single UAV mission cannot be guaranteed.
-In order to solve this problem, this paper focuses on cluster UAV collaborative SLAM, which enables UAVs to sense the environment and make decisions about the mission even in GPS-denied environment, and cluster UAVs make the mission accomplishment more efficient.
-In this paper, through the study of ROS, PX4 and theoretical knowledge of SLAM and open-source schemes, two UAVs equipped with monocular cameras perform visual perception and complete localization and map building tasks in a gazebo simulation environment; such a collaborative scheme allows each UAV to have its own map and get a consistently estimated map through a specific fusion strategy; finally, a real aircraft on Finally, experiments of visual SLAM were conducted on real aircraft, creating conditions for further multi-aircraft autonomous localization and map building.
-
+Drones are being used in a wider range of scenarios, and they can realize more functions with the diversity of equipment on board.
+Drones must be capable of sensing their surroundings. 
+However, it is difficult for them to acquire local positions in the GPS-denial environment, which can lead to unguaranteed mission efficiency and success rate. 
+To tackle this issue, the whole thesis focuses on multi drones' collaborative SLAM, enabling them to gather information about the environment and make task accomplishment more efficient.
+This thesis firstly investigates the basic contents of ROS, including its method of publishing and subscribing topics, and the use of gazebo simulation.
+Then the use of PX4 software, containing not only the meaning of its failsafe function and flight mode but also the program to enter off-board mode so that control the UAV.
+This article accomplishes the following by learning the theoretical knowledge of SLAM and open source programs.
+The imaging principle of the camera, basic process and main threads of ORB-SLAM2, analysis of the extraction and matching method of ORB feature points.
+Designed and verified the map merging problem in the multi-camera case based on the open-source scheme ORB-SLAM2.
+In the simulation environment, a method of using the keyboard to issue MAVROS topics and thus control the UAV's flight was studied, and experiments on single-plane map building were conducted; There is also an approach for converting the positional information obtained from ORB-SLAM2 to MAVROS datatype message was made to realize the visual localization of the UAV.
+Subsequently, two UAVs equipped with monocular cameras were used for visual perception in the gazebo simulation environment to complete the localization and mapping jobs, and finally, consistent maps were obtained.
+In the end, using the monocular lens of the T265 camera, the localization and map building test of the actual campus scene was completed; the map fusion algorithm was verified using the rosbag recorded on the campus to obtain a unanimous map.
+Such a collaborative scheme allows each UAV to have its map and get an overall map with a specific fusion strategy. Visual SLAM experiments on real aircraft create the conditions for further multi-aircraft autonomous localization and map rebuilding studies.
 
 \vspace{0.1in}
 \noindent \textbf{Key Words:} SLAM，Multi UAVs
