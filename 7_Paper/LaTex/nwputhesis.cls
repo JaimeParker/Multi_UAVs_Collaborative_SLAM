@@ -151,7 +151,8 @@
 
 
 
-\bibliographystyle{GBT7714-2005NLang-UTF8}
+%\bibliographystyle{GBT7714-2005NLang-UTF8}
+\bibliographystyle{nwputhesis}
 
 %代码报lsting格式
 %\lstset{numbers=none,
