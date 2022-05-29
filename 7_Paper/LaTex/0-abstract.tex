@@ -15,12 +15,19 @@
 % 研究背景 1,2句话
 无人机应用的场景越发广泛，机上搭载设备的多样化意味着其能实现更多的功能。
 % 问题，一句话
-但是，在GPS拒止环境下，无人机完成对自身周围的环境感知较为困难；单架无人机执行任务的效率和成功率也不能保证。
+无人机完成对周边环境的感知是执行任务的必要环节。但是，在GPS拒止环境下，完成对自身周围的环境感知较为困难；单架无人机执行任务的效率和成功率也不能保证。
 % 文章主旨
 为了解决这一问题，本文主要研究集群无人机协同SLAM。SLAM技术使得无人机在GPS拒止环境下也能完成对环境的感知和对任务的决策，集群无人机则使得任务的完成更加高效。
 % 试验方法及主要结论
-本文通过对ROS、PX4的研究和SLAM理论知识及开源方案的学习，进行了两架配备有单目相机的无人机在gazebo仿真环境下进行视觉感知，完成定位与建图任务；这样协作的方案使得每一架无人机拥有自己的地图，并通过特定的融合策略得到一致估计的地图；最后，在真机上进行了视觉SLAM的实验，为进一步多机自主定位与建图创造了条件。
+本文首先研究了ROS的基本内容，其发布和订阅话题的方法、gazebo仿真的使用；PX4软件的使用方法，其安全生效模式和飞行模式的意义，使用程序进入离板模式并控制无人机的方法。
+本文通过对SLAM理论知识及开源方案的学习，完成以下内容：
+阐述了相机的成像原理，ORB-SLAM2的基本流程和主要进程，分析了ORB特征点的提取和匹配方法；
+在基于开源方案ORB-SLAM2的基础上设计并验证了多机情况下地图的拼合问题；
+在仿真环境中，研究出使用键盘发布MAVROS话题从而控制无人机飞行的方法，并进行单机建图实验；做出了一套从ORB-SLAM2得到的位姿信息转换到MAVROS位姿信息的方法，实现了无人机视觉定位。
+随后进行了两架配备有单目相机的无人机在gazebo仿真环境下进行视觉感知，完成定位与建图任务，并且最终得到一致的地图；
+最后使用T265相机的单目镜头，完成对校园实际场景的定位与建图测试；使用校园内录制的rosbag验证了地图融合算法，获得一致的地图。
 % 学术意义
+这样协作的方案使得每一架无人机拥有自己的地图，并通过特定的融合策略得到一致估计的地图，在真机上进行的视觉SLAM实验也为进一步多机自主定位与建图创造了条件。
 
 \vspace{0.1in}
 \noindent {\CJKfamily{zhhei} 关键词：} 无人机集群，协同SLAM
@@ -36,7 +43,13 @@
 \noindent 
 \vspace{1em}
 
-Drones are being used in a wider and wider range of scenarios, and the diversity of equipment on board means they can achieve more functions.
+Drones are being used in a wider range of scenarios, 
+and they can realize more functions with the diversity of equipents on board.
+% However
+It is vital that drones being capable of sensing their own surroundings. 
+However, it is difficult for them to acquire local position in the GPS-denial environment, which can lead to unguarantee of mission efficiency and success rate. 
+In order to tackle this problem, this thesis focuses on multi drones' colloborative SLAM, enabling drones 
+
 However, in the GPS denial environment, it is difficult for UAVs to sense their own surroundings; the efficiency and success rate of a single UAV mission cannot be guaranteed.
 In order to solve this problem, this paper focuses on cluster UAV collaborative SLAM, which enables UAVs to sense the environment and make decisions about the mission even in GPS-denied environment, and cluster UAVs make the mission accomplishment more efficient.
 In this paper, through the study of ROS, PX4 and theoretical knowledge of SLAM and open-source schemes, two UAVs equipped with monocular cameras perform visual perception and complete localization and map building tasks in a gazebo simulation environment; such a collaborative scheme allows each UAV to have its own map and get a consistently estimated map through a specific fusion strategy; finally, a real aircraft on Finally, experiments of visual SLAM were conducted on real aircraft, creating conditions for further multi-aircraft autonomous localization and map building.

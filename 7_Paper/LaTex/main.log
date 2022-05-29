@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  29 MAY 2022 16:16
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  29 MAY 2022 18:00
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3254,12 +3254,7 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
  (./main.aux (./0-cover.aux) (./0-abstract.aux) (./chapter-01.aux)
 (./chapter-02.aux) (./chapter-03.aux) (./chapter-04.aux) (./chapter-05.aux)
-(./chapter-06.aux)
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-(./1-acknowledgements.aux) (./1-design-conclusion.aux))
+(./chapter-06.aux) (./1-acknowledgements.aux) (./1-design-conclusion.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 90.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 90.
 
@@ -3274,7 +3269,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
 Here is how much of TeX's memory you used:
  46675 strings out of 493007
  925147 string characters out of 6136718
- 1021782 words of memory out of 5000000
+ 1021541 words of memory out of 5000000
  49778 multiletter control sequences out of 15000+600000
  543266 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
