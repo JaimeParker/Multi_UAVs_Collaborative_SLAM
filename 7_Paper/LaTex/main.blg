@@ -17,45 +17,45 @@ I'm skipping whatever remains of this command
 A level-1 auxiliary file: 1-acknowledgements.aux
 A level-1 auxiliary file: 1-design-conclusion.aux
 Database file #1: reference.bib
-You've used 15 entries,
+You've used 17 entries,
             2798 wiz_defined-function locations,
-            717 strings with 7650 characters,
-and the built_in function-call counts, 6695 in all, are:
-= -- 668
-> -- 128
+            731 strings with 8092 characters,
+and the built_in function-call counts, 8092 in all, are:
+= -- 827
+> -- 144
 < -- 0
-+ -- 64
-- -- 32
-* -- 373
-:= -- 707
-add.period$ -- 59
-call.type$ -- 15
-change.case$ -- 10
++ -- 72
+- -- 36
+* -- 460
+:= -- 835
+add.period$ -- 67
+call.type$ -- 17
+change.case$ -- 12
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 769
-empty$ -- 643
-format.name$ -- 46
-if$ -- 1478
+cite$ -- 17
+duplicate$ -- 946
+empty$ -- 768
+format.name$ -- 52
+if$ -- 1785
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 86
-newline$ -- 91
-num.names$ -- 15
-pop$ -- 389
+int.to.str$ -- 17
+missing$ -- 99
+newline$ -- 102
+num.names$ -- 17
+pop$ -- 478
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 96
+skip$ -- 106
 stack$ -- 0
-substring$ -- 621
-swap$ -- 166
+substring$ -- 807
+swap$ -- 192
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 22
-width$ -- 17
-write$ -- 169
+while$ -- 25
+width$ -- 19
+write$ -- 191
 (There was 1 error message)

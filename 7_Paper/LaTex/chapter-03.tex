@@ -475,7 +475,7 @@ const vector<cv::Point3d> &pos) {
 }
 \end{minted}
 
-实现点云绘制的为showMapPoints函数，主要使用了Pangilin库，使用OpenGL对各点进行绘制并且给出可交互窗口。其中的关键循环如下：
+实现点云绘制的为showMapPoints函数，主要使用了Pangolin库，使用OpenGL对各点进行绘制并且给出可交互窗口。其中的关键循环如下：
 
 \begin{minted}[fontsize=\small]{cpp}
 for (const auto & MapPoint : MapPoints){

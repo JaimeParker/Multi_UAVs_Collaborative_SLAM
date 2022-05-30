@@ -16,6 +16,26 @@
 \newblock 国防科技大学.
 \newblock 2019.
 
+\bibitem{zou2012coslam}
+Zou D, Tan P.
+\newblock Coslam: Collaborative visual slam in dynamic environments[J].
+\newblock IEEE transactions on pattern analysis and machine intelligence.
+\newblock 2012, 35(2):354--366.
+
+\bibitem{schmuck2019ccm}
+Schmuck P, Chli M.
+\newblock CCM-SLAM: Robust and efficient centralized collaborative monocular
+  simultaneous localization and mapping for robotic teams[J].
+\newblock Journal of Field Robotics.
+\newblock 2019, 36(4):763--781.
+
+\bibitem{9585827}
+Schmuck P et~al.
+\newblock COVINS: Visual-Inertial SLAM for Centralized Collaboration[C].
+\newblock In 2021 IEEE International Symposium on Mixed and Augmented Reality
+  Adjunct (ISMAR-Adjunct). Los Alamitos, CA, USA: IEEE Computer
+  Society2021:171-176.
+
 \bibitem{meier2015px4}
 Meier L, Honegger D, Pollefeys M.
 \newblock PX4: A node-based multithreaded open source robotics framework for
@@ -71,13 +91,6 @@ Mur-Artal R, Tard{\'o}s JD.
   rgb-d cameras[J].
 \newblock IEEE transactions on robotics.
 \newblock 2017, 33(5):1255--1262.
-
-\bibitem{schmuck2019ccm}
-Schmuck P, Chli M.
-\newblock CCM-SLAM: Robust and efficient centralized collaborative monocular
-  simultaneous localization and mapping for robotic teams[J].
-\newblock Journal of Field Robotics.
-\newblock 2019, 36(4):763--781.
 
 \bibitem{karrer2021distributed}
 Karrer M, Chli M.
