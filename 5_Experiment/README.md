@@ -6,3 +6,7 @@
 
 * [板载计算机的相关](Onboard_computer.md)
 * PX4，数传，地面站
+
+# 手控仿真
+
+* [mavros控制下的单机和多机SLAM](sim/README.md)
