@@ -16,6 +16,7 @@
 无人机应用的场景越发广泛，机上搭载设备的多样化意味着其能实现更多的功能。
 % 问题，一句话
 无人机完成对周边环境的感知是执行任务的必要环节。但是，在GPS拒止环境下，完成对自身周围的环境感知较为困难；单架无人机执行任务的效率和成功率也不能保证。
+
 % 文章主旨
 为了解决这一问题，本文主要研究集群无人机协同SLAM。SLAM技术使得无人机在GPS拒止环境下也能完成对环境的感知和对任务的决策，集群无人机则使得任务的完成更加高效。
 % 试验方法及主要结论
@@ -24,9 +25,11 @@
 阐述了相机的成像原理，ORB-SLAM2的基本流程和主要进程，分析了ORB特征点的提取和匹配方法；
 在基于开源方案ORB-SLAM2的基础上设计并验证了多机情况下地图的拼合问题；
 在仿真环境中，研究出使用键盘发布MAVROS话题从而控制无人机飞行的方法，并进行单机建图实验；做出了一套从ORB-SLAM2得到的位姿信息转换到MAVROS位姿信息的方法，实现了无人机视觉定位。
+
 随后进行了两架配备有单目相机的无人机在gazebo仿真环境下进行视觉感知，完成定位与建图任务，并且最终得到一致的地图；
 最后使用T265相机的单目镜头，完成对校园实际场景的定位与建图测试；使用校园内录制的rosbag验证了地图融合算法，获得一致的地图。
 % 学术意义
+
 这样协作的方案使得每一架无人机拥有自己的地图，并通过特定的融合策略得到一致估计的地图，在真机上进行的视觉SLAM实验也为进一步多机自主定位与建图创造了条件。
 
 \vspace{0.1in}
@@ -50,10 +53,10 @@ This thesis firstly investigates the basic contents of ROS, including its method
 Then the use of PX4 software, containing not only the meaning of its failsafe function and flight mode but also the program to enter off-board mode so that control the UAV.
 This article accomplishes the following by learning the theoretical knowledge of SLAM and open source programs.
 The imaging principle of the camera, basic process and main threads of ORB-SLAM2, analysis of the extraction and matching method of ORB feature points.
-Designed and verified the map merging problem in the multi-camera case based on the open-source scheme ORB-SLAM2.
-In the simulation environment, a method of using the keyboard to issue MAVROS topics and thus control the UAV's flight was studied, and experiments on single-plane map building were conducted; There is also an approach for converting the positional information obtained from ORB-SLAM2 to MAVROS datatype message was made to realize the visual localization of the UAV.
-Subsequently, two UAVs equipped with monocular cameras were used for visual perception in the gazebo simulation environment to complete the localization and mapping jobs, and finally, consistent maps were obtained.
-In the end, using the monocular lens of the T265 camera, the localization and map building test of the actual campus scene was completed; the map fusion algorithm was verified using the rosbag recorded on the campus to obtain a unanimous map.
+Design and verify the map merging problem in the multi-camera case based on the open-source scheme ORB-SLAM2.
+In the simulation environment, a method of using keyboard to issue MAVROS topics and thus control the UAV's flight is studied, and experiments on single-plane map building are conducted; There is also an approach for converting the positional information obtained from ORB-SLAM2 to MAVROS datatype message is made to realize the visual localization of the UAV.
+Subsequently, two UAVs equipped with monocular cameras are used for visual perception in the gazebo simulation environment to complete the localization and mapping jobs, and finally, a consistent map is obtained.
+In the end, using the monocular lens of the T265 camera, the localization and map building test of the actual campus scene is completed; the map fusion algorithm is verified using the rosbag recorded on the campus to obtain a unanimous map.
 Such a collaborative scheme allows each UAV to have its map and get an overall map with a specific fusion strategy. Visual SLAM experiments on real aircraft create the conditions for further multi-aircraft autonomous localization and map rebuilding studies.
 
 \vspace{0.1in}
