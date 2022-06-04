@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{#1}
 \expandafter\ifx\csname urlstyle\endcsname\relax\else
@@ -16,42 +16,6 @@
 王晨捷, 罗斌, 李成源, 等.
 \newblock 无人机视觉 SLAM 协同建图与导航\allowbreak[J].
 \newblock 测绘学报, 2020.
-
-\bibitem[高家隆(2019)]{高家隆2019多无人机协同定位与建图技术研究}
-高家隆.
-\newblock 多无人机协同定位与建图技术研究\allowbreak[D].
-\newblock 国防科技大学, 2019.
-
-\bibitem[Zou et~al.(2012)Zou and Tan]{zou2012coslam}
-Zou D, Tan P.
-\newblock Coslam: Collaborative visual slam in dynamic
-  environments\allowbreak[J].
-\newblock IEEE transactions on pattern analysis and machine intelligence, 2012,
-  35\allowbreak (2): 354-366.
-
-\bibitem[Schmuck et~al.(2019)Schmuck and Chli]{schmuck2019ccm}
-Schmuck P, Chli M.
-\newblock CCM-SLAM: Robust and efficient centralized collaborative monocular
-  simultaneous localization and mapping for robotic teams\allowbreak[J].
-\newblock Journal of Field Robotics, 2019, 36\allowbreak (4): 763-781.
-
-\bibitem[Schmuck et~al.(2021)Schmuck, Ziegler, Karrer, Perraudin, and
-  Chli]{9585827}
-Schmuck P, Ziegler T, Karrer M, et~al.
-\newblock COVINS: Visual-Inertial SLAM for Centralized
-  Collaboration\allowbreak[C/OL]//\allowbreak
-2021 IEEE International Symposium on Mixed and Augmented Reality Adjunct
-  (ISMAR-Adjunct).
-\newblock Los Alamitos, CA, USA: IEEE Computer Society, 2021: 171-176.
-\newblock
-  \url{https://doi.ieeecomputersociety.org/10.1109/ISMAR-Adjunct54149.2021.00043}.
-
-\bibitem[Meier et~al.(2015)Meier, Honegger, and Pollefeys]{meier2015px4}
-Meier L, Honegger D, Pollefeys M.
-\newblock PX4: A node-based multithreaded open source robotics framework for
-  deeply embedded platforms\allowbreak[C]//\allowbreak
-2015 IEEE international conference on robotics and automation (ICRA).
-\newblock IEEE, 2015: 6235-6240.
 
 \bibitem[Rublee et~al.(2011)Rublee, Rabaud, Konolige, and
   Bradski]{rublee2011orb}
@@ -85,6 +49,49 @@ Qin T, Li P, Shen S.
 任伟建, 高强, 康朝海, 等.
 \newblock 移动机器人同步定位与建图技术综述\allowbreak[J].
 \newblock 计算机测量与控制, 2022, 30\allowbreak (2): 1-10.
+
+\bibitem[高家隆(2019)]{高家隆2019多无人机协同定位与建图技术研究}
+高家隆.
+\newblock 多无人机协同定位与建图技术研究\allowbreak[D].
+\newblock 国防科技大学, 2019.
+
+\bibitem[Xu et~al.(2021)Xu, Zhang, Zhou, Wang, Yao, Meng, and Shen]{omniSwarm}
+Xu H, Zhang Y, Zhou B, et~al.
+\newblock Omni-swarm: {A} Decentralized Omnidirectional Visual-Inertial-UWB
+  State Estimation System for Aerial Swarm\allowbreak[J/OL].
+\newblock CoRR, 2021, abs/2103.04131.
+\newblock \url{https://arxiv.org/abs/2103.04131}.
+
+\bibitem[Zou et~al.(2012)Zou and Tan]{zou2012coslam}
+Zou D, Tan P.
+\newblock Coslam: Collaborative visual slam in dynamic
+  environments\allowbreak[J].
+\newblock IEEE transactions on pattern analysis and machine intelligence, 2012,
+  35\allowbreak (2): 354-366.
+
+\bibitem[Schmuck et~al.(2019)Schmuck and Chli]{schmuck2019ccm}
+Schmuck P, Chli M.
+\newblock CCM-SLAM: Robust and efficient centralized collaborative monocular
+  simultaneous localization and mapping for robotic teams\allowbreak[J].
+\newblock Journal of Field Robotics, 2019, 36\allowbreak (4): 763-781.
+
+\bibitem[Schmuck et~al.(2021)Schmuck, Ziegler, Karrer, Perraudin, and
+  Chli]{9585827}
+Schmuck P, Ziegler T, Karrer M, et~al.
+\newblock COVINS: Visual-Inertial SLAM for Centralized
+  Collaboration\allowbreak[C/OL]//\allowbreak
+2021 IEEE International Symposium on Mixed and Augmented Reality Adjunct
+  (ISMAR-Adjunct).
+\newblock Los Alamitos, CA, USA: IEEE Computer Society, 2021: 171-176.
+\newblock
+  \url{https://doi.ieeecomputersociety.org/10.1109/ISMAR-Adjunct54149.2021.00043}.
+
+\bibitem[Meier et~al.(2015)Meier, Honegger, and Pollefeys]{meier2015px4}
+Meier L, Honegger D, Pollefeys M.
+\newblock PX4: A node-based multithreaded open source robotics framework for
+  deeply embedded platforms\allowbreak[C]//\allowbreak
+2015 IEEE international conference on robotics and automation (ICRA).
+\newblock IEEE, 2015: 6235-6240.
 
 \bibitem[高翔\ 等(2017)高翔, 张涛, 刘毅, and 颜沁睿]{Gao2017SLAM}
 高翔, 张涛, 刘毅, 等.
