@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  4 JUN 2022 22:04
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  5 JUN 2022 01:48
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2512,12 +2512,12 @@ Overfull \hbox (41.25003pt too wide) detected at line 5
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 13
+Overfull \hbox (41.25003pt too wide) detected at line 15
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 三 章  
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 30
+Overfull \hbox (41.25003pt too wide) detected at line 32
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 四 章  
  []
 
@@ -2531,12 +2531,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-Overfull \hbox (41.25003pt too wide) detected at line 44
+Overfull \hbox (41.25003pt too wide) detected at line 46
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 五 章  
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 47
+Overfull \hbox (41.25003pt too wide) detected at line 49
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 六 章  
  []
 
@@ -2564,11 +2564,40 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4
+[1
 
 
 
 ]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3]
+File: figures/fastlab.jpg Graphic file (type bmp)
+<figures/fastlab.jpg>
+File: figures/omni.png Graphic file (type bmp)
+<figures/omni.png>
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4]
+File: figures/baseline.png Graphic file (type bmp)
+<figures/baseline.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2583,10 +2612,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-File: figures/fastlab.jpg Graphic file (type bmp)
-<figures/fastlab.jpg>
-File: figures/omni.png Graphic file (type bmp)
-<figures/omni.png>
+File: figures/structure.png Graphic file (type bmp)
+<figures/structure.png>
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2594,7 +2621,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7]
+[7])
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2602,23 +2629,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [8]
-File: figures/structure.png Graphic file (type bmp)
-<figures/structure.png>
-)
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[9]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[10]
 \openout2 = `chapter-02.aux'.
 
  (./chapter-02.tex
@@ -2629,7 +2639,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11
+[9
 
 
 
@@ -2658,7 +2668,28 @@ File: figures/ros_node.png Graphic file (type bmp)
 . - 'normal' (m/n) with NFSS spec.: <->"[FandolFang-Regular.otf]/OT"
 . - 'small caps'  (m/sc) with NFSS spec.: 
 .................................................
-)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10])
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/A0C04983FB98AFD3C3A4EA2DBCDEE665504A7AF0CD3BAA7542030FC560DFCC4
+5.pygtex)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]
+File: figures/gazebo.png Graphic file (type bmp)
+<figures/gazebo.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2666,14 +2697,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [12]
-\openout4 = `main.pyg'.
-
-
-(./_minted-main/A0C04983FB98AFD3C3A4EA2DBCDEE665504A7AF0CD3BAA7542030FC560DFCC4
-5.pygtex)
-File: figures/gazebo.png Graphic file (type bmp)
-<figures/gazebo.png>
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2695,25 +2718,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [15]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[16]
 \openout4 = `main.pyg'.
 
 
 (./_minted-main/E89D69BA889884E1301823DEC3A7266F504A7AF0CD3BAA7542030FC560DFCC4
-5.pygtex
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[17])
+5.pygtex)
 \openout4 = `main.pyg'.
 
 
@@ -2730,14 +2739,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18]
+[16]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[19])
+[17])
 \openout4 = `main.pyg'.
 
 
@@ -2749,14 +2758,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20]))
+[18]))
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[21]
+[19]
 \openout2 = `chapter-03.aux'.
 
  (./chapter-03.tex
@@ -2767,7 +2776,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[22
+[20
 
 
 
@@ -2781,7 +2790,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[23]
+[21]
 File: figures/SLAM.png Graphic file (type bmp)
 <figures/SLAM.png>
 
@@ -2791,7 +2800,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[24]
+[22]
 File: figures/corner.png Graphic file (type bmp)
 <figures/corner.png>
 
@@ -2801,14 +2810,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[25]
+[23]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[26]
+[24]
 File: figures/FAST.png Graphic file (type bmp)
 <figures/FAST.png>
 File: figures/OFAST.png Graphic file (type bmp)
@@ -2820,7 +2829,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[27]
+[25]
 File: figures/ORB2.png Graphic file (type bmp)
 <figures/ORB2.png>
 \openout4 = `main.pyg'.
@@ -2834,7 +2843,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[28])
+[26])
 \openout4 = `main.pyg'.
 
 
@@ -2846,7 +2855,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[29]
+[27]
 File: figures/build.png Graphic file (type bmp)
 <figures/build.png>
 
@@ -2856,7 +2865,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[30]
+[28]
 File: figures/CCM.png Graphic file (type bmp)
 <figures/CCM.png>
 
@@ -2866,7 +2875,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[31]
+[29]
 File: figures/Client.png Graphic file (type bmp)
 <figures/Client.png>
 
@@ -2876,7 +2885,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[32]
+[30]
 \openout4 = `main.pyg'.
 
 
@@ -2893,7 +2902,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[33])
+[31])
 File: figures/csfm.png Graphic file (type bmp)
 <figures/csfm.png>
 
@@ -2903,7 +2912,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[34]
+[32]
 File: figures/theory.png Graphic file (type bmp)
 <figures/theory.png>
 
@@ -2913,7 +2922,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[35]
+[33]
 \openout4 = `main.pyg'.
 
 
@@ -2925,7 +2934,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[36])
+[34])
 \openout4 = `main.pyg'.
 
 
@@ -2942,7 +2951,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[37]
+[35]
 \openout2 = `chapter-04.aux'.
 
  (./chapter-04.tex
@@ -2955,7 +2964,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[38
+[36
 
 
 
@@ -2971,7 +2980,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[39]
+[37]
 \openout4 = `main.pyg'.
 
 
@@ -2988,7 +2997,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[40])
+[38])
 File: figures/mono_uav.png Graphic file (type bmp)
 <figures/mono_uav.png>
 
@@ -3003,7 +3012,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[41]
+[39]
 \openout4 = `main.pyg'.
 
 
@@ -3020,7 +3029,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[42])
+[40])
 \openout4 = `main.pyg'.
 
 
@@ -3037,7 +3046,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[43])
+[41])
 File: figures/waypoint.png Graphic file (type bmp)
 <figures/waypoint.png>
 File: figures/rqtRGBD.png Graphic file (type bmp)
@@ -3053,7 +3062,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[44]
+[42]
 \openout4 = `main.pyg'.
 
 
@@ -3065,7 +3074,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[45])
+[43])
 Overfull \hbox (2.38985pt too wide) in paragraph at lines 279--280
 []\TU/FandolSong-Regular(1)/m/n/12 首 先，|  在 对 \TU/TimesNewRoman(0)/m/n/12 MAVRO
 S \TU/FandolSong-Regular(1)/m/n/12 的 话 题 进 行 分 析 后，|  发 现 其 订 阅 的 话 题 有 \TU/Tim
@@ -3083,7 +3092,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[46]
+[44]
 File: figures/single.png Graphic file (type bmp)
 <figures/single.png>
 File: figures/single1.png Graphic file (type bmp)
@@ -3103,7 +3112,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[47]
+[45]
 \openout4 = `main.pyg'.
 
 
@@ -3115,14 +3124,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[48]
+[46]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[49])
+[47])
 File: figures/sdf.png Graphic file (type bmp)
 <figures/sdf.png>
 
@@ -3132,7 +3141,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[50]
+[48]
 File: figures/formation.png Graphic file (type bmp)
 <figures/formation.png>
 File: figures/multi.png Graphic file (type bmp)
@@ -3150,14 +3159,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[51]
+[49]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[52])
+[50])
 File: figures/ccmsim2.png Graphic file (type bmp)
 <figures/ccmsim2.png>
 File: figures/ccmsim1.png Graphic file (type bmp)
@@ -3169,7 +3178,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[53]
+[51]
 \openout2 = `chapter-05.aux'.
 
  (./chapter-05.tex
@@ -3184,7 +3193,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[54
+[52
 
 
 
@@ -3200,7 +3209,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[55])
+[53])
 File: figures/ccm4.png Graphic file (type bmp)
 <figures/ccm4.png>
 File: figures/ccm2.png Graphic file (type bmp)
@@ -3212,11 +3221,29 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[56]
+[54]
 \openout2 = `chapter-06.aux'.
 
  (./chapter-06.tex
 第六章
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[55
+
+
+
+])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[56] (./main.bbl
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -3234,25 +3261,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[58] (./main.bbl
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[59
-
-
-
-])
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[60]
+[58]
 \openout2 = `1-acknowledgements.aux'.
 
  (./1-acknowledgements.tex)
@@ -3262,7 +3271,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[61
+[59
 
 
 ]
@@ -3275,7 +3284,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[62
+[60
 
 
 
@@ -3297,12 +3306,12 @@ runsystem(rm main.pyg)...executed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
  ) 
 Here is how much of TeX's memory you used:
- 46705 strings out of 493007
- 925674 string characters out of 6136718
- 1023652 words of memory out of 5000000
- 49803 multiletter control sequences out of 15000+600000
+ 46710 strings out of 493007
+ 925773 string characters out of 6136718
+ 1023953 words of memory out of 5000000
+ 49807 multiletter control sequences out of 15000+600000
  543266 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1017s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (64 pages).
+Output written on main.pdf (65 pages).

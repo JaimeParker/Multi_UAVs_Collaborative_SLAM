@@ -1,14 +1,18 @@
 \renewcommand{\baselinestretch}{1.5}
 \fontsize{12pt}{13pt}\selectfont
 
-\chapter{ROS与PX4介绍}\label{introduction}
+\chapter{基于ROS的无人机飞控}\label{introduction}
 
-\section{ROS介绍}
+本章首先研究了ROS系统的基础知识，包括其关键的通信机制和仿真环境；其次对飞控软件PX4 software进行了研究，在整体框架的基础上着重分析了影响飞行的FailSafe机制、EKF2决定的飞行模式和MAVROS控制下的Offboard程序。
+
+\section{ROS}
 本节主要对ROS平台进行介绍，包括ROS核心的消息机制和研究中要用到的gazebo仿真平台。
 
 21世纪开始，随着人工智能研究的发展，催生出了一批智能机器人的研究项目；ROS诞生于2007年斯坦福大学AI实验室Morgan Quigley的STAIR（Standford Artificial Intelligence Robot）项目，其期望构建一个基于移动机器人+机械臂的原型；该项目于2008年受到Willow Garage公司关注，其决定用商业化手段来推进机器人的发展，使机器人平台能够更快地走进人们的日常生活；Willow Garage接手该项目后两年，2010年第一代ROS即ROS1.0发布；2013年，OSRF（Open Source Robotics Foundation）接管了ROS的维护工作和版本的升级工作，随后至2018年间，ROS的Indigo、Kinetic和Melodic版本相继发布。
 
 ROS即Robotics Operating System，是一个针对机器人的开源、元级操作系统，在某些方面，ROS更像是一种机器人框架（robot framework）；它提供类似于操作系统的服务，包含底层的驱动程序管理、底层的硬件描述，随后上升到软件程序之间的消息传递、功能包的管理和发布、也提供用于获得、编译、编写和多设备跨计算机运行代码所需的库等。换言之，ROS是由一套通信机制，开发工具，一系列应用功能和一个庞大的生态系统组成的集合，其目标为提高机器人研发中的软件复用率，不断完善他人的工作，进行更好的开发。
+
+\subsection{ROS整体框架}
 
 \subsection{ROS的消息机制} \label{2.1.1}
 
@@ -69,7 +73,7 @@ client.call(srv);
 除此之外，ROS中还有参数（Parameter）或参数服务器的概念，其作用类似全局共享字典，节点可以进行访问，适合存储一些和系统配置相关的静态非二进制的参数，以供节点读取。
 
 
-\subsection{gazebo仿真} \label{2.1.2}
+\subsection{Gazebo仿真} \label{2.1.2}
 % 简单介绍gazebo及其功能
 gazebo是ROS自带的仿真软件，其功能有构建具有运动属性的机器人仿真模型，提供了一些针对CAD和soildworks等2D、3D设计软件的接口；gazebo还具有构建现实世界的各种场景的仿真模型的功能，能够在gazebo环境中建立一个与现实十分相似的场景用于算法验证；在传感器的仿真上，gazebo拥有一个强大的传感器模型库，比如单目相机、双目相机、深度相机等，还可以根据需求自行配置传感器的类型，实现多传感器融合；除此之外，gazebo还引入了现实世界的物理性质，如重力的影响，使仿真环境更加贴近现实。
 
@@ -93,9 +97,13 @@ gazebo的仿真环境中，其文件大致可以分为三种类型：model，wor
 
 % 是否还需要一些别的内容
 
-\section{PX4 AutoPilot}
+\subsection{功能包的使用}
+
+\section{PX4 AutoPilot飞控软件}
 % 本部分介绍PX4
 PX4是一款专业级开源飞控，也可以称之为自动驾驶仪；因其应用的平台不局限于飞行器，在竞速和物流应用的地面车辆和潜水艇等载具上也可以用其进行控制。PX4由来自学术界和业界的顶级开发商开发，并且配套有活跃的全球论坛社区，其software的源码在github上保持着issue和pull request的更新，是应用十分广泛的一款飞控软件。需要注意，PX4 Software和Pixhawk4并不是同一概念，前者为飞控软件，而后者为飞控硬件。PX4软件的内部包含了针对不同机型（包括多旋翼、固定翼和VTOL垂直起降固定翼等）的控制律设计，还包含了强大的飞行模式设计和安全设计。PX4还可以作为核心应用在更广阔的平台，比如使用了QGroundControl地面站、Pixhawk硬件、基于计算机、相机等的使用MAVLink协议的MAVSDK融合等\cite{meier2015px4}。
+
+\subsection{PX4整体框架}
 
 
 \subsection{FailSafe机制} \label{2.2.1}
