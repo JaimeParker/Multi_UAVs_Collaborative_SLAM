@@ -1,7 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
-The style file: nwputhesis.bst
+The style file: gbt7714-numerical.bst
 A level-1 auxiliary file: 0-cover.aux
 A level-1 auxiliary file: 0-abstract.aux
 A level-1 auxiliary file: chapter-01.aux
@@ -16,46 +16,58 @@ Illegal, another \bibstyle command---line 30 of file main.aux
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: 1-acknowledgements.aux
 A level-1 auxiliary file: 1-design-conclusion.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 150 items from 100.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: reference.bib
 You've used 17 entries,
-            2798 wiz_defined-function locations,
-            731 strings with 8092 characters,
-and the built_in function-call counts, 8092 in all, are:
-= -- 827
-> -- 144
-< -- 0
-+ -- 72
-- -- 36
-* -- 460
-:= -- 835
-add.period$ -- 67
+            5351 wiz_defined-function locations,
+            1158 strings with 11206 characters,
+and the built_in function-call counts, 114977 in all, are:
+= -- 2922
+> -- 12621
+< -- 16040
++ -- 4834
+- -- 1158
+* -- 831
+:= -- 16364
+add.period$ -- 52
 call.type$ -- 17
-change.case$ -- 12
-chr.to.int$ -- 0
+change.case$ -- 25
+chr.to.int$ -- 4105
 cite$ -- 17
-duplicate$ -- 946
-empty$ -- 768
-format.name$ -- 52
-if$ -- 1785
-int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 99
-newline$ -- 102
-num.names$ -- 17
-pop$ -- 478
+duplicate$ -- 426
+empty$ -- 1262
+format.name$ -- 521
+if$ -- 29710
+int.to.chr$ -- 1
+int.to.str$ -- 18
+missing$ -- 0
+newline$ -- 106
+num.names$ -- 51
+pop$ -- 5182
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 17
 quote$ -- 0
-skip$ -- 106
+skip$ -- 11662
 stack$ -- 0
-substring$ -- 807
-swap$ -- 192
-text.length$ -- 0
+substring$ -- 5764
+swap$ -- 17
+text.length$ -- 396
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 183
 warning$ -- 0
-while$ -- 25
-width$ -- 19
-write$ -- 191
+while$ -- 423
+width$ -- 0
+write$ -- 251
 (There was 1 error message)

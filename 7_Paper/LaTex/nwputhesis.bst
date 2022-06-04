@@ -66,15 +66,20 @@ ENTRY
     volume
     year
   }
-  {}
+  {entry.lang}
   { label }
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
+
+INTEGERS { lang.zh lang.en }
+
 FUNCTION {init.state.consts}
 { #0 'before.all :=
   #1 'mid.sentence :=
   #2 'after.sentence :=
   #3 'after.block :=
+
 }
+
 STRINGS { s t}
 FUNCTION {output.nonnull}
 { 's :=
@@ -233,12 +238,23 @@ FUNCTION {space.word}
 FUNCTION {bbl.and}
 { "and"}
 
+%FUNCTION {bbl.etal}
+%{  key empty$
+%  {"et~al."}
+%  {"等."}
+% if$
+%}
+
 FUNCTION {bbl.etal}
-{  key empty$
+{  entry.lang lang.en = 
   {"et~al."}
-  {"等."}
+    { entry.lang lang.zh = 
+      {"等."}
+    if$
+    }
  if$
 }
+
 
 FUNCTION {bbl.editors}
 { "eds." }

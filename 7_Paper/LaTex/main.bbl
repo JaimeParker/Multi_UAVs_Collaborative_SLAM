@@ -1,114 +1,129 @@
-\begin{thebibliography}{10}
-\providecommand{\url}[1]{\texttt{#1}}
-\providecommand{\urlprefix}{URL }
-\providecommand{\selectlanguage}[1]{\relax}
-\providecommand{\eprint}[2][]{\url{#2}}
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax\else
+  \urlstyle{same}\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \DeclareUrlCommand\doi{\urlstyle{rm}}
+  \def\eprint#1#2{#2}
+\else
+  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}
+  \let\eprint\href
+\fi
 
-\bibitem{王晨捷2020无人机视觉}
-王晨捷 et~al.
-\newblock 无人机视觉 SLAM 协同建图与导航[J].
-\newblock 测绘学报.
-\newblock 2020.
+\bibitem[王晨捷\ 等(2020)王晨捷, 罗斌, 李成源, 王伟, 尹露, and
+  赵青]{王晨捷2020无人机视觉}
+王晨捷, 罗斌, 李成源, 等.
+\newblock 无人机视觉 SLAM 协同建图与导航\allowbreak[J].
+\newblock 测绘学报, 2020.
 
-\bibitem{高家隆2019多无人机协同定位与建图技术研究}
+\bibitem[高家隆(2019)]{高家隆2019多无人机协同定位与建图技术研究}
 高家隆.
-\newblock 多无人机协同定位与建图技术研究[D].
-\newblock 国防科技大学.
-\newblock 2019.
+\newblock 多无人机协同定位与建图技术研究\allowbreak[D].
+\newblock 国防科技大学, 2019.
 
-\bibitem{zou2012coslam}
+\bibitem[Zou et~al.(2012)Zou and Tan]{zou2012coslam}
 Zou D, Tan P.
-\newblock Coslam: Collaborative visual slam in dynamic environments[J].
-\newblock IEEE transactions on pattern analysis and machine intelligence.
-\newblock 2012, 35(2):354--366.
+\newblock Coslam: Collaborative visual slam in dynamic
+  environments\allowbreak[J].
+\newblock IEEE transactions on pattern analysis and machine intelligence, 2012,
+  35\allowbreak (2): 354-366.
 
-\bibitem{schmuck2019ccm}
+\bibitem[Schmuck et~al.(2019)Schmuck and Chli]{schmuck2019ccm}
 Schmuck P, Chli M.
 \newblock CCM-SLAM: Robust and efficient centralized collaborative monocular
-  simultaneous localization and mapping for robotic teams[J].
-\newblock Journal of Field Robotics.
-\newblock 2019, 36(4):763--781.
+  simultaneous localization and mapping for robotic teams\allowbreak[J].
+\newblock Journal of Field Robotics, 2019, 36\allowbreak (4): 763-781.
 
-\bibitem{9585827}
-Schmuck P et~al.
-\newblock COVINS: Visual-Inertial SLAM for Centralized Collaboration[C].
-\newblock In 2021 IEEE International Symposium on Mixed and Augmented Reality
-  Adjunct (ISMAR-Adjunct). Los Alamitos, CA, USA: IEEE Computer
-  Society2021:171-176.
+\bibitem[Schmuck et~al.(2021)Schmuck, Ziegler, Karrer, Perraudin, and
+  Chli]{9585827}
+Schmuck P, Ziegler T, Karrer M, et~al.
+\newblock COVINS: Visual-Inertial SLAM for Centralized
+  Collaboration\allowbreak[C/OL]//\allowbreak
+2021 IEEE International Symposium on Mixed and Augmented Reality Adjunct
+  (ISMAR-Adjunct).
+\newblock Los Alamitos, CA, USA: IEEE Computer Society, 2021: 171-176.
+\newblock
+  \url{https://doi.ieeecomputersociety.org/10.1109/ISMAR-Adjunct54149.2021.00043}.
 
-\bibitem{meier2015px4}
+\bibitem[Meier et~al.(2015)Meier, Honegger, and Pollefeys]{meier2015px4}
 Meier L, Honegger D, Pollefeys M.
 \newblock PX4: A node-based multithreaded open source robotics framework for
-  deeply embedded platforms[C].
-\newblock In 2015 IEEE international conference on robotics and automation
-  (ICRA). IEEE2015:6235--6240.
+  deeply embedded platforms\allowbreak[C]//\allowbreak
+2015 IEEE international conference on robotics and automation (ICRA).
+\newblock IEEE, 2015: 6235-6240.
 
-\bibitem{rublee2011orb}
-Rublee E et~al.
-\newblock ORB: An efficient alternative to SIFT or SURF[C].
-\newblock In 2011 International conference on computer vision.
-  Ieee2011:2564--2571.
+\bibitem[Rublee et~al.(2011)Rublee, Rabaud, Konolige, and
+  Bradski]{rublee2011orb}
+Rublee E, Rabaud V, Konolige K, et~al.
+\newblock ORB: An efficient alternative to SIFT or
+  SURF\allowbreak[C]//\allowbreak
+2011 International conference on computer vision.
+\newblock Ieee, 2011: 2564-2571.
 
-\bibitem{杨明2000基于激光雷达的移动机器人环境建模与避障}
-杨明 et~al.
-\newblock 基于激光雷达的移动机器人环境建模与避障[D].
+\bibitem[杨明\ 等(2000)杨明, 王宏, 何克忠, 张钹,
+  et~al.]{杨明2000基于激光雷达的移动机器人环境建模与避障}
+杨明, 王宏, 何克忠, 等.
+\newblock
+  基于激光雷达的移动机器人环境建模与避障\allowbreak[D].
 \newblock 2000.
 
-\bibitem{avrutov2017calibration}
-Avrutov V et~al.
-\newblock Calibration of an inertial measurement unit[J].
-\newblock International Applied Mechanics.
-\newblock 2017, 53(2):228--236.
+\bibitem[Avrutov et~al.(2017)Avrutov, Sapegin, Stefanishin, and
+  Tsisarzh]{avrutov2017calibration}
+Avrutov V, Sapegin A, Stefanishin Z, et~al.
+\newblock Calibration of an inertial measurement unit\allowbreak[J].
+\newblock International Applied Mechanics, 2017, 53\allowbreak (2): 228-236.
 
-\bibitem{qin2018vins}
+\bibitem[Qin et~al.(2018)Qin, Li, and Shen]{qin2018vins}
 Qin T, Li P, Shen S.
 \newblock Vins-mono: A robust and versatile monocular visual-inertial state
-  estimator[J].
-\newblock IEEE Transactions on Robotics.
-\newblock 2018, 34(4):1004--1020.
+  estimator\allowbreak[J].
+\newblock IEEE Transactions on Robotics, 2018, 34\allowbreak (4): 1004-1020.
 
-\bibitem{任伟建2022移动机器人同步定位与建图技术综述}
-任伟建 et~al.
-\newblock 移动机器人同步定位与建图技术综述[J].
-\newblock 计算机测量与控制.
-\newblock 2022, 30(2):1--10.
+\bibitem[任伟建\ 等(2022)任伟建, 高强, 康朝海, 霍凤财, and
+  张志强]{任伟建2022移动机器人同步定位与建图技术综述}
+任伟建, 高强, 康朝海, 等.
+\newblock 移动机器人同步定位与建图技术综述\allowbreak[J].
+\newblock 计算机测量与控制, 2022, 30\allowbreak (2): 1-10.
 
-\bibitem{Gao2017SLAM}
-高翔 et~al.
-\newblock 视觉SLAM十四讲：从理论到实践[M].
-\newblock 电子工业出版社.
-\newblock 2017.
+\bibitem[高翔\ 等(2017)高翔, 张涛, 刘毅, and 颜沁睿]{Gao2017SLAM}
+高翔, 张涛, 刘毅, 等.
+\newblock 视觉SLAM十四讲：从理论到实践\allowbreak[M].
+\newblock 电子工业出版社, 2017.
 
-\bibitem{zhang2010understanding}
-Zhang Y, Jin R, Zhou ZH.
-\newblock Understanding bag-of-words model: a statistical framework[J].
-\newblock International Journal of Machine Learning and Cybernetics.
-\newblock 2010, 1(1):43--52.
+\bibitem[Zhang et~al.(2010)Zhang, Jin, and Zhou]{zhang2010understanding}
+Zhang Y, Jin R, Zhou Z~H.
+\newblock Understanding bag-of-words model: a statistical
+  framework\allowbreak[J].
+\newblock International Journal of Machine Learning and Cybernetics, 2010,
+  1\allowbreak (1): 43-52.
 
-\bibitem{mur2017orb}
-Mur-Artal R, Tard{\'o}s JD.
+\bibitem[Mur-Artal et~al.(2017)Mur-Artal and Tard{\'o}s]{mur2017orb}
+Mur-Artal R, Tard{\'o}s J~D.
 \newblock Orb-slam2: An open-source slam system for monocular, stereo, and
-  rgb-d cameras[J].
-\newblock IEEE transactions on robotics.
-\newblock 2017, 33(5):1255--1262.
+  rgb-d cameras\allowbreak[J].
+\newblock IEEE transactions on robotics, 2017, 33\allowbreak (5): 1255-1262.
 
-\bibitem{karrer2021distributed}
+\bibitem[Karrer et~al.(2021)Karrer and Chli]{karrer2021distributed}
 Karrer M, Chli M.
-\newblock Distributed variable-baseline stereo SLAM from two UAVs[C].
-\newblock In 2021 IEEE International Conference on Robotics and Automation
-  (ICRA). IEEE2021:82--88.
+\newblock Distributed variable-baseline stereo SLAM from two
+  UAVs\allowbreak[C]//\allowbreak
+2021 IEEE International Conference on Robotics and Automation (ICRA).
+\newblock IEEE, 2021: 82-88.
 
-\bibitem{forster2013collaborative}
-Forster C et~al.
-\newblock Collaborative monocular slam with multiple micro aerial vehicles[C].
-\newblock In 2013 IEEE/RSJ International Conference on Intelligent Robots and
-  Systems. IEEE2013:3962--3970.
+\bibitem[Forster et~al.(2013)Forster, Lynen, Kneip, and
+  Scaramuzza]{forster2013collaborative}
+Forster C, Lynen S, Kneip L, et~al.
+\newblock Collaborative monocular slam with multiple micro aerial
+  vehicles\allowbreak[C]//\allowbreak
+2013 IEEE/RSJ International Conference on Intelligent Robots and Systems.
+\newblock IEEE, 2013: 3962-3970.
 
-\bibitem{XiaoKun}
-Xiao K et~al.
+\bibitem[Xiao et~al.(2022)Xiao, Ma, Tan, Cong, and Wang]{XiaoKun}
+Xiao K, Ma L, Tan S, et~al.
 \newblock Implementation of UAV Coordination Based on a Hierarchical Multi-UAV
-  Simulation Platform[C].
-\newblock In Advances in Guidance, Navigation and Control. Springer
-  Singapore2022:5131--5143.
+  Simulation Platform\allowbreak[C]//\allowbreak
+Advances in Guidance, Navigation and Control.
+\newblock Springer Singapore, 2022: 5131-5143.
 
 \end{thebibliography}

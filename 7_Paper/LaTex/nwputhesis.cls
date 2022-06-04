@@ -8,8 +8,9 @@
 
 %对于包的使用
 
+
 %超链接
-\RequirePackage[colorlinks,linkcolor=black]{hyperref}
+\RequirePackage[colorlinks,linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
 %板式
 \RequirePackage[top=0.8in,
 	    bottom=1.6in,
@@ -152,7 +153,9 @@
 
 
 %\bibliographystyle{GBT7714-2005NLang-UTF8}
-\bibliographystyle{nwputhesis}
+%\bibliographystyle{nwputhesis}
+%\bibliographystyle{gbt7714-author-year}
+\bibliographystyle{gbt7714-numerical}
 
 %代码报lsting格式
 %\lstset{numbers=none,
