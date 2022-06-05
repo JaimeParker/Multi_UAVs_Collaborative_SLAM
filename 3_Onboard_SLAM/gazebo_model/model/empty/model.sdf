@@ -1,0 +1,7 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='empty'>
+    <pose frame=''>0 0 0 0 -0 0</pose>
+    <static>1</static>
+  </model>
+</sdf>
