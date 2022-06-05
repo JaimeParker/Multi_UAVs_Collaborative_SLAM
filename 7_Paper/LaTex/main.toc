@@ -5,52 +5,52 @@
 \contentsline {chapter}{\numberline {第二章\hspace {.3em}}基于ROS的无人机飞控}{9}{chapter.2}
 \contentsline {section}{\numberline {2.1}ROS}{9}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}ROS整体框架}{9}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}ROS的消息机制}{9}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Gazebo仿真}{11}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.2}ROS的消息机制}{10}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Gazebo仿真}{12}{subsection.2.1.3}
 \contentsline {subsection}{\numberline {2.1.4}功能包的使用}{13}{subsection.2.1.4}
 \contentsline {section}{\numberline {2.2}PX4 AutoPilot飞控软件}{13}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}PX4整体框架}{13}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}FailSafe机制}{13}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}EKF与飞行模式}{14}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}联合MAVROS的Offboard模式}{15}{subsection.2.2.4}
-\contentsline {chapter}{\numberline {第三章\hspace {.3em}}SLAM系统设计}{20}{chapter.3}
-\contentsline {section}{\numberline {3.1}SLAM系统}{20}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}SLAM的分类}{20}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}成像原理及相机参数}{21}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}视觉SLAM的基本步骤}{23}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}对极几何约束与三角测量}{25}{subsection.3.1.4}
-\contentsline {section}{\numberline {3.2}ORB-SLAM2}{25}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}ORB特征点及描述子}{25}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}ORB-SLAM2的主要进程}{26}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}ORB-SLAM2的配置及使用}{28}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}CCM-SLAM}{29}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}CCM-SLAM的结构}{29}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Client与Server机制}{30}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}CCM-SLAM的配置}{32}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}多机协同及地图融合方案}{32}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}算法原理}{32}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}编程实现}{34}{subsection.3.4.2}
-\contentsline {chapter}{\numberline {第四章\hspace {.3em}}多无人机SLAM仿真}{36}{chapter.4}
-\contentsline {section}{\numberline {4.1}gazebo仿真环境配置}{36}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}场景}{36}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}launch文件}{37}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}单机SLAM仿真}{38}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}launch文件配置}{38}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Offboard程序}{39}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}视觉定位的坐标变换}{42}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}MAVROS键盘控制}{44}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}单机仿真实验结果}{45}{subsection.4.2.5}
-\contentsline {section}{\numberline {4.3}多机SLAM仿真}{45}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}launch文件配置}{45}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}多机编队处理}{48}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{49}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{52}{chapter.5}
-\contentsline {section}{\numberline {5.1}真机配置与实验}{52}{section.5.1}
-\contentsline {section}{\numberline {5.2}地图融合实验}{52}{section.5.2}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{55}{chapter.6}
-\contentsline {section}{\numberline {6.1}全文总结}{55}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{56}{section.6.2}
-\contentsline {chapter}{参考文献}{58}{chapter*.35}
-\contentsline {chapter}{致谢}{59}{chapter*.36}
-\contentsline {chapter}{毕业设计小结}{60}{chapter*.37}
+\contentsline {subsection}{\numberline {2.2.1}PX4整体框架}{14}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}FailSafe机制}{14}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}EKF与飞行模式}{15}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}联合MAVROS的Offboard模式}{16}{subsection.2.2.4}
+\contentsline {chapter}{\numberline {第三章\hspace {.3em}}SLAM系统设计}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}SLAM系统}{21}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}SLAM的分类}{21}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}成像原理及相机参数}{22}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}视觉SLAM的基本步骤}{24}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}对极几何约束与三角测量}{26}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}ORB-SLAM2}{26}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}ORB特征点及描述子}{26}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}ORB-SLAM2的主要进程}{27}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}ORB-SLAM2的配置及使用}{29}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}CCM-SLAM}{30}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}CCM-SLAM的结构}{30}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Client与Server机制}{31}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}CCM-SLAM的配置}{33}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}多机协同及地图融合方案}{33}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}算法原理}{33}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}编程实现}{35}{subsection.3.4.2}
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}多无人机SLAM仿真}{37}{chapter.4}
+\contentsline {section}{\numberline {4.1}gazebo仿真环境配置}{37}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}场景}{37}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}launch文件}{38}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}单机SLAM仿真}{39}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}launch文件配置}{39}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Offboard程序}{40}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}视觉定位的坐标变换}{43}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}MAVROS键盘控制}{45}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}单机仿真实验结果}{46}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}多机SLAM仿真}{46}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}launch文件配置}{46}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}多机编队处理}{49}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{50}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}真机配置与实验}{53}{section.5.1}
+\contentsline {section}{\numberline {5.2}地图融合实验}{53}{section.5.2}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{56}{chapter.6}
+\contentsline {section}{\numberline {6.1}全文总结}{56}{section.6.1}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{57}{section.6.2}
+\contentsline {chapter}{参考文献}{59}{chapter*.36}
+\contentsline {chapter}{致谢}{60}{chapter*.37}
+\contentsline {chapter}{毕业设计小结}{61}{chapter*.38}
 \contentsfinish 

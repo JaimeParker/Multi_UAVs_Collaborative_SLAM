@@ -10,9 +10,24 @@
 
 21世纪开始，随着人工智能研究的发展，催生出了一批智能机器人的研究项目；ROS诞生于2007年斯坦福大学AI实验室Morgan Quigley的STAIR（Standford Artificial Intelligence Robot）项目，其期望构建一个基于移动机器人+机械臂的原型；该项目于2008年受到Willow Garage公司关注，其决定用商业化手段来推进机器人的发展，使机器人平台能够更快地走进人们的日常生活；Willow Garage接手该项目后两年，2010年第一代ROS即ROS1.0发布；2013年，OSRF（Open Source Robotics Foundation）接管了ROS的维护工作和版本的升级工作，随后至2018年间，ROS的Indigo、Kinetic和Melodic版本相继发布。
 
-ROS即Robotics Operating System，是一个针对机器人的开源、元级操作系统，在某些方面，ROS更像是一种机器人框架（robot framework）；它提供类似于操作系统的服务，包含底层的驱动程序管理、底层的硬件描述，随后上升到软件程序之间的消息传递、功能包的管理和发布、也提供用于获得、编译、编写和多设备跨计算机运行代码所需的库等。换言之，ROS是由一套通信机制，开发工具，一系列应用功能和一个庞大的生态系统组成的集合，其目标为提高机器人研发中的软件复用率，不断完善他人的工作，进行更好的开发。
-
 \subsection{ROS整体框架}
+
+ROS即Robotics Operating System，是一个针对机器人的开源、元级操作系统，在某些方面，ROS更像是一种机器人框架（robot framework）；它提供类似于操作系统的服务，如图\ref{fig-ros}所示，包含底层的驱动程序管理、底层的硬件描述，随后上升到软件程序之间的消息传递、功能包的管理和发布、也提供用于获得、编译、编写和多设备跨计算机运行代码所需的库等。换言之，ROS是由一套通信机制，开发工具，一系列应用功能和一个庞大的生态系统组成的集合，其目标为提高机器人研发中的软件复用率，不断完善他人的工作，进行更好的开发。
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{ros.png}
+	\caption{ROS整体框架} 
+	\label{fig-ros}
+\end{figure}
+
+ROS系统可以分为三个层面，计算图、文件系统和社区：
+\begin{enumerate}
+	\item 首先是计算图，这一概念主要应用于描述其消息机制；概括地说，是从节点到节点的消息传递，涉及其中通信的方式，数据的类型等内容。
+	\item 其次是文件系统；ROS创建了以功能包为核心，配置以CMakeList文件，通过ROS的编译方法快捷完成编译，连接到可执行文件；除此之外，还可以包含python脚本、launch文件和用户自定义的消息和话题类型文件。
+	\item 最后是社区级；ROS不仅是一个强大的开源操作系统，也是一个包含了衍生内容的庞大社区；首先，ROS通过不断更新的发行版构成自身的主体；同时，配备有各式软件库，满足用户不同的任务需求；关键是有自己的ROS wiki\footnote[1]{http://wiki.ros.org/}和ROS论坛，十分方便用户查阅学习以及提问；总言之，拥有良好的开发生态。
+\end{enumerate}
+
 
 \subsection{ROS的消息机制} \label{2.1.1}
 
@@ -98,6 +113,9 @@ gazebo的仿真环境中，其文件大致可以分为三种类型：model，wor
 % 是否还需要一些别的内容
 
 \subsection{功能包的使用}
+
+ROS开发的关键在于设计功能包，这也符合其设计理念，提升软件的复用率，避免重复开发。
+
 
 \section{PX4 AutoPilot飞控软件}
 % 本部分介绍PX4
