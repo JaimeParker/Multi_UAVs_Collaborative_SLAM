@@ -112,9 +112,29 @@ gazebo的仿真环境中，其文件大致可以分为三种类型：model，wor
 
 % 是否还需要一些别的内容
 
-\subsection{功能包的使用}
+\subsection{工作空间与功能包的使用}
 
-ROS开发的关键在于设计功能包，这也符合其设计理念，提升软件的复用率，避免重复开发。
+ROS的工作空间是进行开发的基础，后续的所有任务基本都基于工作空间完成。早期的ROS支持rosbuild和catkin两种架构的编译模式，但现今越来越支持catkin的编译，rosbuild逐渐被淘汰，但仍然保留；本文也全部使用的是catkin架构。
+
+工作空间的创建可以使用catkin\_make方法\footnote[1]{http://wiki.ros.org/catkin/Tutorials}，但是需要注意python版本，如果要使用python3，则有特殊的编译方法。也可以在src目录下使用catkin\_init\_workspace命令，获得初始化的工作空间。
+
+工作空间一般分为四个部分，如图\ref{fig-catkin}所示，分为src、devel、build、install。在这之中，最常接触到的是src，也就是存放功能包的目录；其次是build，默认功能包编译后会放在这个目录中；devel作为编译后的启动设置文件，一般只在设置环境变量时使用，而install一般是具有发行版后才会使用。除此之外，还可以自己设置一个scripts脚本文件夹，用于快速启动各类程序。
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{catkin.png}
+	\caption{ROS工作空间结构} 
+	\label{fig-catkin}
+\end{figure}
+
+ROS开发的关键在于设计功能包，这也符合其设计理念，即提升软件的复用率，避免重复开发。生成功能包的方法如下：
+
+\begin{minted}[fontsize=\small]{shell}
+$ catkin_create_pkg <package name> [depend1] [depend2]
+\end{minted}
+
+其中，package name为用户定义的功能包名称，depend为该功能包需要的依赖项，一般有roscpp、rospy等；用户后续也可以根据自身需求，在CMakeList中添加相应的依赖。
+功能包除了src源代码和其头文件外，还包含package.xml文件，也负责管理依赖，语法和CMake有所区别；还包括srv和msg文件，这些都是由用户定义的服务或消息类型；最后可能会在launch文件夹中添加一些launch文件的用法，用于整体加载参数、启动各节点等。
 
 
 \section{PX4 AutoPilot飞控软件}
@@ -122,6 +142,28 @@ ROS开发的关键在于设计功能包，这也符合其设计理念，提升�
 PX4是一款专业级开源飞控，也可以称之为自动驾驶仪；因其应用的平台不局限于飞行器，在竞速和物流应用的地面车辆和潜水艇等载具上也可以用其进行控制。PX4由来自学术界和业界的顶级开发商开发，并且配套有活跃的全球论坛社区，其software的源码在github上保持着issue和pull request的更新，是应用十分广泛的一款飞控软件。需要注意，PX4 Software和Pixhawk4并不是同一概念，前者为飞控软件，而后者为飞控硬件。PX4软件的内部包含了针对不同机型（包括多旋翼、固定翼和VTOL垂直起降固定翼等）的控制律设计，还包含了强大的飞行模式设计和安全设计。PX4还可以作为核心应用在更广阔的平台，比如使用了QGroundControl地面站、Pixhawk硬件、基于计算机、相机等的使用MAVLink协议的MAVSDK融合等\cite{meier2015px4}。
 
 \subsection{PX4整体框架}
+
+PX4的架构可以分为两个部分：一是飞行控制栈，主要包含飞行控制系统和状态估计算法\footnote{https://docs.px4.io/master/en/concept/architecture.html}；二是中间控制通信层。主要涵盖嵌入式设备的驱动程序，与外部的通信以及PX4的uORB消息总线。系统支持多种机型和设备，但使用的是一套代码库，并且采用了“响应式”的设计理念，也就意味着其做到了所有功能都可以向下分割成若干可以复用和按需求替换的组件、并且通过异步的方式进行通信，这样的设计也使得系统在不同工作负载下可以有不同的应对方法。以下分别研究飞行控制栈和中间通信层。
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{px4structure.png}
+	\caption{飞行控制栈的结构} 
+	\label{fig-px4structure}
+\end{figure}
+
+飞行控制栈的主要内容如图\ref{fig-px4structure}所示。其中，每个模块意味着不同的功能。箭头表示的是信息流的连接；在信息的传递中，使用uORB总线发布和订阅所有模块之间的相互通信，这样的并行通信可以保证数据抵达后的更新，保证线程进行时的安全。
+
+飞行控制栈是全自主无人机的导航与控制算法的集合。其状态估计首先接收传感器数据，一般有IMU的速度和气压计的高度信息等；之后EKF2根据多个不同传感器的输入，计算出无人机当前的状态，并将计算得到的位姿信息传递给下游的导航控制仪、定点控制器和高度速度控制器。接下来有两种选择，由导航控制仪完成控制或由远端完成控制；导航控制仪意味着完全自主的飞行模式，其将状态估计得到的位姿信息与任务信息比对，并给定点控制器发送下一步指令，定点控制器解算出相应的高度与速度控制信息，传递给电调；电调将上游的指令转换为电机的PWM波指令，这种转换中考虑了系统的动力学模型（传递函数），最终得出确定的控制量，由电机完成更改。
+
+中间控制层包含有存储、外部连接和驱动：
+\begin{enumerate}
+	\item 存储涵盖有数据库，比如任务信息和地理围栏信息；另一方面存储了参数，这些可以放在ROS的EEPROM虚拟参数缓存中，也可以放在设备的SD卡中；还有一些登录信息。
+	\item
+	外部连接则主要包括MAVLINK与FastRTPS；前者通过UDP或UART进行连接通信，是本研究中主要使用的方式。
+	\item 
+	驱动则需要根据无人机搭载的设备而定；一般来说，GPS、相机控制驱动、远程控制和IMU驱动都是包含在内的，还可能有一些机械臂等设备的驱动程序。
+\end{enumerate}
 
 
 \subsection{FailSafe机制} \label{2.2.1}
@@ -184,14 +226,14 @@ Offboard模式下的无人机正常起飞，需要首先解锁，然后切换飞
 
 \begin{enumerate}
 	\item 
-	连接fcu（MAVROS），判断的标准是MAVROS消息类中的state是否表示为连接；如果连接上则可以继续执行，未连接上则通过spin()函数循环等待。
+	连接FCU（MAVROS），判断的标准是MAVROS消息类中的state是否表示为连接；如果连接上则可以继续执行，未连接上则通过spin()函数循环等待。
 	\item 
 	设定setpoints的坐标值，并以不低于2$Hz$的频率发送一些点。
 	\item 
 	解锁，解锁成功后切换到Ofboard模式并起飞。
 \end{enumerate}
 
-其程序的实现如下：
+其程序的实现如下\footnote[1]{https://gitee.com/hazyparker/my-research/blob/master/1\_basic/src/takeoff\_land.cpp}：
 
 首先是需要的头文件定义，其包括了C++的基本库，MAVROS的消息相关库，和ROS库；
 
