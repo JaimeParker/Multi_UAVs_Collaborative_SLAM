@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} UAV0 \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}group} \PYG{n+na}{ns=}\PYG{l+s}{\PYGZdq{}uav0\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} MAVROS and vehicle configs \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}ID\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}fcu\PYGZus{}url\PYGZdq{}} \PYG{n+na}{default=}\PYG{l+s}{\PYGZdq{}udp://:14540@localhost:14580\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} PX4 SITL and vehicle spawn \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}include} \PYG{n+na}{file=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find px4)/launch/single\PYGZus{}vehicle\PYGZus{}spawn\PYGZus{}rcs.launch\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}x\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}y\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}z\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}R\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}P\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}Y\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}vehicle\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(arg vehicle)\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}my\PYGZus{}camera\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}iris\PYGZus{}fpv\PYGZus{}cam\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}mavlink\PYGZus{}udp\PYGZus{}port\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}14560\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}mavlink\PYGZus{}tcp\PYGZus{}port\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}4560\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}ID\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(arg ID)\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}gst\PYGZus{}udp\PYGZus{}port\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(eval 5600 + arg(\PYGZsq{}ID\PYGZsq{}))\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}video\PYGZus{}uri\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(eval 5600 + arg(\PYGZsq{}ID\PYGZsq{}))\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}mavlink\PYGZus{}cam\PYGZus{}udp\PYGZus{}port\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(eval 14530 + arg(\PYGZsq{}ID\PYGZsq{}))\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+
+\PYG{n+nt}{\PYGZlt{}/include\PYGZgt{}}
+\PYG{c+cm}{\PYGZlt{}!\PYGZhy{}\PYGZhy{} MAVROS \PYGZhy{}\PYGZhy{}\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}include} \PYG{n+na}{file=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(find mavros)/launch/px4.launch\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}fcu\PYGZus{}url\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(arg fcu\PYGZus{}url)\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}gcs\PYGZus{}url\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}tgt\PYGZus{}system\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}\PYGZdl{}(eval 1 + arg(\PYGZsq{}ID\PYGZsq{}))\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}arg} \PYG{n+na}{name=}\PYG{l+s}{\PYGZdq{}tgt\PYGZus{}component\PYGZdq{}} \PYG{n+na}{value=}\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}/include\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}/group\PYGZgt{}}
+\end{Verbatim}

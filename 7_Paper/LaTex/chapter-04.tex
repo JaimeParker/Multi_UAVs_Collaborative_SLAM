@@ -352,6 +352,7 @@ pose_pub->publish(pose);
 
 \section{多机SLAM仿真}
 
+在这里添加整体描述。
 
 \subsection{launch文件配置} \label{4.3.1}
 
@@ -393,48 +394,13 @@ pose_pub->publish(pose);
     <arg name="tgt_component" value="1"/>
 </include>
 </group>
-
-<!-- UAV1 -->
-<group ns="uav1">                              
-<!-- MAVROS and vehicle configs -->
-<arg name="ID" value="1"/>
-<arg name="fcu_url" default="udp://:14541@localhost:14581"/>
-<!-- PX4 SITL and vehicle spawn -->
-<include file="$(find px4)/launch/single_vehicle_spawn_rcs.launch">
-    <arg name="x" value="2"/>
-    <arg name="y" value="0"/>
-    <arg name="z" value="0"/>
-    <arg name="R" value="0"/>
-    <arg name="P" value="0"/>
-    <arg name="Y" value="0"/>
-    <arg name="vehicle" value="$(arg vehicle)"/>
-
-    <arg name="my_camera" value="iris_fpv_cam"/>
-
-    <arg name="mavlink_udp_port" value="14561"/>
-    <arg name="mavlink_tcp_port" value="4560"/>
-    <arg name="ID" value="$(arg ID)"/>
-    <arg name="gst_udp_port" value="$(eval 5600 + arg('ID'))"/>
-    <arg name="video_uri" value="$(eval 5600 + arg('ID'))"/>
-    <arg name="mavlink_cam_udp_port" value="$(eval 14530 + arg('ID'))"/>
-
-
-</include>
-<!-- MAVROS -->
-<include file="$(find mavros)/launch/px4.launch">
-    <arg name="fcu_url" value="$(arg fcu_url)"/>
-    <arg name="gcs_url" value=""/>
-    <arg name="tgt_system" value="$(eval 1 + arg('ID'))"/>
-    <arg name="tgt_component" value="1"/>
-</include>
-</group>
 \end{minted}
 
 其默认每架无人机调用的是spawn文件，其中关键的模型组合有两种方式，一种是使用urdf进行模型配置，一种是使用新的sdf。具体使用哪种视PX4的版本而定，由于urdf模型的配制方法要旧于sdf，新版的PX4统一使用sdf进行gazebo仿真的模型配置，并且使用jinja.py脚本生成sdf模型配置。
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.8\textwidth]{sdf.png}
+	\includegraphics[width=0.9\textwidth]{sdf.png}
 	\caption{仿真模型生成流程}
 	\label{fig-sdf}
 \end{figure}
@@ -446,7 +412,7 @@ pose_pub->publish(pose);
 由于ROS的机制，话题如果重复，则会报错，并用时间戳最新的话题替换掉时间戳更旧的话题；如果多架无人机的话题不加以区分，可能会导致最终话题重复，从而只有一架无人机可以使用。
 
 
-\subsection{多机编队处理} \label{4.3.2}
+\subsection{多机编队控制} \label{4.3.2}
 
 多机的控制可以使用编队控制，控制方法可以分为两种：集中式和分布式。
 
@@ -511,40 +477,6 @@ $$
 \subsection{多机SLAM仿真} \label{4.3.3}
 
 多机SLAM仿真除PX4的配置外，还要对SLAM的launch文件进行配置。其中包含了设置相机的参数文件，更重要的是配置各无人机所接受的相机话题。
-
-\begin{minted}[fontsize=\small]{xml}
-<?xml version="1.0"?>
-<launch>
-
-<arg name="dist" default="0"/>
-<arg name="cam" default="$(find ccmslam)/conf/px4_sitl.yaml"/>
-
-<group ns="ccmslam">
-
-<node pkg="tf" type="static_transform_publisher" 
-name="linkC0_broadcaster" args="-100 300 5 -1.571 0 -2 world odomC0 100" /> 
-
-<node pkg="ccmslam" type="ccmslamClientNode" 
-name="ccmslamClientNode0" args="$(find ccmslam)/conf/ORBvoc.txt $(arg cam)" output="screen">
-
-<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
-<!-- Agent Specific Params - !!!MUST BE ADJUSTED!!! -->
-
-<param name="~FrameId" type="string" value="odomC0" />
-<param name="~ClientId" type="int" value="0" />
-
-<param name="~TopicNameCamSub" type="string" value="/iris0/usb_cam/image_raw" />
-
-<param name="~MapInTopicName" type="string" 
-value="MapOutServer0" unless="$(arg dist)" />
-<param name="~MapInTopicName" type="string" 
-value="MapOutServer0Disturbed" if="$(arg dist)" /> 
-
-</node>
-
-</group>
-</launch>
-\end{minted}
 
 启动时需要启动服务器和客户端，然后打开ORB-SLAM节点，最终结果如图：
 
