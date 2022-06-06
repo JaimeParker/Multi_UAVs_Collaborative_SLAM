@@ -301,7 +301,7 @@ pose_pub->publish(pose);
 
 \subsection{单机仿真实验结果} \label{4.2.5}
 
-首先尝试了在简单的gazebo环境中进行起飞，场景如图\ref{fig4-6-1}所示；由于使用双目相机，不需要初始化过程，因此飞机在非速度控制下的起飞中，也能匹配到较多特征点，但由于轨迹较短，并不能展示出完成的稀疏地图。
+首先尝试了在简单的gazebo环境中进行起飞，场景如图\ref{fig4-6-1}所示；由于使用双目相机，不需要初始化过程，因此飞机在非速度控制下的起飞中，也能匹配到较多特征点，但由于轨迹较短，并不能展示出完成的稀疏地图。并且当发生航路点飞行的瞬间，其动作幅度较大，极容易丢失跟踪，且无法完成重定位。
 
 \begin{figure}[htbp]
 	\centering
@@ -319,33 +319,112 @@ pose_pub->publish(pose);
 	\end{minipage}
 \end{figure}
 
-在这之后，使用图\ref{4.2.4}中设计的键盘控制程序，更换了比较复杂的场景进行仿真，图\ref{fig4-6-2}为场景的俯视图，处在一个类似迷宫的墙壁之中，沿墙壁边缘行进，并在行进过程中不断转动视角以探测自身周边的特征点；其结果如图\ref{fig4-6-3}，\ref{fig4-6-4}，\ref{fig4-6-5}所示，最终逐渐构建出了半个地图场景的轮廓。
+为了解决无人机飞行轨迹固定、航路点之间转换时飞机姿态变化剧烈的问题，参考\ref{4.2.4}中设计的键盘控制程序，首先进行了单目的场景测试，以测试键盘控制程序控制无人机的稳定性和单目相机初始化的方法，以及单目相机的跟踪性能。
 
 \begin{figure}[htbp]
 	\centering
-	\begin{minipage}[t]{0.24\columnwidth} %小于1/n如果使用n张图片
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
 		\centering
-		\includegraphics[width=1.0\columnwidth]{single2.png}
+		\includegraphics[width=1.0\columnwidth]{mono1.png}
+		\caption{场景主建筑物外观}
+		\label{fig-mono1}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{mono3.png}
+		\caption{当前帧}
+		\label{fig-mono2}
+	\end{minipage}
+\end{figure}
+
+图\ref{fig-mono1}展示了场景中主建筑物的外形，方便与建图的结果对比；图\ref{fig-mono2}展示了携带单目相机的无人机在飞行过程中的ORB-SLAM当前帧运行情况，该图主要展示的是当前帧的特征点提取和匹配情况。仿真运行的结果如图\ref{fig-mono3}所示，可以看出其基本得到了目标建筑物的外观；图\ref{fig-mono4}是带有关键帧的地图展示窗口，可以看出，关键帧的分布比较连续，基本上不存在重定位的问题，这也可以说明键盘控制程序的稳定性相比于简单的航路点控制，得到了较大的提升。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{mono2.png}
+		\caption{建图结果}
+		\label{fig-mono3}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{mono4.png}
+		\caption{带关键帧的建图结果}
+		\label{fig-mono4}
+	\end{minipage}
+\end{figure}
+
+但是上述实验对于一个完整的SLAM系统而言，缺少了回环检测和最后的全局BA优化过程，因此需要进行一个可以实现回环的仿真。
+使用\ref{4.2.4}中设计的键盘控制程序，更换了比较复杂的场景进行仿真，图\ref{fig4-6-2}为场景的俯视图，处在一个类似迷宫的墙壁之中，沿墙壁边缘行进，并在行进过程中不断转动视角以探测自身周边的特征点；其结果如图\ref{fig4-6-3}，\ref{fig4-6-4}，\ref{fig4-6-5}所示，最终逐渐构建出了半个地图场景的轮廓，但该仿真最终没能成功地完成回环。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=0.8\columnwidth]{single2.png}
 		\caption{场景俯视图}
 		\label{fig4-6-2}
 	\end{minipage}
-	\begin{minipage}[t]{0.24\columnwidth}
+	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
-		\includegraphics[width=1.0\columnwidth]{single3.png}
+		\includegraphics[width=0.8\columnwidth]{single3.png}
 		\caption{阶段1}
 		\label{fig4-6-3}
 	\end{minipage}
-	\begin{minipage}[t]{0.24\columnwidth}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
 		\includegraphics[width=1.0\columnwidth]{single4.png}
 		\caption{阶段2}
 		\label{fig4-6-4}
 	\end{minipage}
-	\begin{minipage}[t]{0.24\columnwidth}
+	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
 		\includegraphics[width=1.0\columnwidth]{single5.png}
 		\caption{阶段3}
 		\label{fig4-6-5}
+	\end{minipage}
+\end{figure}
+
+回环检测和全局BA优化是整个ORB-SLAM2中最后的工作，但对一个完整的SLAM系统而言，也是最重要的工作。但上述实验由于场景相似度太高，依靠相似度判断的回环会出现一些问题，以致于不能完成相同位置的回环。因此，对上述模型做出了修改，更改场景地图为街道类型，采用完全不重复的场景设计，并优化了无人机的飞行路线，使无人机沿“口”字路线飞行，并且最终完成回环。
+
+其中，设计的街区场景如图\ref{fig-stereo1}所示，运行过程中的当前帧如\ref{fig-stereo2}所示。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{stereo1.png}
+		\caption{街区场景}
+		\label{fig-stereo1}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{stereo2.png}
+		\caption{当前帧}
+		\label{fig-stereo2}
+	\end{minipage}
+\end{figure}
+
+该仿真的结果如图\ref{fig-stereo3}所示，可以看出，经过一整圈的飞行后，SLAM系统成功检测到了回环并完成了累计误差的消除和整体地图的优化；图\ref{fig-stereo4}展示了无人机飞行过程中，以自身视角对两侧建筑物上提取到的关键点进行建图的结果。该结果可以说明，单机SLAM的仿真已经基本成功。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{stereo3.png}
+		\caption{回环的地图}
+		\label{fig-stereo3}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{stereo4.png}
+		\caption{无人机视角的街区图}
+		\label{fig-stereo4}
 	\end{minipage}
 \end{figure}
 

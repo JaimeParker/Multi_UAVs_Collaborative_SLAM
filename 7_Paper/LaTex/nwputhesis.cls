@@ -52,6 +52,9 @@
 \RequirePackage{titlesec}
 %
 \RequirePackage{setspace}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %论文行间距为1.5倍（可能需要用\selectfont）
