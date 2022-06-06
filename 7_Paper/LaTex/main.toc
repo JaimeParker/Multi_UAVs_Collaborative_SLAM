@@ -35,20 +35,20 @@
 \contentsline {section}{\numberline {4.2}单机SLAM仿真}{41}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}launch文件配置}{41}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Offboard程序}{42}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}视觉定位的坐标变换}{45}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}MAVROS键盘控制}{47}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.3}视觉定位的坐标变换}{44}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}MAVROS键盘控制}{46}{subsection.4.2.4}
 \contentsline {subsection}{\numberline {4.2.5}单机仿真实验结果}{48}{subsection.4.2.5}
 \contentsline {section}{\numberline {4.3}多机SLAM仿真}{50}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}launch文件配置}{51}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}多机编队控制}{53}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}多机SLAM仿真}{54}{subsection.4.3.3}
 \contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{56}{chapter.5}
-\contentsline {section}{\numberline {5.1}真机配置与实验}{56}{section.5.1}
-\contentsline {section}{\numberline {5.2}地图融合实验}{56}{section.5.2}
+\contentsline {section}{\numberline {5.1}单机SLAM实验}{56}{section.5.1}
+\contentsline {section}{\numberline {5.2}多机SLAM实验}{56}{section.5.2}
 \contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{59}{chapter.6}
 \contentsline {section}{\numberline {6.1}全文总结}{59}{section.6.1}
 \contentsline {section}{\numberline {6.2}对未来工作的展望}{60}{section.6.2}
-\contentsline {chapter}{参考文献}{62}{chapter*.45}
-\contentsline {chapter}{致谢}{63}{chapter*.46}
-\contentsline {chapter}{毕业设计小结}{64}{chapter*.47}
+\contentsline {chapter}{参考文献}{62}{chapter*.47}
+\contentsline {chapter}{致谢}{63}{chapter*.48}
+\contentsline {chapter}{毕业设计小结}{64}{chapter*.49}
 \contentsfinish 

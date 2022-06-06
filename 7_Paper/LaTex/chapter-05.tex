@@ -3,13 +3,13 @@
 
 \chapter{实验与评估} \label{experiment}
 
-进行的实验主要有两部分，真机的SLAM实验和地图融合实验。
+在第四章仿真中，已经完成单机控制和多机控制的实验，并且完成了单机SLAM和双机协同SLAM的仿真实验。但是为了实验的完整性，必须使用实际场景中获得的视频进行实验，
+这包括数据集、录像视频转rosbag、T265相机实时视频等方式的实验。
+实验内容主要有两部分，单机的SLAM实验和多机的SLAM实验。
 
-\section{真机配置与实验}
+\section{单机SLAM实验}
 
-真机使用单机实验。
-
-真机搭载英特尔T265摄像头，其特点是带两个鱼眼镜头和惯性测量单元，并且视觉SLAM可以运行在其特有的视觉处理单元上。其在电脑上需要一定配置，安装英特尔的一些以来库文件和realsense-viewer。
+真机搭载英特尔T265摄像头，其特点是带两个鱼眼镜头和惯性测量单元，并且视觉SLAM可以运行在其特有的视觉处理单元上。其在电脑上需要一定配置，安装英特尔的一些依赖库文件和realsense-viewer。
 
 除摄像头外，真机还搭载Jetson Xavier NX计算机，体积较小且接口丰富。需要注意的是，无人机在地面时，可以使用显示器和鼠标设备对其进行操作，运行ROS节点；但当无人机在空中时，没有显示信息和鼠标的操作输入，因此需要使用远程控制，在这里使用了No Machine软件进行远程控制。
 
@@ -37,7 +37,9 @@
 \end{figure}
 
 
-\section{地图融合实验}
+\section{多机SLAM实验}
+
+由于多机SLAM实验需要一定的场景和操作人员，编队飞行进行SLAM过程中的的安全性无法保证，因此只进行了简单的多机起降实验，具体的多机SLAM实验采用相机录制视频转rosbag的形式进行。
 
 在教学楼楼道场景下，使用手持相机的方式，沿楼道行走，完成对一段楼道的建图；同时准备另一台相机，沿不同的路线行进，完成对同一段楼道的建图；两段视频应该拥有一部分重合的场景和一部分不重合的场景，用以验证地图融合的效果。
 
@@ -53,25 +55,7 @@
 	\item 较为简单的方式是将其转换为ROS的rosbag，rosbag可以记录特定话题的信息；对于视频而言，即记录不同时间戳下矩阵各点的三通道RGB值，对于灰度视频则更为方便；其用法是使用ROS的cv bridge完成一些MP4格式视频到rosbag包的转换。
 \end{enumerate}
 
-完成MP4格式到rosbag的部分代码如下：
-
-\begin{minted}[fontsize=\small]{cpp}
-// set wait key = 1000/fps
-cv::waitKey(int(1000/fps));
-
-std_msgs::Header header;
-header.frame_id = "frame";
-header.stamp = ros::Time::now();
-
-sensor_msgs::ImagePtr ImageMsg = cv_bridge::CvImage(header, 
-    "bgr8", frame).toImageMsg();
-
-if(FrameNum % 2 == 0){
-    my_bag.write(topicName, ros::Time::now(), ImageMsg);
-    cout << "recording frames:" << frameNum << endl;
-}
-\end{minted}                
-
+完成MP4格式到rosbag转换，
 其主要逻辑是，将每一帧的信息转换成sensor\_msg类型的消息，之后写入到rosbag中。这里需要注意waitKey函数，其含义为循环等待，单位是1/1000秒，因此1000/fps即为按照fps帧率，每一帧需要等待的时间；该参数控制了视频的帧率，从而控制了rosbag包的长度。topicName为录制的话题名，已经提前定义好。
 
 实验在教东B教室进行，从后门和窗户两个方向相向而行，录制两段视频，尽量保证两段视频中出现重叠场景，以方便地图融合；

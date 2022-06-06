@@ -115,7 +115,7 @@ launch文件使用XML标签语言书写，主要为确定启动的节点和加�
 	\item 降落的方式。一般使用切换飞行模式的方法，将飞行模式切换到降落模式，选择降落模式中的自动降落即可。
 \end{enumerate}
 
-降落的程序如下：
+降落的程序如下：其主要内容与Offboard模式解锁起飞类似，都需要通过mavros的state话题来设置当前的飞行模式，连接到PX4后，由PX4的控制律负责降落过程中的速度处理。
 
 \begin{minted}[fontsize=\small]{cpp}
 // proceed landing process
@@ -131,12 +131,7 @@ while (ros::ok()){
         }
         last_request = ros::Time::now();
     }
-    if(!current_state.armed){
-        break;
-    }
 
-    ros::spinOnce();
-    rate.sleep();
 }
 \end{minted}
 
@@ -152,7 +147,7 @@ void local_cb(const geometry_msgs::PoseStamped::ConstPtr& msg){
 }
 \end{minted}
 
-检查是否到达航路点的函数如下：
+检查是否到达航路点的函数如下：其实现方式为通过对比期望的位置信息和订阅得到的当前位置信息，以欧氏距离设置对应精度，满足该精度则认为到达该航路点。
 
 \begin{minted}[fontsize=\small]{cpp}
 // check if reached a waypoint
@@ -176,27 +171,6 @@ bool check_waypoint(const geometry_msgs::PoseStamped &now_pose,
     }
 
     return reach;
-}
-\end{minted}
-
-前往下一个航路点的方法如下：
-
-\begin{minted}[fontsize=\small]{cpp}
-// set second waypoint
-geometry_msgs::PoseStamped pose2;
-pose2.pose.position.x = 2;
-pose2.pose.position.y = 2;
-pose2.pose.position.z = 2;
-
-// heading for waypoint 2
-while(ros::ok()){
-    // publish pose1 information
-    local_pos_pub.publish(pose2);
-    ros::spinOnce();
-
-    // check if reached a waypoint
-    if (check_waypoint(current_pose, pose2)) break;
-    rate.sleep();
 }
 \end{minted}
 
@@ -276,6 +250,14 @@ pose_pub->publish(pose);
 
 可以选择设置其速度，利用循环控制话题执行的时间来设置距离的方法，但该方法在灵活性上有所欠缺；为了更加真实地进行无人机的仿真，本文研究了一套利用键盘输入信息控制无人机飞行的程序。
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{keyboard.png}
+	\caption{键盘控制流程}
+	\label{fig-keyboard}
+\end{figure}
+
+该程序的流程如图\ref{fig-keyboard}所示：
 首先，在对MAVROS的话题进行分析后，发现其订阅的话题有setpoint\_velocity下的cmd\_vel\_unstamped话题；该话题用于发送速度信息给FCU处理，因此本程序的核心为手动控制发送给FCU的速度信息，即MAVROS订阅的速度信息。
 
 该信息属于地理信息的Twist类型，该类型包含三方向的线速度和角速度，因此可以通过更改信息的内容并且完成发布，则MAVROS会订阅并接收到该消息，完成对其速度的控制。
@@ -290,14 +272,36 @@ pose_pub->publish(pose);
         velocityTuning(twist, 0);
         flag = true;
         break;
-    case KEYCODE_W:
-        ROS_INFO("Command Add forward speed RECEIVED!");
-        velocityTuning(twist, 1);
-        flag = true;
-        break;
 \end{minted}
 
 在这之中用到了自定义的velocityTuning函数，其作用是根据第二个参数的值完成对应线速度或角速度的预设变化。其中的标志位flag用来给switch语句结束后判断是否应该发送twist的速度信息，并且在发送过后重新将标志位设为false。
+
+除此之外，MAVROS还与PX4存在通信。比如至关重要的解锁环节，就需要通过MAVROS发信息到PX4实现，并且在解锁之前一般要先完成模式的切换，切换到离板模式进行起飞。为了飞行过程中的安全，PX4也将不断监控MAVROS的一些话题数据，一旦出现故障，则可以调用其安全生效机制，有效保证飞行安全。
+
+\begin{table}[!htbp]
+	\centering
+	\caption{键盘按键指令对照表}\label{tab-keyboard}%添加标题 设置标签
+	\begin{tabular}{cc}
+		\toprule
+		按键& 作用\\
+		\midrule
+		W& 增加X方向线速度\\
+		S& 减少X方向线速度\\
+		A& 增加Y方向线速度\\
+		D& 减少Y方向线速度\\
+		
+		Page Up    & 增加Z方向线速度\\
+		Page Down  & 减少Z方向线速度\\
+		Page Left  & 增加偏航角速度\\
+		Page Right & 减少偏航角速度\\
+		
+		T & 切换离板模式并起飞\\
+		L & 切换着陆模式\\
+		H & 保持当前所在位置\\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \subsection{单机仿真实验结果} \label{4.2.5}
 
