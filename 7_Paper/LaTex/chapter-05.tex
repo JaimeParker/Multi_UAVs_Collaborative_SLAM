@@ -7,6 +7,126 @@
 这包括数据集、录像视频转rosbag、T265相机实时视频等方式的实验。
 实验内容主要有两部分，单机的SLAM实验和多机的SLAM实验。
 
+\section{Euroc数据集实验}
+
+Euroc数据集是苏黎世联邦理工大学制作，本实验使用其中两个“简单”类型的数据集。该数据集使用配备双目相机和IMU的小型无人机录制。虽然是可以直接获取深度的双目相机，但本研究选取的两个数据集在开始时，均进行了多次上下和左右平移运动，可以满足单目相机初始化的任务，因此该数据集完全可以用于单目SLAM的实验\footnote{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}。
+
+为了做更加精确的比较，数据集除了rosbag或图片序列之外，还需要位姿真值信息，用于比对定位的精度；此外，还需要时间戳信息，因为SLAM系统记录下来的是关键帧的位姿及时间戳，但关键帧的数量远远小于整个视频的帧数，因此需要通过时间戳的匹配来分析当前关键帧的位姿。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{euroc1.png}
+		\caption{无人机1当前帧}
+		\label{fig-euroc1}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{euroc2.png}
+		\caption{无人机2当前帧}
+		\label{fig-euroc2}
+	\end{minipage}
+\end{figure}
+
+图\ref{fig-euroc1}，\ref{fig-euroc2}展示了两架无人机在飞行过程中ORB-SLAM2当前帧的画面，该场景是ETH一个工业实验室内部的场景，使用微型无人机可以很容易地在该环境中穿梭，完成较好的定位与建图任务。
+
+图\ref{fig-euroc3}展示了两架无人机各自的地图，图像右侧展示了两机拼合的地图；图\ref{fig-euroc4}为方法后的地图拼合场景，可以看到地图拼合之后，两者的出发点也被合并到同一位置，这与实际情况相符，接下来需要使用轨迹工具来验证两者的实际轨迹是否与建图相符。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{euroc3.png}
+		\caption{双机地图和拼合地图}
+		\label{fig-euroc3}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{euroc4.png}
+		\caption{双机轨迹和拼合地图}
+		\label{fig-euroc4}
+	\end{minipage}
+\end{figure}
+
+evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿分析软件，其支持TUM、Euroc、KITTI的数据集格式，并且可以相互转换；支持位姿真值轨迹与SLAM得到的轨迹进行Sim3转化，得到对齐之后的位姿真值与视觉轨迹比较；并且可以分析绝对误差，评判算法的准确性\footnote[1]{https://github.com/MichaelGrupp/evo/wiki}。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{groundtruth.png}
+		\caption{双机位姿真值}
+		\label{fig-groundtruth}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{trajectory.png}
+		\caption{双机位姿估计}
+		\label{fig-trajectory}
+	\end{minipage}
+\end{figure}
+
+图\ref{fig-groundtruth}展示了数据集提供的两架无人机的位姿真值，该真值由红外运动捕捉相机测量得到。图\ref{fig-trajectory}展示了两架无人机通过SLAM方法得到的轨迹估计，由于轨迹估计在坐标系和尺度上与实际真值存在一定转换关系，只从这两幅图像中无法得到对于单架无人机而言，位姿估计和真值的关系，因此需要使用evo自带的Sim3转换，得到校正过的真值与估计的拼合图像。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{comp0.png}
+		\caption{无人机0真值与估计对比}
+		\label{fig-comp0}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{comp1.png}
+		\caption{无人机1真值与估计对比}
+		\label{fig-comp1}
+	\end{minipage}
+\end{figure}
+
+在图\ref{fig-comp0}，\ref{fig-comp1}中，虚线均代表各自的位姿真值，实线均代表各自的位姿估计值，可以看出整体上视觉位姿估计的效果较好，与真值的误差较小，但是仍需要通过进一步的计算和比对来确定误差。evo提供了计算绝对误差的工具。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{ape_map0.png}
+		\caption{无人机0轨迹误差}
+		\label{fig-apemap0}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{ape_map1.png}
+		\caption{无人机1轨迹误差}
+		\label{fig-apemap1}
+	\end{minipage}
+\end{figure}
+
+图\ref{fig-apemap0}，\ref{fig-apemap1}表现了两机整个飞行轨迹中的误差变化，颜色越暖则误差越大，颜色越冷则误差越小。通过对照图分析可以发现，在轨迹变化不光滑的区域，颜色为红色，误差最大，这与实际情况是相符的，往往是经过了重定位或经历了短暂的跟踪丢失的情况。但是这样的描述仍然不具有说服力，于是本文采用了更为直观的表示方法。
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{ape_raw0.png}
+	\caption{无人机0误差分析}
+	\label{fig-aperaw0}
+\end{figure}
+
+图\ref{fig-aperaw0}展示了无人机0的整体轨迹估计误差分析图，图中包含了其最大误差和均值、中间值等参数，可以看出相对于以真值为维度的参考下，结合图\ref{fig-apemap0}中所示的颜色误差分析和表\ref{error-euroc}中的各参数具体值可以给出结论，视觉SLAM的误差满足定位精度要求。
+
+\begin{table}[!htbp]
+	\centering
+	\caption{无人机0误差表}\label{error-euroc}%添加标题 设置标签
+	\begin{tabular}{ccccccc}
+		\toprule
+		
+		max& mean & median & min & rmse & sse & std\\
+		0.087 & 0.044 & 0.042 &  0.010 & 0.048 & 0.475 & 0.020\\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 \section{单机SLAM实验}
 
 真机搭载英特尔T265摄像头，其特点是带两个鱼眼镜头和惯性测量单元，并且视觉SLAM可以运行在其特有的视觉处理单元上。其在电脑上需要一定配置，安装英特尔的一些依赖库文件和realsense-viewer。
