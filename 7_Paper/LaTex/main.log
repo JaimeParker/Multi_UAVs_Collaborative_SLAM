@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  8 JUN 2022 03:01
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  8 JUN 2022 16:30
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -3297,6 +3297,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [59]
+File: figures/t265-2.png Graphic file (type bmp)
+<figures/t265-2.png>
+File: figures/t265-4.png Graphic file (type bmp)
+<figures/t265-4.png>
+File: figures/t265-1.png Graphic file (type bmp)
+<figures/t265-1.png>
+File: figures/t265-3.png Graphic file (type bmp)
+<figures/t265-3.png>
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[60]
 File: figures/ou1-1.png Graphic file (type bmp)
 <figures/ou1-1.png>
 File: figures/ou3-1.png Graphic file (type bmp)
@@ -3308,7 +3324,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[60]
+[61]
 File: figures/ccm4.png Graphic file (type bmp)
 <figures/ccm4.png>
 File: figures/ccm2.png Graphic file (type bmp)
@@ -3320,7 +3336,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[61]
+[62]
 \openout2 = `chapter-06.aux'.
 
  (./chapter-06.tex
@@ -3331,7 +3347,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[62
+[63
 
 
 
@@ -3342,14 +3358,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[63] (./main.bbl
+[64] (./main.bbl
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[64
+[65
 
 
 
@@ -3360,7 +3376,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[65]
+[66]
 \openout2 = `1-acknowledgements.aux'.
 
  (./1-acknowledgements.tex)
@@ -3370,7 +3386,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[66
+[67
 
 
 ]
@@ -3383,7 +3399,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[67
+[68
 
 
 
@@ -3405,12 +3421,12 @@ runsystem(rm main.pyg)...executed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 94.
  ) 
 Here is how much of TeX's memory you used:
- 46874 strings out of 493007
- 930307 string characters out of 6136718
- 1024883 words of memory out of 5000000
- 49950 multiletter control sequences out of 15000+600000
+ 46894 strings out of 493007
+ 930667 string characters out of 6136718
+ 1025050 words of memory out of 5000000
+ 49966 multiletter control sequences out of 15000+600000
  544421 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1017s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (72 pages).
+Output written on main.pdf (73 pages).

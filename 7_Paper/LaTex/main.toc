@@ -45,11 +45,11 @@
 \contentsline {chapter}{\numberline {第五章\hspace {.3em}}实验与评估}{56}{chapter.5}
 \contentsline {section}{\numberline {5.1}Euroc数据集实验}{56}{section.5.1}
 \contentsline {section}{\numberline {5.2}单机SLAM实验}{59}{section.5.2}
-\contentsline {section}{\numberline {5.3}多机SLAM实验}{60}{section.5.3}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{62}{chapter.6}
-\contentsline {section}{\numberline {6.1}全文总结}{62}{section.6.1}
-\contentsline {section}{\numberline {6.2}对未来工作的展望}{63}{section.6.2}
-\contentsline {chapter}{参考文献}{65}{chapter*.54}
-\contentsline {chapter}{致谢}{66}{chapter*.55}
-\contentsline {chapter}{毕业设计小结}{67}{chapter*.56}
+\contentsline {section}{\numberline {5.3}多机SLAM实验}{61}{section.5.3}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{63}{chapter.6}
+\contentsline {section}{\numberline {6.1}全文总结}{63}{section.6.1}
+\contentsline {section}{\numberline {6.2}对未来工作的展望}{64}{section.6.2}
+\contentsline {chapter}{参考文献}{66}{chapter*.56}
+\contentsline {chapter}{致谢}{67}{chapter*.57}
+\contentsline {chapter}{毕业设计小结}{68}{chapter*.58}
 \contentsfinish 

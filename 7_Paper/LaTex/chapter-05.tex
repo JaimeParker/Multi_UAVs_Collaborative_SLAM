@@ -120,7 +120,7 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 	\begin{tabular}{ccccccc}
 		\toprule
 		
-		max& mean & median & min & rmse & sse & std\\
+		最大误差 & 均值 & 中值 & 最小误差 & 均方根误差 & 误差平方和 & 标准差\\
 		0.087 & 0.044 & 0.042 &  0.010 & 0.048 & 0.475 & 0.020\\
 		
 		\bottomrule
@@ -138,7 +138,50 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 在真机实验之前，首先使用T265相机中的单目相机进行室内的建图实验；使用单目相机进行ORB-SLAM2的关键是初始化，这是由单目相机的特性决定的；由于其拍摄到的图片不具有深度信息，因此需要依靠三角化恢复深度。而三角化的特点是，两帧之间的平移向量不能为零，否则解出的旋转矩阵也为零；因此单目相机的初始化方法是使相机在相同场景中不断左右或上下平移。初始化成功后，ORB-SLAM2进入跟踪模式，需要注意当进入陌生场景（比如直角转弯）时，移动应尽量缓慢，否则很容易跟丢，进入重定位模式。
 但进入重定位模式后，只要将视角对准经历过的场景，一般又能重新恢复跟踪。
 
-共进行两个场景的稀疏点云建图，如图\ref{result1}，图\ref{result2}所示：
+首先，图\ref{fig-camera3}，\ref{fig-camera4}分别展示了在刚刚建立初始地图时的场景，左图是在初始化之后经过一次转弯后的建图情况，在转弯期间速度会适当放慢，因为面对陌生的场景需要逐步完成提取特征点和匹配的操作；之后再经历三次转弯之后会回到预期回环的位置，右图对应的场景是即将完成回环的场景。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.4\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{t265-2.png}
+		\caption{初始场景当前帧}
+		\label{fig-camera3}
+	\end{minipage}
+	\begin{minipage}[t]{0.4\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{t265-4.png}
+		\caption{回环场景当前帧}
+		\label{fig-camera4}
+	\end{minipage}
+\end{figure}
+
+由于没有动作捕捉设备，无法获得相机的位姿真值，但是可以根据最后回环后的整体轨迹判断其合理性。
+
+为了更加清楚地体现出整个建图的动态过程，图\ref{fig-camera1}对应的是图\ref{fig-camera3}当前帧对应时间戳的见图情况，从图中可以看到，刚刚经过了一个转弯，且蓝色方框的关键帧轨迹比较连续，没有存在跟踪丢失和重定位的情况。
+
+图\ref{fig-camera2}则对应\ref{fig-camera4}的情况，也就是完成回环合并和全局BA之前的阶段。该图中可以看出虽然相机运行到了与起始点的同一位置，见到了同样的场景，但相机还没有完成回环的合并，因此存在着很大的漂移，也就是累计误差，这也说明了回环检测和全局BA在SLAM系统中十分重要。
+
+
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.4\columnwidth} %小于1/n如果使用n张图片
+		\centering
+		\includegraphics[width=1.0\columnwidth]{t265-1.png}
+		\caption{初始地图}
+		\label{fig-camera1}
+	\end{minipage}
+	\begin{minipage}[t]{0.4\columnwidth}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{t265-3.png}
+		\caption{回环地图}
+		\label{fig-camera2}
+	\end{minipage}
+\end{figure}
+
+~\\
+两个场景的稀疏点云建图最终结果，如图\ref{result1}，图\ref{result2}所示，最终完成了回环，得到了全局优化后的场景地图，根据轨迹可以直观地验证合理性。
 
 \begin{figure}[htbp]
 	\centering
