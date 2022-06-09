@@ -12,17 +12,15 @@
 
 ### 0.2 第二阶段 ROS
 
-* [任务实现](1_basic/READMD.md)
+* [任务实现](1_basic/README.md)
 
 ### 0.3 第三阶段 SLAM
 
 * [README](2_SLAM/README.md)
-* 存在问题：**建图拼接**
 
 ### 0.4 第四阶段 On board SLAM
 
 * [README](3_Onboard_SLAM/README.md)
-* 存在问题：**PX4视觉信息融合失败，无法解锁**
 
 ### 0.5 第五阶段 Multi SLAM
 
@@ -36,7 +34,8 @@
 
 * [Outline](7_Paper/README.md)
 * [Draft](7_Paper/draft.md)
-* [pdf](7_Paper/LaTex/main.pdf)
+* [pdf论文（可能太大，加载失败）](7_Paper/LaTex/main.pdf)
+* [压缩版pdf论文](7_Paper/thesis_compressed.pdf)
 
 ## 1. 研究目标
 
