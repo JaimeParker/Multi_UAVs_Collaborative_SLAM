@@ -119,7 +119,7 @@ ROS的工作空间是进行开发的基础，后续的所有任务基本都基�
 工作空间的创建可以使用catkin\_make方法\footnote[1]{http://wiki.ros.org/catkin/Tutorials}，但是需要注意python版本，如果要使用python3，则有特殊的编译方法。也可以在src目录下使用catkin\_init\_workspace命令，获得初始化的工作空间。
 
 工作空间一般分为四个部分，如图\ref{fig-catkin}所示，分为src、devel、build、install。在这之中，最常接触到的是src，也就是存放功能包的目录；其次是build，默认功能包编译后会放在这个目录中；devel作为编译后的启动设置文件，一般只在设置环境变量时使用，而install一般是具有发行版后才会使用。除此之外，还可以自己设置一个scripts脚本文件夹，用于快速启动各类程序。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{catkin.png}
@@ -144,7 +144,7 @@ PX4是一款专业级开源飞控，也可以称之为自动驾驶仪；因其�
 \subsection{PX4整体框架}
 
 PX4的架构可以分为两个部分：一是飞行控制栈，主要包含飞行控制系统和状态估计算法\footnote{https://docs.px4.io/master/en/concept/architecture.html}；二是中间控制通信层。主要涵盖嵌入式设备的驱动程序，与外部的通信以及PX4的uORB消息总线。系统支持多种机型和设备，但使用的是一套代码库，并且采用了“响应式”的设计理念，也就意味着其做到了所有功能都可以向下分割成若干可以复用和按需求替换的组件、并且通过异步的方式进行通信，这样的设计也使得系统在不同工作负载下可以有不同的应对方法。以下分别研究飞行控制栈和中间通信层。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.9\textwidth]{px4structure.png}

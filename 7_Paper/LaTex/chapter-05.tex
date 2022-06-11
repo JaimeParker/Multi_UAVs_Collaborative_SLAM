@@ -12,7 +12,7 @@
 Euroc数据集是苏黎世联邦理工大学制作，本实验使用其中两个“简单”类型的数据集。该数据集使用配备双目相机和IMU的小型无人机录制。虽然是可以直接获取深度的双目相机，但本研究选取的两个数据集在开始时，均进行了多次上下和左右平移运动，可以满足单目相机初始化的任务，因此该数据集完全可以用于单目SLAM的实验\footnote{https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets}。
 
 为了做更加精确的比较，数据集除了rosbag或图片序列之外，还需要位姿真值信息，用于比对定位的精度；此外，还需要时间戳信息，因为SLAM系统记录下来的是关键帧的位姿及时间戳，但关键帧的数量远远小于整个视频的帧数，因此需要通过时间戳的匹配来分析当前关键帧的位姿。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -32,7 +32,7 @@ Euroc数据集是苏黎世联邦理工大学制作，本实验使用其中两个
 图\ref{fig-euroc1}，\ref{fig-euroc2}展示了两架无人机在飞行过程中ORB-SLAM2当前帧的画面，该场景是ETH一个工业实验室内部的场景，使用微型无人机可以很容易地在该环境中穿梭，完成较好的定位与建图任务。
 
 图\ref{fig-euroc3}展示了两架无人机各自的地图，图像右侧展示了两机拼合的地图；图\ref{fig-euroc4}为方法后的地图拼合场景，可以看到地图拼合之后，两者的出发点也被合并到同一位置，这与实际情况相符，接下来需要使用轨迹工具来验证两者的实际轨迹是否与建图相符。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -50,7 +50,7 @@ Euroc数据集是苏黎世联邦理工大学制作，本实验使用其中两个
 \end{figure}
 
 evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿分析软件，其支持TUM、Euroc、KITTI的数据集格式，并且可以相互转换；支持位姿真值轨迹与SLAM得到的轨迹进行Sim3转化，得到对齐之后的位姿真值与视觉轨迹比较；并且可以分析绝对误差，评判算法的准确性\footnote[1]{https://github.com/MichaelGrupp/evo/wiki}。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -68,7 +68,7 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 \end{figure}
 
 图\ref{fig-groundtruth}展示了数据集提供的两架无人机的位姿真值，该真值由红外运动捕捉相机测量得到。图\ref{fig-trajectory}展示了两架无人机通过SLAM方法得到的轨迹估计，由于轨迹估计在坐标系和尺度上与实际真值存在一定转换关系，只从这两幅图像中无法得到对于单架无人机而言，位姿估计和真值的关系，因此需要使用evo自带的Sim3转换，得到校正过的真值与估计的拼合图像。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -86,7 +86,7 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 \end{figure}
 
 在图\ref{fig-comp0}，\ref{fig-comp1}中，虚线均代表各自的位姿真值，实线均代表各自的位姿估计值，可以看出整体上视觉位姿估计的效果较好，与真值的误差较小，但是仍需要通过进一步的计算和比对来确定误差。evo提供了计算绝对误差的工具。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -139,7 +139,7 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 但进入重定位模式后，只要将视角对准经历过的场景，一般又能重新恢复跟踪。
 
 首先，图\ref{fig-camera3}，\ref{fig-camera4}分别展示了在刚刚建立初始地图时的场景，左图是在初始化之后经过一次转弯后的建图情况，在转弯期间速度会适当放慢，因为面对陌生的场景需要逐步完成提取特征点和匹配的操作；之后再经历三次转弯之后会回到预期回环的位置，右图对应的场景是即将完成回环的场景。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.4\columnwidth} %小于1/n如果使用n张图片
@@ -222,7 +222,6 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 其主要逻辑是，将每一帧的信息转换成sensor\_msg类型的消息，之后写入到rosbag中。这里需要注意waitKey函数，其含义为循环等待，单位是1/1000秒，因此1000/fps即为按照fps帧率，每一帧需要等待的时间；该参数控制了视频的帧率，从而控制了rosbag包的长度。topicName为录制的话题名，已经提前定义好。
 
 实验在教东B教室进行，从后门和窗户两个方向相向而行，录制两段视频，尽量保证两段视频中出现重叠场景，以方便地图融合；
-
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片

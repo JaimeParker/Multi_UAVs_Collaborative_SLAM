@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  9 JUN 2022 01:20
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  11 JUN 2022 15:08
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2919,8 +2919,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [32]
 File: figures/CCMstructure.png Graphic file (type bmp)
 <figures/CCMstructure.png>
-File: figures/Client.png Graphic file (type bmp)
-<figures/Client.png>
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2929,27 +2927,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [33]
+File: figures/Client.png Graphic file (type bmp)
+<figures/Client.png>
 \openout4 = `main.pyg'.
 
 
 (./_minted-main/9C14BF9AF40E3C297928046801EAAA68504A7AF0CD3BAA7542030FC560DFCC4
 5.pygtex)
-\openout4 = `main.pyg'.
-
-
-(./_minted-main/087833416C80D561CB2A90A0B815FD19504A7AF0CD3BAA7542030FC560DFCC4
-5.pygtex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[34])
+[34]
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/087833416C80D561CB2A90A0B815FD19504A7AF0CD3BAA7542030FC560DFCC4
+5.pygtex)
 File: figures/csfm.png Graphic file (type bmp)
 <figures/csfm.png>
-File: figures/keyframe.png Graphic file (type bmp)
-<figures/keyframe.png>
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2958,6 +2956,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [35]
+File: figures/keyframe.png Graphic file (type bmp)
+<figures/keyframe.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2975,9 +2976,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [37]
-File: figures/mapmerge.png Graphic file (type bmp)
-<figures/mapmerge.png>
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2985,8 +2983,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [38]
+File: figures/mapmerge.png Graphic file (type bmp)
+<figures/mapmerge.png>
 File: figures/theory.png Graphic file (type bmp)
 <figures/theory.png>
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[39]
 \openout4 = `main.pyg'.
 
 
@@ -2998,19 +3006,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[39])
+[40])
 \openout4 = `main.pyg'.
 
 
 (./_minted-main/AAA32F3641E4EBE553D2AC0859A47503504A7AF0CD3BAA7542030FC560DFCC4
-5.pygtex
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[40])
+5.pygtex)
 File: figures/merge3.png Graphic file (type bmp)
 <figures/merge3.png>
 File: figures/merge4.png Graphic file (type bmp)
@@ -3093,11 +3094,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 (./_minted-main/152EE61FC43F2DABF237F66C5E24EBB4504A7AF0CD3BAA7542030FC560DFCC4
-5.pygtex)
-\openout4 = `main.pyg'.
-
-
-(./_minted-main/1E74C1A677EA022586562D9C7E2E92B6504A7AF0CD3BAA7542030FC560DFCC4
 5.pygtex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3106,6 +3102,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [46])
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/1E74C1A677EA022586562D9C7E2E92B6504A7AF0CD3BAA7542030FC560DFCC4
+5.pygtex)
 File: figures/waypoint.png Graphic file (type bmp)
 <figures/waypoint.png>
 File: figures/rqtRGBD.png Graphic file (type bmp)
@@ -3149,13 +3150,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 (./_minted-main/4C05163725001A43C4806ADA7D9737E5504A7AF0CD3BAA7542030FC560DFCC4
 5.pygtex)
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 24.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[50]
 File: figures/single.png Graphic file (type bmp)
 <figures/single.png>
 File: figures/single1.png Graphic file (type bmp)
@@ -3164,10 +3158,6 @@ File: figures/mono1.png Graphic file (type bmp)
 <figures/mono1.png>
 File: figures/mono3.png Graphic file (type bmp)
 <figures/mono3.png>
-File: figures/mono2.png Graphic file (type bmp)
-<figures/mono2.png>
-File: figures/mono4.png Graphic file (type bmp)
-<figures/mono4.png>
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3175,7 +3165,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
+[50]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
 [51]
+File: figures/mono2.png Graphic file (type bmp)
+<figures/mono2.png>
+File: figures/mono4.png Graphic file (type bmp)
+<figures/mono4.png>
 File: figures/single2.png Graphic file (type bmp)
 <figures/single2.png>
 File: figures/single3.png Graphic file (type bmp)
@@ -3246,10 +3247,6 @@ File: figures/multi1.png Graphic file (type bmp)
 <figures/multi1.png>
 File: figures/multi3.png Graphic file (type bmp)
 <figures/multi3.png>
-File: figures/ccmsim2.png Graphic file (type bmp)
-<figures/ccmsim2.png>
-File: figures/ccmsim1.png Graphic file (type bmp)
-<figures/ccmsim1.png>
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3257,7 +3254,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[57])
+[57]
+File: figures/ccmsim2.png Graphic file (type bmp)
+<figures/ccmsim2.png>
+File: figures/ccmsim1.png Graphic file (type bmp)
+<figures/ccmsim1.png>
+)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -3308,8 +3310,6 @@ File: figures/ape_map0.png Graphic file (type bmp)
 <figures/ape_map0.png>
 File: figures/ape_map1.png Graphic file (type bmp)
 <figures/ape_map1.png>
-File: figures/ape_raw0.png Graphic file (type bmp)
-<figures/ape_raw0.png>
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3318,6 +3318,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [61]
+File: figures/ape_raw0.png Graphic file (type bmp)
+<figures/ape_raw0.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -3329,10 +3332,6 @@ File: figures/t265-2.png Graphic file (type bmp)
 <figures/t265-2.png>
 File: figures/t265-4.png Graphic file (type bmp)
 <figures/t265-4.png>
-File: figures/t265-1.png Graphic file (type bmp)
-<figures/t265-1.png>
-File: figures/t265-3.png Graphic file (type bmp)
-<figures/t265-3.png>
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3341,6 +3340,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [63]
+File: figures/t265-1.png Graphic file (type bmp)
+<figures/t265-1.png>
+File: figures/t265-3.png Graphic file (type bmp)
+<figures/t265-3.png>
 File: figures/ou1-1.png Graphic file (type bmp)
 <figures/ou1-1.png>
 File: figures/ou3-1.png Graphic file (type bmp)
@@ -3365,6 +3368,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [65]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[66]
 \openout2 = `chapter-06.aux'.
 
  (./chapter-06.tex
@@ -3375,7 +3385,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[66
+[67
 
 
 
@@ -3386,14 +3396,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[67] (./main.bbl
+[68] (./main.bbl
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[68
+[69
 
 
 
@@ -3404,7 +3414,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[69]
+[70]
 \openout2 = `1-acknowledgements.aux'.
 
  (./1-acknowledgements.tex)
@@ -3414,7 +3424,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[70
+[71
 
 
 ]
@@ -3427,7 +3437,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[71
+[72
 
 
 
@@ -3451,10 +3461,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 94.
 Here is how much of TeX's memory you used:
  46910 strings out of 493007
  930962 string characters out of 6136718
- 1025276 words of memory out of 5000000
+ 1027277 words of memory out of 5000000
  49979 multiletter control sequences out of 15000+600000
  544421 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1017s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (76 pages).
+Output written on main.pdf (77 pages).

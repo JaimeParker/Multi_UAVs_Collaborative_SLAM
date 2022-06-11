@@ -14,7 +14,7 @@
 \subsection{场景} \label{4.1.1}
 
 仿真环境中，场景的设计不能过于简单，墙壁、地面等大面积重复物体应该具有纹理，否则ORB-SLAM2的特征点提取会十分困难；除了纹理的设计，还应尽可能多地提供物体，使场景丰富。如图\ref{fig4-1}所示：
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{scene.png}
@@ -94,7 +94,7 @@ launch文件使用XML标签语言书写，主要为确定启动的节点和加�
 更改完launch文件的无人机配置后，可以试运行来检测，即roslaunch该launch文件。之后有两种方法可以检查，一是使用rostopic list命令，查找当前活跃的话题，如果MAVROS能顺利连接上双目相机，则会出现image\_raw话题（对于双目分为左右，但对于单目仅有一个话题），这种情况下一般是成功的；另一种方法是使用ROS自带的rqt\_graph命令，该命令可以以图的形式展示出，这种方式用途更广。装配成功后，仿真加载时应如图\ref{fig4-2}所示：
 
 % 或许可以加一张大图
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{mono_uav.png}
@@ -249,7 +249,7 @@ pose_pub->publish(pose);
 尽管可以使用Offboard模式下的position信息进行航路点的控制，但是无人机起飞和前进的动作幅度过大，直接影响了SLAM系统的跟踪效果，因此需要考虑通过MAVROS发布的信息，对无人机的速度进行详细控制。
 
 可以选择设置其速度，利用循环控制话题执行的时间来设置距离的方法，但该方法在灵活性上有所欠缺；为了更加真实地进行无人机的仿真，本文研究了一套利用键盘输入信息控制无人机飞行的程序。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.6\textwidth]{keyboard.png}
@@ -306,7 +306,7 @@ pose_pub->publish(pose);
 \subsection{单机仿真实验结果} \label{4.2.5}
 
 首先尝试了在简单的gazebo环境中进行起飞，场景如图\ref{fig4-6-1}所示；由于使用双目相机，不需要初始化过程，因此飞机在非速度控制下的起飞中，也能匹配到较多特征点，但由于轨迹较短，并不能展示出完成的稀疏地图。并且当发生航路点飞行的瞬间，其动作幅度较大，极容易丢失跟踪，且无法完成重定位。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -324,7 +324,7 @@ pose_pub->publish(pose);
 \end{figure}
 
 为了解决无人机飞行轨迹固定、航路点之间转换时飞机姿态变化剧烈的问题，参考\ref{4.2.4}中设计的键盘控制程序，首先进行了单目的场景测试，以测试键盘控制程序控制无人机的稳定性和单目相机初始化的方法，以及单目相机的跟踪性能。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -397,7 +397,7 @@ pose_pub->publish(pose);
 回环检测和全局BA优化是整个ORB-SLAM2中最后的工作，但对一个完整的SLAM系统而言，也是最重要的工作。但上述实验由于场景相似度太高，依靠相似度判断的回环会出现一些问题，以致于不能完成相同位置的回环。因此，对上述模型做出了修改，更改场景地图为街道类型，采用完全不重复的场景设计，并优化了无人机的飞行路线，使无人机沿“口”字路线飞行，并且最终完成回环。
 
 其中，设计的街区场景如图\ref{fig-stereo1}所示，运行过程中的当前帧如\ref{fig-stereo2}所示。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth}
@@ -415,7 +415,7 @@ pose_pub->publish(pose);
 \end{figure}
 
 该仿真的结果如图\ref{fig-stereo3}所示，可以看出，经过一整圈的飞行后，SLAM系统成功检测到了回环并完成了累计误差的消除和整体地图的优化；图\ref{fig-stereo4}展示了无人机飞行过程中，以自身视角对两侧建筑物上提取到的关键点进行建图的结果。该结果可以说明，单机SLAM的仿真已经基本成功。
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth}
@@ -480,7 +480,7 @@ pose_pub->publish(pose);
 \end{minted}
 
 其默认每架无人机调用的是spawn文件，其中关键的模型组合有两种方式，一种是使用urdf进行模型配置，一种是使用新的sdf。具体使用哪种视PX4的版本而定，由于urdf模型的配制方法要旧于sdf，新版的PX4统一使用sdf进行gazebo仿真的模型配置，并且使用jinja.py脚本生成sdf模型配置。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.9\textwidth]{sdf.png}
@@ -530,16 +530,7 @@ $$
 在无人机发生编队队形变换时，则需要考虑最小总路径，可以用KM匈牙利算法解得每一架飞机对应的最小路径，并且在队形变换过程中需要考虑碰撞的影响\cite{XiaoKun}。
 
 图\ref{fig4-8}展示了三机编队的仿真结果，
-
-%\begin{figure}[!ht]
-%	\centering
-%	\includegraphics[width=0.5\textwidth]{multi.png}
-%	\caption{三机编队仿真}
-%	\label{fig4-8}
-%\end{figure}
-
-
-% 注意caption (a)(b)
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片
@@ -560,7 +551,7 @@ $$
 \subsection{多机SLAM仿真} \label{4.3.3}
 
 多机SLAM仿真除PX4的配置外，还要对SLAM的launch文件进行配置。其中包含了设置相机的参数文件，更重要的是配置各无人机所接受的相机话题。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{multi3.png}
@@ -573,7 +564,7 @@ $$
 考虑到键盘按键有限，因此不采用一个键盘分别控制两架无人机的方式，而是利用了PX4解锁的机制，分别对两架无人机进行切换离板模式和解锁。如图\ref{fig-multicontrol}无人机1与无人机2接收到的速度变化指令是一致的。当无人机1解锁起飞后，无人机2并没有解锁，因此发送的速度指令并不会导致无人机2做出任何响应；直至无人机1完成任务并且返航后，无人机2再根据自己的发布者和订阅者完成切换模式和解锁，此时接收到的MAVROS指令开始对无人机2起作用，其开始正常工作。
 
 启动时需要启动服务器和客户端，然后打开ORB-SLAM节点，最终结果如图：
-
+~\\
 \begin{figure}[htbp]
 	\centering
 	\begin{minipage}[t]{0.45\columnwidth} %小于1/n如果使用n张图片

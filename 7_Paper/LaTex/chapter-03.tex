@@ -10,7 +10,7 @@
 
 \subsection{成像原理及相机参数} \label{3.1.2}
 在各种SLAM中，视觉SLAM由于其传感器（光学相机）造价较低的原因，成为了SLAM中最常用的方式，要了解使用相机的视觉SLAM的原理，首先需要了解相机的成像原理及其参数。
-
+~\\
 如图\ref{fig4}，可以用小孔成像的原理简单地解释针孔相机的模型：
 \begin{figure}[!ht]
 	\centering
@@ -73,7 +73,7 @@ u\\v\\1
 \subsection{视觉SLAM的基本步骤} \label{3.1.3}
 
 经典的视觉SLAM框架如图\ref{fig5}所示：
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{SLAM.png}
@@ -141,7 +141,7 @@ ORB特征点是上文\ref{3.1.3}提到过的特征点的一种，它的全称是
 
 % FAST
 FAST角点选取的核心思想是，选取的点和周边像素点亮度差别很大，则该点可能是FAST角点。如图\ref{fig7}所示，对于可能被选取为FAST角点的像素点$p$，其亮度为$I_p$；设置亮度差异的阈值$T$，可以为$0.3I_p$；选取半径为3的圆上的16个点，对应图中的16个深色点，记录各点的像素值$I_i$，如果16个点中有连续$N$个点满足$|I_i-I_p|>T$，则像素点$p$可以被认为是FAST角点，该标准为FAST-N，N一般取9、11、12\cite{Gao2017SLAM}。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\textwidth]{FAST.png}
@@ -151,7 +151,7 @@ FAST角点选取的核心思想是，选取的点和周边像素点亮度差别�
 
 % Oriented FAST
 单纯的FAST关键点是不带方向性的，为了准确性，ORB的Oriented FAST关键点给FAST角点添加了方向和尺度的描述。其尺度的描述是由计算机视觉中构建金字塔模型的方法，在不同分辨率的图像下都能够提取到特征点，而旋转的描述则是由灰度质心法实现的，如图\ref{fig8}所示：
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\textwidth]{OFAST.png}
@@ -181,7 +181,7 @@ BRIEF描述子为二进制编码，反映了关键点附近128个像素对的大
 ORB-SLAM2是标准的CMake工程，这就意味着其可以使用CMake进行配置并且进行make编译；其虽然支持ROS，但并不是ROS的catkin工程，使用的是rosbuild相关命令，而不是ROS常见的catkin make编译指令。
 
 ORB-SLAM2的github主页上，详细介绍了其编译的方法，官方将编译代码集成到了build.sh文件中；正常情况下，可以通过chmod +x命令给该sh文件赋予可执行权限后，运行sh命令，直接编译。如图\ref{fig10}所示，需要编译的内容为两个第三方库和ORB-SLAM2主要函数；需要注意的是，make -j命令指的是只用全部线程进行编译，这样做可能会造成电脑资源锁死，可以根据电脑的配置自行修改所用线程数。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.45\textwidth]{build.png}
@@ -313,7 +313,7 @@ CCM-SLAM是由苏黎世联邦理工大学Patrik Schmuck开发，其含义是中�
 \subsection{CCM-SLAM的结构} \label{3.3.1}
 
 CCM在算法上使用了ORB-SLAM2的方法，保留了其跟踪、关键帧、关键帧数据库、Sim3求解等类；与此同时，更加明确了自己的Client+Server机制，其核心是中心式的协同结构和各设备之间的通信方法。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.8\textwidth]{CCMstructure.png}
@@ -411,7 +411,7 @@ ClientHandler负责的内容包括：向总地图中添加该ID客户端的地�
 地图融合系统的框架如图\ref{fig13}所示：无人机1和无人机2将帧信息传递给系统的关键帧处理单元，关键帧处理单元对帧做出处理，首先筛选出其中的关键帧，没有入选的帧则被舍弃。
 
 筛选出的关键帧随后首先进入到场景识别模块，该处的作用类似回环检测，即识别出相似的场景，这一点仍然使用基于外观的相似检测，即使用BoW的词袋模型。如果没有探测到场景重叠（注意，相邻的关键帧不会被并入考虑是否重叠，除了很大概率存在重叠外，在代码的逻辑中还需剔除共视关键帧的影响），则进入正常的优化和回环检测、建图等环节；如果探测到场景重叠，则需要视情况而定\cite{forster2013collaborative}：
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.35\textwidth]{keyframe.png}
@@ -487,7 +487,7 @@ v_I = [(\omega_1, W_1), (\omega_2, W_2), ... , (\omega_N, W_N)]
 \subsection{地图融合} \label{3.4.2}
 
 地图融合的前提是存在场景相似，并且当前帧与数据库中的关键帧可以获得一定的匹配关系。如图\ref{fig-mapmerge}所示：现有匹配的关键帧1与关键帧2及其各自的地图1与地图2，地图合并首先会创建一个新地图，在此称其为“总地图”，由地图1和地图2中的点构成。
-
+~\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.6\textwidth]{mapmerge.png}
