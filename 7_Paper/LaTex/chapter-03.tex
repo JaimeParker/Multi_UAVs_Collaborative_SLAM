@@ -141,7 +141,7 @@ ORB特征点是上文\ref{3.1.3}提到过的特征点的一种，它的全称是
 
 % FAST
 FAST角点选取的核心思想是，选取的点和周边像素点亮度差别很大，则该点可能是FAST角点。如图\ref{fig7}所示，对于可能被选取为FAST角点的像素点$p$，其亮度为$I_p$；设置亮度差异的阈值$T$，可以为$0.3I_p$；选取半径为3的圆上的16个点，对应图中的16个深色点，记录各点的像素值$I_i$，如果16个点中有连续$N$个点满足$|I_i-I_p|>T$，则像素点$p$可以被认为是FAST角点，该标准为FAST-N，N一般取9、11、12\cite{Gao2017SLAM}。
-~\\
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\textwidth]{FAST.png}
@@ -151,7 +151,7 @@ FAST角点选取的核心思想是，选取的点和周边像素点亮度差别�
 
 % Oriented FAST
 单纯的FAST关键点是不带方向性的，为了准确性，ORB的Oriented FAST关键点给FAST角点添加了方向和尺度的描述。其尺度的描述是由计算机视觉中构建金字塔模型的方法，在不同分辨率的图像下都能够提取到特征点，而旋转的描述则是由灰度质心法实现的，如图\ref{fig8}所示：
-~\\
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\textwidth]{OFAST.png}
@@ -333,10 +333,10 @@ CCM在算法上使用了ORB-SLAM2的方法，保留了其跟踪、关键帧、�
 CCM-SLAM主要有两大板块的内容，一部分是地图的处理，另一部分是其客户端和服务器的机制及通讯方式。
 
 客户端的设计可以分为三步，如图\ref{fig12}所示，整体的流程是由ClientNode到ClientSystem再到ClientHandler，其中的引用关系即为该流程。
-
+~\\
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Client.png}
+	\includegraphics[width=0.7\textwidth]{Client.png}
 	\caption{Client设计}
 	\label{fig12}
 \end{figure}
@@ -580,7 +580,9 @@ for (const auto & MapPoint : MapPoints){
 \end{figure}
 
 
+\section{本章小结}
 
+本章主要涉及了SLAM系统的研究和设计。首先研究了视觉SLAM的整体框架和其传感器相机的原理；其次分析了两个开源方案，ORB-SLAM2和CCM-SLAM，对两者的核心机制做出了研究；最后设计了地图融合方案，详细叙述了关键流程。
 
 
 

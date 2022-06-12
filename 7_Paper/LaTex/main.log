@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  11 JUN 2022 15:08
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.11.23)  12 JUN 2022 21:46
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2496,7 +2496,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2
 
-] (./main.toc
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 24.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3] (./main.toc
 Overfull \hbox (41.25003pt too wide) detected at line 1
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 一 章  
  []
@@ -2512,12 +2519,12 @@ Overfull \hbox (41.25003pt too wide) detected at line 5
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 16
+Overfull \hbox (41.25003pt too wide) detected at line 17
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 三 章  
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 32
+Overfull \hbox (41.25003pt too wide) detected at line 34
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 四 章  
  []
 
@@ -2527,16 +2534,16 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3
+[4
 
 
 ]
-Overfull \hbox (41.25003pt too wide) detected at line 46
+Overfull \hbox (41.25003pt too wide) detected at line 49
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 五 章  
  []
 
 
-Overfull \hbox (41.25003pt too wide) detected at line 50
+Overfull \hbox (41.25003pt too wide) detected at line 54
 \TU/FandolSong-Regular(0)/bx/n/12.5 第 六 章  
  []
 
@@ -2551,7 +2558,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4]
+[5]
 \openout2 = `chapter-01.aux'.
 
  (./chapter-01.tex
@@ -2934,18 +2941,18 @@ File: figures/Client.png Graphic file (type bmp)
 
 (./_minted-main/9C14BF9AF40E3C297928046801EAAA68504A7AF0CD3BAA7542030FC560DFCC4
 5.pygtex)
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/087833416C80D561CB2A90A0B815FD19504A7AF0CD3BAA7542030FC560DFCC4
+5.pygtex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[34]
-\openout4 = `main.pyg'.
-
-
-(./_minted-main/087833416C80D561CB2A90A0B815FD19504A7AF0CD3BAA7542030FC560DFCC4
-5.pygtex)
+[34])
 File: figures/csfm.png Graphic file (type bmp)
 <figures/csfm.png>
 
@@ -2976,6 +2983,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [37]
+File: figures/mapmerge.png Graphic file (type bmp)
+<figures/mapmerge.png>
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 24.0pt.
@@ -2983,8 +2993,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [38]
-File: figures/mapmerge.png Graphic file (type bmp)
-<figures/mapmerge.png>
 File: figures/theory.png Graphic file (type bmp)
 <figures/theory.png>
 
@@ -3460,11 +3468,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 94.
  ) 
 Here is how much of TeX's memory you used:
  46910 strings out of 493007
- 930962 string characters out of 6136718
- 1027277 words of memory out of 5000000
+ 930943 string characters out of 6136718
+ 1027668 words of memory out of 5000000
  49979 multiletter control sequences out of 15000+600000
  544421 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  63i,12n,76p,10411b,1017s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (77 pages).
+Output written on main.pdf (78 pages).

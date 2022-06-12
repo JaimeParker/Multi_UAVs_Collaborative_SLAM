@@ -100,7 +100,7 @@
 \captionsetup[bi-second]{english}
 
 %一定要在这里声明space，直接声明不好使，小五号
-\captionsetup{font={footnotesize,bf},labelsep=space}
+\captionsetup{font={footnotesize},labelsep=space}
 
 
 %字体设置

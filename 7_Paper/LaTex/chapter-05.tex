@@ -179,7 +179,6 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 		\label{fig-camera2}
 	\end{minipage}
 \end{figure}
-
 ~\\
 两个场景的稀疏点云建图最终结果，如图\ref{result1}，图\ref{result2}所示，最终完成了回环，得到了全局优化后的场景地图，根据轨迹可以直观地验证合理性。
 
@@ -239,3 +238,7 @@ evo是由Michael Grupp开发的一款专门针对SLAM的轨迹可视化与位姿
 \end{figure}
 
 可以看出，基本完成了建图和地图融合的任务。
+
+\section{本章小结}
+
+本章进行了使用相机的实验和使用相机录制的rosbag包进行的实验，并且使用evo工具进行了误差分析，最终认为室内双机视觉SLAM的定位精度可以满足要求。
