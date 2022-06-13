@@ -2,6 +2,8 @@
 
 项目来自`gitee`，[click link](https://gitee.com/hazyparker/my-research)
 
+**[成果展示](https://www.bilibili.com/video/BV1Rv4y1u79b?t=25.1)**
+
 ## 0. 文件索引
 
 ### 0.1 第一阶段 research plan
