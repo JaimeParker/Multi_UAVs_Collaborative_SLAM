@@ -82,7 +82,7 @@
 %%页眉页脚开启
 \fancypagestyle{plain}{
 	\fancyhf{}
-	\fancyhead[C]{\sanhao\raisebox{0.04cm}{\CJKfamily{nwpu} 西北工业大学} \CJKfamily{zhsong} 本科毕业设计论文}
+	\fancyhead[C]{\sanhao\raisebox{0.04cm}{\CJKfamily{nwpu} 西北工业大学} \CJKfamily{zhsong} 本科毕业设计（论文）}
 	 \fancyfoot[C]{\wuhao \thepage}
 }
 
